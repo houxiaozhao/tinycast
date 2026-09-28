@@ -3,6 +3,7 @@ import XCTest
 final class LocalizationUITests: XCTestCase {
     @MainActor
     func testChineseAndEnglishSettings() throws {
+        continueAfterFailure = false
         for (language, general, clipboard, search) in [
             ("zh-Hans", "通用", "剪贴板", "搜索"),
             ("en", "General", "Clipboard", "Search")
@@ -12,8 +13,9 @@ final class LocalizationUITests: XCTestCase {
             app.launch()
             app.activate()
             app.typeKey(",", modifierFlags: .command)
-            let settings = app.windows.containing(.staticText, identifier: general).firstMatch
+            let settings = app.windows.firstMatch
             XCTAssertTrue(settings.waitForExistence(timeout: 20), "Settings must open in \(language)")
+            XCTAssertTrue(settings.staticTexts[general].firstMatch.exists)
             let clipboardRow = settings.staticTexts[clipboard].firstMatch
             XCTAssertTrue(clipboardRow.exists)
             clipboardRow.click()
@@ -26,6 +28,13 @@ final class LocalizationUITests: XCTestCase {
             field.typeText(clipboard)
             XCTAssertTrue(settings.staticTexts[clipboard].firstMatch.waitForExistence(timeout: 10))
             capture(settings, named: "\(language)-settings-search")
+            if language == "zh-Hans" {
+                field.click()
+                field.typeKey("a", modifierFlags: .command)
+                field.typeText("Clipboard")
+                XCTAssertTrue(settings.staticTexts[clipboard].firstMatch.waitForExistence(timeout: 10))
+                capture(settings, named: "zh-Hans-english-search")
+            }
             app.terminate()
         }
     }

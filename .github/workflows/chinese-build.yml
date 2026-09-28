@@ -50,6 +50,16 @@ jobs:
             CODE_SIGN_IDENTITY=- CODE_SIGN_STYLE=Manual \
             2>&1 | tee verification/ui-tests.txt
 
+      - name: Export UI screenshots
+        if: always()
+        run: |
+          if [ -d verification/Localization.xcresult ]; then
+            xcrun xcresulttool export attachments --path verification/Localization.xcresult \
+              --output-path verification/screenshots
+            xcrun xcresulttool get test-results summary --path verification/Localization.xcresult \
+              > verification/ui-summary.json
+          fi
+
       - name: Import fixed signing identity
         env:
           P12_BASE64: ${{ secrets.SIGNING_P12_BASE64 }}
