@@ -121,19 +121,20 @@ struct QuickActionsSettingsView: View {
 
     private func builtInRow(_ action: BuiltInQuickAction) -> some View {
         let entry = CommandCatalog.entry(for: CommandID(action))
-        return SettingsRow(title: action.title, subtitle: subtitle(for: .builtIn(action))) {
+        let title = String(localized: String.LocalizationValue(action.title))
+        return SettingsRow(title: title, subtitle: subtitle(for: .builtIn(action))) {
             Image(systemName: action.symbol)
                 .frame(width: Theme.Size.settingsRowIcon)
         } trailing: {
             if !action.usesTranslationFramework {
-                editButton(title: action.title) { editingAction = action }
+                editButton(title: title) { editingAction = action }
             }
             // The four left the Commands pane with their kind, and its alias field with it.
             if let entry { AliasField(entry: entry) }
             ShortcutRecorder(action: .command(CommandID(action)), isQuiet: true)
-            resultPicker(title: action.title, selection: previewBinding(action))
+            resultPicker(title: title, selection: previewBinding(action))
                 .disabled(action.alwaysPreviews)
-            if let entry { launcherToggle(title: action.title, entry: entry) }
+            if let entry { launcherToggle(title: title, entry: entry) }
         }
     }
 
@@ -307,10 +308,11 @@ struct QuickActionsSettingsView: View {
         }
 
         var body: some View {
+            let title = String(localized: String.LocalizationValue(action.title))
             VStack(alignment: .leading, spacing: Theme.Spacing.xl) {
                 SettingsEditorHeader(
-                    title: "Customize \(action.title)",
-                    subtitle: String(localized: "Tell Tinycast how you want \(action.title) to handle your selected text.")
+                    title: String(localized: "Customize \(title)"),
+                    subtitle: String(localized: "Tell Tinycast how you want \(title) to handle your selected text.")
                 )
 
                 TextEditor(text: $instructions)

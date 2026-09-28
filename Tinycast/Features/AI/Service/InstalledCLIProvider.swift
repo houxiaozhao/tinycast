@@ -111,7 +111,7 @@ private final class InstalledCLITurnRunner {
             })
         else {
             continuation.finish(
-                throwing: AIProviderError.unavailable("There is no user message to send."))
+                throwing: AIProviderError.unavailable(String(localized: "There is no user message to send.")))
             return
         }
         let resolvedExecutable: URL?

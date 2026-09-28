@@ -146,10 +146,10 @@ final class CodexTurnRunner {
                 continuation.finish(
                     throwing: AIProviderError.responseFailed(
                         completed["error"]?.objectValue?["message"]?.stringValue
-                            ?? "Codex could not finish the response."))
+                            ?? String(localized: "Codex could not finish the response.")))
             default:
                 continuation.finish(
-                    throwing: AIProviderError.responseFailed("The response was interrupted."))
+                    throwing: AIProviderError.responseFailed(String(localized: "The response was interrupted.")))
             }
             clear(key)
         case "error":
@@ -157,7 +157,7 @@ final class CodexTurnRunner {
             continuation.finish(
                 throwing: AIProviderError.responseFailed(
                     params["error"]?.objectValue?["message"]?.stringValue
-                        ?? "Codex returned an error."))
+                        ?? String(localized: "Codex returned an error.")))
             clear(key)
         default:
             break
@@ -200,7 +200,7 @@ final class CodexTurnRunner {
         for (key, turn) in turns where turn.threadID != nil {
             turn.continuation.finish(
                 throwing: AIProviderError.responseFailed(
-                    "Codex restarted to change the tools another chat can use."))
+                    String(localized: "Codex restarted to change the tools another chat can use.")))
             clear(key)
         }
     }
@@ -236,7 +236,7 @@ final class CodexTurnRunner {
             })
         else {
             continuation.finish(
-                throwing: AIProviderError.unavailable("There is no user message to send."))
+                throwing: AIProviderError.unavailable(String(localized: "There is no user message to send.")))
             return
         }
         let key = ObjectIdentifier(token)
@@ -249,7 +249,7 @@ final class CodexTurnRunner {
             try Task.checkCancellation()
             guard !model.isEmpty else {
                 throw AIProviderError.unavailable(
-                    "No Codex model is available for this account.")
+                    String(localized: "No Codex model is available for this account."))
             }
             let turn = Turn(continuation: continuation, servers: servers, session: toolServers)
             turns[key] = turn
@@ -278,7 +278,7 @@ final class CodexTurnRunner {
                 let threadID = thread["id"]?.stringValue
             else {
                 throw CodexAppServerClient.ClientError.requestFailed(
-                    "Codex returned no generation thread.")
+                    String(localized: "Codex returned no generation thread."))
             }
             // A thread claimed after Stop would route events to a stream nobody reads.
             guard turns[key] === turn, !Task.isCancelled else { return }
@@ -392,7 +392,7 @@ final class CodexTurnRunner {
     private func clear(_ key: ObjectIdentifier) {
         guard let turn = turns.removeValue(forKey: key) else { return }
         turn.continuation.finish(
-            throwing: AIProviderError.responseFailed("The Codex connection was interrupted."))
+            throwing: AIProviderError.responseFailed(String(localized: "The Codex connection was interrupted.")))
         if let threadID = turn.threadID { client.cancelElicitations(threadID: threadID) }
         if turns.isEmpty { onTurnEnded?() }
     }

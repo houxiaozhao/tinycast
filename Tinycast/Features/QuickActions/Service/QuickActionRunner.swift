@@ -58,7 +58,7 @@ final class QuickActionRunner {
         }
         let trimmed = text.trimmingCharacters(in: .whitespacesAndNewlines)
         guard !trimmed.isEmpty else {
-            throw AIProviderError.responseFailed("The model returned nothing.")
+            throw AIProviderError.responseFailed(String(localized: "The model returned nothing."))
         }
         return trimmed
     }

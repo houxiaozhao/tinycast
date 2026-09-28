@@ -137,7 +137,7 @@ final class MCPStdioTransport: MCPTransport {
             handle(MCPProtocol.parse(Data(line)))
         }
         guard outputBuffer.count > Self.outputLimit else { return }
-        let message = "The server sent an unterminated oversized response and was disconnected."
+        let message = String(localized: "The server sent an unterminated oversized response and was disconnected.")
         onExit?(message)
         stop(error: MCPTransportError.requestFailed(message))
     }

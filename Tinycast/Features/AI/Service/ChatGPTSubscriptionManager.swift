@@ -79,7 +79,7 @@ final class ChatGPTSubscriptionManager {
             await loadModelsAndLimits()
         }
         guard account != nil else {
-            throw AIProviderError.unavailable("Sign in with `codex login`, then check Codex again.")
+            throw AIProviderError.unavailable(String(localized: "Sign in with `codex login`, then check Codex again."))
         }
     }
 
@@ -232,7 +232,7 @@ final class ChatGPTSubscriptionManager {
         if error is AIProviderError { return error }
         let message =
             (error as? LocalizedError)?.errorDescription
-            ?? "The Codex connection failed."
+            ?? String(localized: "The Codex connection failed.")
         return AIProviderError.responseFailed(message)
     }
 }

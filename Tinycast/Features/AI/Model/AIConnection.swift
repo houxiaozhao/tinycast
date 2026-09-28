@@ -343,7 +343,7 @@ enum AIEndpointPolicy {
         var errorDescription: String? {
             switch self {
             case .invalidURL: return "Enter a valid provider base URL."
-            case .insecureRemoteURL: return "Remote AI providers require an HTTPS base URL."
+            case .insecureRemoteURL: return String(localized: "Remote AI providers require an HTTPS base URL.")
             }
         }
     }

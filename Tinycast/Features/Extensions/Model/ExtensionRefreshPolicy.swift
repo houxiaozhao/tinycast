@@ -77,7 +77,7 @@ enum ExtensionRefreshPolicy {
     }
 
     static func headline(_ message: String) -> String {
-        String(message.split(separator: "\n").first ?? "Background refresh failed.")
+        String(message.split(separator: "\n").first ?? String(localized: "Background refresh failed."))
     }
 
     /// `subtitle: null` clears back to the manifest; the stored override otherwise wins. A subtitle

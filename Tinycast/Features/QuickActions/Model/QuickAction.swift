@@ -30,7 +30,7 @@ enum QuickAction: Hashable, Identifiable, Sendable {
 
     var title: String {
         switch self {
-        case .builtIn(let action): return action.title
+        case .builtIn(let action): return String(localized: String.LocalizationValue(action.title))
         case .custom(let action): return action.name
         }
     }
@@ -44,7 +44,7 @@ enum QuickAction: Hashable, Identifiable, Sendable {
 
     var progressTitle: String {
         switch self {
-        case .builtIn(let action): return action.progressTitle
+        case .builtIn(let action): return String(localized: String.LocalizationValue(action.progressTitle))
         case .custom(let action): return action.name + "…"
         }
     }

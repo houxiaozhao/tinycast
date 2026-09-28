@@ -71,6 +71,15 @@ final class LocalizationUITests: XCTestCase {
             XCTAssertTrue(result.waitForExistence(timeout: 10), query)
             result.click()
             XCTAssertTrue(settings.staticTexts[expected].firstMatch.waitForExistence(timeout: 10), query)
+            let details: [String: [String]] = [
+                "Quick Actions": ["修正语法", "改写", "翻译", "总结"],
+                "Calendar": ["读取今天和明天的日程以查找会议链接，数据不会离开此 Mac。"],
+                "Window Management": ["重复执行半屏操作时保持原有大小和位置。"],
+                "Extensions": ["正在搜索 Raycast Store。"]
+            ]
+            for detail in details[query] ?? [] {
+                XCTAssertTrue(settings.staticTexts[detail].firstMatch.exists, "\(query): \(detail)")
+            }
             capture(settings, named: "zh-Hans-pane-\(query)")
         }
     }

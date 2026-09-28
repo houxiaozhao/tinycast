@@ -177,7 +177,7 @@ enum ExtensionStoreError: LocalizedError {
     var errorDescription: String? {
         switch self {
         case .malformedResponse:
-            return "The registry answered with something this version doesn't understand."
+            return String(localized: "The registry answered with something this version doesn't understand.")
         case .registryRejected(let message):
             return message
         case .downloadFailed(let reason):
@@ -193,7 +193,7 @@ enum ExtensionStoreError: LocalizedError {
         case .buildFailed(let output):
             return "The extension didn't build: \(output)"
         case .notAnExtension:
-            return "That download didn't contain a Raycast extension."
+            return String(localized: "That download didn't contain a Raycast extension.")
         }
     }
 }

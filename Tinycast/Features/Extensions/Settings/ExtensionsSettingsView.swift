@@ -244,7 +244,7 @@ struct ExtensionsSettingsView: View {
     private var searchSubtitle: String {
         let on = core.settings.extensionRegistries.filter(\.isEnabled)
         guard !on.isEmpty else { return String(localized: "No registries enabled — searching would find nothing.") }
-        return "Searching \(on.map(\.name).joined(separator: ", "))."
+        return String(localized: "Searching \(on.map(\.name).joined(separator: ", ")).")
     }
 
     private var importSubtitle: String {
