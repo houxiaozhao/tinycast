@@ -10,7 +10,7 @@ struct EmojiSettingsView: View {
 
             Section {
                 EmojiColumnCountPicker(selection: $settings.emojiGridColumns)
-                SettingsRow(title: "Emoji Skin Tone", anchor: .emojiAppearance) {
+                SettingsRow(title: String(localized: "Emoji Skin Tone"), anchor: .emojiAppearance) {
                     HStack(spacing: Theme.Spacing.xs) {
                         ForEach(EmojiSkinTone.allCases) { tone in
                             let selected = settings.emojiSkinTone == tone
@@ -43,7 +43,7 @@ private struct EmojiColumnCountPicker: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: Theme.Spacing.xl) {
-            SettingsRowTitle(.emojiAppearance, "Column Count")
+            SettingsRowTitle(.emojiAppearance, String(localized: "Column Count"))
 
             HStack(spacing: Theme.Spacing.xl) {
                 ForEach(EmojiGridColumns.allCases) { columns in

@@ -8,10 +8,10 @@ struct ClipboardFilterButton: View {
 
     var body: some View {
         HeaderMenuButton(
-            title: filter.title,
+            title: String(localized: String.LocalizationValue(filter.title)),
             systemImage: filter.systemImage,
             isOpen: isOpen,
-            help: "Filter by type  ⌘P",
+            help: String(localized: "Filter by type  ⌘P"),
             action: action)
     }
 }

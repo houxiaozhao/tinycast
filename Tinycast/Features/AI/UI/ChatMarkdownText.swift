@@ -218,7 +218,7 @@ private final class ChatCodeHeader: NSView {
 
     @objc private func copyCode() {
         Paster.copyPlainText(code)
-        button.image = NSImage(systemSymbolName: "checkmark", accessibilityDescription: "Copied")
+        button.image = NSImage(systemSymbolName: "checkmark", accessibilityDescription: String(localized: "Copied"))
         button.setAccessibilityLabel("Copied")
         reset?.cancel()
         reset = Task { [weak self] in

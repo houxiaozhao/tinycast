@@ -27,7 +27,7 @@ final class AIChatCoordinator {
         self.settingsCoordinator = settingsCoordinator
         self.core = core
         window = AppWindowController(
-            title: "AI Chat", contentSize: Theme.Size.aiChatWindow,
+            title: String(localized: "AI Chat"), contentSize: Theme.Size.aiChatWindow,
             minimumSize: Theme.Size.aiChatWindowMinimum, resizable: true,
             autosaveName: "AIChatWindow", activation: core.activationPolicy)
         chats.onReplyFinished = { [weak self] chat in self?.nameIfNeeded(chat) }
@@ -169,7 +169,7 @@ final class AIChatCoordinator {
         guard
             await core.confirm(
                 title: "Delete chat?", message: "“\(title)” will be removed. This can't be undone.",
-                symbol: "trash", confirmTitle: "Delete")
+                symbol: "trash", confirmTitle: String(localized: "Delete"))
         else { return }
         chats.delete(id: id)
     }
@@ -179,7 +179,7 @@ final class AIChatCoordinator {
             await core.confirm(
                 title: "Delete all chats?",
                 message: "Every saved conversation except pinned ones will be removed. "
-                    + "This can't be undone.",
+                    + String(localized: "This can't be undone."),
                 symbol: "trash", confirmTitle: "Delete All")
         else { return }
         chats.deleteAll()

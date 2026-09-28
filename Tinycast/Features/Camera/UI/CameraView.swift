@@ -39,7 +39,7 @@ struct CameraView: View {
                 }
             }
             Spacer(minLength: Theme.Spacing.md)
-            CameraButton(title: "Close", keyCap: "esc", emphasis: .secondary) {
+            CameraButton(title: String(localized: "Close"), keyCap: "esc", emphasis: .secondary) {
                 coordinator.close()
             }
             if isLive {

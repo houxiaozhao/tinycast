@@ -40,9 +40,9 @@ struct LauncherList: View {
 
         var sectionTitle: String {
             switch self {
-            case .calc: return "Calculator"
-            case .meeting: return "Meeting"
-            case .color: return "Color"
+            case .calc: return String(localized: "Calculator")
+            case .meeting: return String(localized: "Meeting")
+            case .color: return String(localized: "Color")
             }
         }
 
@@ -91,7 +91,7 @@ struct LauncherList: View {
         if let card { cardRows = [.header(card.sectionTitle), .card(card)] }
         guard showSections else {
             guard !results.isEmpty else { return cardRows + fallbackRows }
-            return cardRows + [.header("Results")] + results.map { .app($0, slot: nil) }
+            return cardRows + [.header(String(localized: "Results"))] + results.map { .app($0, slot: nil) }
                 + fallbackRows
         }
         var rows: [Row] = cardRows
@@ -101,14 +101,14 @@ struct LauncherList: View {
         var grouped: [AppEntry.Kind: [AppEntry]] = [:]
         for app in rest { grouped[app.kind, default: []].append(app) }
         if !favorites.isEmpty {
-            rows.append(.header("Favorites"))
+            rows.append(.header(String(localized: "Favorites")))
             rows.append(
                 contentsOf: favorites.enumerated().map {
                     .app($1, slot: FavoriteSlots.digit(at: $0))
                 })
         }
         if !suggestions.isEmpty {
-            rows.append(.header("Suggestions"))
+            rows.append(.header(String(localized: "Suggestions")))
             rows.append(contentsOf: suggestions.map { .app($0, slot: nil) })
         }
         // Publication order, so rows match the flat index.

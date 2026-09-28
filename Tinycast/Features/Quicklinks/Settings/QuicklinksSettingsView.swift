@@ -14,8 +14,8 @@ struct QuicklinksSettingsView: View {
         return Form {
             FeatureSwitchSection(
                 anchor: .quicklinksQuicklinks,
-                enableTitle: "Enable quicklinks",
-                enableSubtitle: "Open saved links and searches from the launcher.",
+                enableTitle: String(localized: "Enable quicklinks"),
+                enableSubtitle: String(localized: "Open saved links and searches from the launcher."),
                 isEnabled: $settings.quicklinksEnabled,
                 showsInLauncher: $settings.quicklinksShowInLauncher,
                 showsIcon: true,
@@ -58,7 +58,7 @@ struct QuicklinksSettingsView: View {
     private var storageNotice: some View {
         Section {
             Label(
-                "Changes can't be saved: the database couldn't be opened. Its file is untouched.",
+                String(localized: "Changes can't be saved: the database couldn't be opened. Its file is untouched."),
                 systemImage: "exclamationmark.triangle.fill"
             )
             .foregroundStyle(.orange)
@@ -69,12 +69,12 @@ struct QuicklinksSettingsView: View {
     private var library: some View {
         Section {
             if !store.quicklinks.isEmpty {
-                SettingsFilterField(prompt: "Search quicklinks…", query: $query)
+                SettingsFilterField(prompt: String(localized: "Search quicklinks…"), query: $query)
             }
             if results.isEmpty {
                 Text(
                     store.quicklinks.isEmpty
-                        ? "No quicklinks yet."
+                        ? String(localized: "No quicklinks yet.")
                         : "No quicklink matches “\(query)”."
                 )
                 .foregroundStyle(.secondary)
@@ -94,7 +94,7 @@ struct QuicklinksSettingsView: View {
             Button {
                 editor = QuicklinkEditRequest(quicklink: nil)
             } label: {
-                SettingsRowTitle(.quicklinksQuicklinks, "Add Quicklink")
+                SettingsRowTitle(.quicklinksQuicklinks, String(localized: "Add Quicklink"))
             }
         }
     }
@@ -103,19 +103,19 @@ struct QuicklinksSettingsView: View {
         @Bindable var settings = settings
         return Section {
             Toggle(isOn: $settings.quicklinkOpensNewWindow) {
-                SettingsRowTitle(.quicklinksBehaviour, "Open in a new window")
+                SettingsRowTitle(.quicklinksBehaviour, String(localized: "Open in a new window"))
                 Text("Where the app supports it.")
             }
             Picker(selection: $settings.quicklinkSelectionFallback) {
                 ForEach(QuicklinkSelectionFallback.allCases) { option in
-                    Text(option.title).tag(option)
+                    Text(LocalizedStringKey(option.title)).tag(option)
                 }
             } label: {
-                SettingsRowTitle(.quicklinksBehaviour, "When there's no selected text")
+                SettingsRowTitle(.quicklinksBehaviour, String(localized: "When there's no selected text"))
                 Text("For links that use {selection}.")
             }
             Toggle(isOn: $settings.quicklinkConfirmsBeforeDelete) {
-                SettingsRowTitle(.quicklinksBehaviour, "Confirm before deleting")
+                SettingsRowTitle(.quicklinksBehaviour, String(localized: "Confirm before deleting"))
                 Text("From the launcher's Actions menu.")
             }
         } header: {
@@ -128,14 +128,14 @@ struct QuicklinksSettingsView: View {
             LabeledContent {
                 Button("Import…") { Task { await core.quicklinkCoordinator.importQuicklinks() } }
             } label: {
-                SettingsRowTitle(.quicklinksImportExport, "Import quicklinks")
+                SettingsRowTitle(.quicklinksImportExport, String(localized: "Import quicklinks"))
                 Text("From a JSON file; duplicates are skipped.")
             }
             LabeledContent {
                 Button("Export…") { Task { await core.quicklinkCoordinator.exportQuicklinks() } }
                     .disabled(store.quicklinks.isEmpty)
             } label: {
-                SettingsRowTitle(.quicklinksImportExport, "Export quicklinks")
+                SettingsRowTitle(.quicklinksImportExport, String(localized: "Export quicklinks"))
                 Text("To a JSON file.")
             }
         } header: {

@@ -191,7 +191,7 @@ extension View {
 
     /// The one place that says hiding a row from the launcher never unbinds its shortcut.
     func launcherVisibilityHelp() -> some View {
-        help("Show in launcher. Its shortcut works either way.")
+        help(String(localized: "Show in launcher. Its shortcut works either way."))
     }
 }
 

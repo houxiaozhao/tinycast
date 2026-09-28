@@ -1,6 +1,7 @@
 # Testing and verification
 
-How to check that a change holds up. Tinycast has no XCTest target and no UI tests: the automated half
+How to check that a change holds up. The upstream harnesses are supplemented in this Chinese fork by `UITests/LocalizationUITests.swift`
+and the `Build Chinese Edition` Actions workflow (see [chinese-edition.md](chinese-edition.md)): the automated half
 is a set of standalone harnesses, and the manual half is the sweep at the bottom of this file.
 
 ## Definition of done

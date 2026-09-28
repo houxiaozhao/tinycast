@@ -31,7 +31,7 @@ enum AppActionsMenu {
         ]
         if app.canRevealInFinder {
             items.append(
-                PopoverMenuItem(title: "Show in Finder", systemImage: "folder", shortcut: "⌘↵") {
+                PopoverMenuItem(title: String(localized: "Show in Finder"), systemImage: "folder", shortcut: "⌘↵") {
                     core.launcherCoordinator.showInFinder(app)
                 })
         }
@@ -62,7 +62,7 @@ enum AppActionsMenu {
         }
         if core.launcherRanking.hasRanking(for: app.preferenceKey) {
             items.append(
-                PopoverMenuItem(title: "Reset Ranking", systemImage: "arrow.counterclockwise") {
+                PopoverMenuItem(title: String(localized: "Reset Ranking"), systemImage: "arrow.counterclockwise") {
                     onResetRanking()
                 })
         }

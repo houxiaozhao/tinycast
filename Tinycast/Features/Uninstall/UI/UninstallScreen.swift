@@ -115,7 +115,7 @@ enum UninstallActionsMenu {
                 core.uninstallCoordinator.copyUninstallPath(candidate)
             })
         items.append(
-            PopoverMenuItem(title: "Show in Finder", systemImage: "folder", shortcut: "⇧⌘O") {
+            PopoverMenuItem(title: String(localized: "Show in Finder"), systemImage: "folder", shortcut: "⇧⌘O") {
                 core.uninstallCoordinator.showUninstallItemInFinder(candidate)
             })
         items.append(

@@ -142,7 +142,7 @@ private struct DialogButton: View {
 
     var body: some View {
         Button(action: onActivate) {
-            Text(action.title)
+            Text(LocalizedStringKey(action.title))
                 .fixedSize(horizontal: singleLine, vertical: false)
                 .multilineTextAlignment(.center)
         }

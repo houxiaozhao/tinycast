@@ -20,7 +20,7 @@ struct SnippetsScreen: PaletteScreen {
         }
     }
 
-    let primaryActionTitle = "Paste Snippet"
+    let primaryActionTitle = String(localized: "Paste Snippet")
 
     private func record(at selection: Int) -> StoredSnippet? {
         let rows = rows
@@ -71,7 +71,7 @@ struct SnippetsScreen: PaletteScreen {
 
     /// An empty library and an over-narrow filter are different problems with different answers.
     private var emptyMessage: String {
-        if store.state == .loading { return "Loading snippets…" }
+        if store.state == .loading { return String(localized: "Loading snippets…") }
         return store.snippets.contains(where: { $0.snippet.isEnabled })
             ? "No matching snippets" : "No snippets yet"
     }
@@ -83,18 +83,18 @@ enum SnippetActionsMenu {
         PopoverMenuContent(
             header: record.snippet.name,
             items: [
-                PopoverMenuItem(title: "Paste Snippet", systemImage: "text.quote", shortcut: "↵") {
+                PopoverMenuItem(title: String(localized: "Paste Snippet"), systemImage: "text.quote", shortcut: "↵") {
                     core.snippetCoordinator.expandSnippetFromPalette(id: record.id)
                 },
-                PopoverMenuItem(title: "Edit Snippet", systemImage: "pencil", startsSection: true) {
+                PopoverMenuItem(title: String(localized: "Edit Snippet"), systemImage: "pencil", startsSection: true) {
                     core.paletteCoordinator.hidePalette(restoreFocus: false)
                     core.snippetCoordinator.editSnippet(record)
                 },
-                PopoverMenuItem(title: "Create Snippet", systemImage: "plus") {
+                PopoverMenuItem(title: String(localized: "Create Snippet"), systemImage: "plus") {
                     core.paletteCoordinator.hidePalette(restoreFocus: false)
                     core.snippetCoordinator.editSnippet(nil)
                 },
-                PopoverMenuItem(title: "Show in Finder", systemImage: "folder", startsSection: true) {
+                PopoverMenuItem(title: String(localized: "Show in Finder"), systemImage: "folder", startsSection: true) {
                     core.snippetCoordinator.showSnippetInFinder(record)
                 }
             ])

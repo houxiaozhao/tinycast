@@ -17,7 +17,7 @@ struct AIScreen: PaletteScreen {
     let rows = [Row()]
 
     /// One footer pill for Return's two jobs: Send, or Stop while a response streams.
-    var primaryActionTitle: String { chat.isStreaming ? "Stop" : "Send" }
+    var primaryActionTitle: String { chat.isStreaming ? String(localized: "Stop") : String(localized: "Send") }
 
     func actions(at selection: Int) -> PopoverMenuContent? {
         var items: [PopoverMenuItem] = []

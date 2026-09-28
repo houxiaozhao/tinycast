@@ -49,7 +49,7 @@ struct SettingsSectionHeader<Label: View>: View {
 extension SettingsSectionHeader where Label == Text {
     /// The title comes from the anchor, so a section's name and its search breadcrumb are one string.
     init(_ anchor: SettingsAnchor) {
-        self.init(anchor: anchor) { Text(anchor.title) }
+        self.init(anchor: anchor) { Text(LocalizedStringKey(anchor.title)) }
     }
 }
 
@@ -61,7 +61,7 @@ struct SettingsRowTitle: View {
 
     init(_ anchor: SettingsAnchor, _ title: String) {
         self.anchor = anchor
-        self.title = title
+        self.title = String(localized: String.LocalizationValue(title))
     }
 
     var body: some View {

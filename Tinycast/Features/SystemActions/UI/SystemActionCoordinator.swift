@@ -28,7 +28,8 @@ final class SystemActionCoordinator {
         case .required(let title, let message):
             guard
                 await core.confirm(
-                    title: title, message: message, symbol: action.sfSymbol,
+                    title: String(localized: String.LocalizationValue(title)),
+                    message: String(localized: String.LocalizationValue(message)), symbol: action.sfSymbol,
                     confirmTitle: action.name)
             else { return }
         case .none:

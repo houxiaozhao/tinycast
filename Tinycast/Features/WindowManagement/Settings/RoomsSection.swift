@@ -10,7 +10,7 @@ struct RoomsSection: View {
         @Bindable var settings = settings
         return Section {
             Toggle(isOn: $settings.windowRoomsShowInLauncher) {
-                SettingsRowTitle(.windowManagementRooms, "Show rooms in launcher")
+                SettingsRowTitle(.windowManagementRooms, String(localized: "Show rooms in launcher"))
             }
 
             if store.rooms.isEmpty {
@@ -25,7 +25,7 @@ struct RoomsSection: View {
             Button {
                 coordinator.createRoom()
             } label: {
-                SettingsRowTitle(.windowManagementRooms, "New Room")
+                SettingsRowTitle(.windowManagementRooms, String(localized: "New Room"))
             }
         } header: {
             SettingsSectionHeader(.windowManagementRooms)

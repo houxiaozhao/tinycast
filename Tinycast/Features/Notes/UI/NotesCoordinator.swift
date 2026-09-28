@@ -469,14 +469,14 @@ final class NotesCoordinator {
                     title: "Couldn't Open Note",
                     message: failure.localizedDescription,
                     symbol: "text.page",
-                    recovery: "Retry")
+                    recovery: String(localized: "Retry"))
                 if retry { _ = await store.reload() }
             case .save(let failure):
                 let retry = await core.reportFailure(
                     title: "Couldn't Save Note",
                     message: failure.localizedDescription,
                     symbol: "text.page",
-                    recovery: "Retry")
+                    recovery: String(localized: "Retry"))
                 if retry { await store.retrySave() }
             case .operation(let failure):
                 _ = await core.reportFailure(

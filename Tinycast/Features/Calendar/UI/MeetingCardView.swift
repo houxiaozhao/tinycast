@@ -81,17 +81,17 @@ enum MeetingActionsMenu {
         var items: [PopoverMenuItem] = []
         if meeting.link != nil {
             items.append(
-                PopoverMenuItem(title: "Join Meeting", systemImage: "video.fill", shortcut: "↵") {
+                PopoverMenuItem(title: String(localized: "Join Meeting"), systemImage: "video.fill", shortcut: "↵") {
                     core.calendarCoordinator.join(meeting)
                 })
             items.append(
-                PopoverMenuItem(title: "Copy Meeting Link", systemImage: "link", shortcut: "⌘↵") {
+                PopoverMenuItem(title: String(localized: "Copy Meeting Link"), systemImage: "link", shortcut: "⌘↵") {
                     core.calendarCoordinator.copyLink(meeting)
                 })
         }
         items.append(
             PopoverMenuItem(
-                title: "Open in Calendar", systemImage: "calendar", startsSection: true,
+                title: String(localized: "Open in Calendar"), systemImage: "calendar", startsSection: true,
                 shortcut: meeting.link == nil ? "↵" : nil
             ) {
                 core.calendarCoordinator.openInCalendar(meeting)

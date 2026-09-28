@@ -23,7 +23,7 @@ struct AIChatSidebarView: View {
         let results = history.search(query)
         var sections: [ChatSection] = []
         let pinned = results.filter(\.isPinned)
-        if !pinned.isEmpty { sections.append(ChatSection(title: "Pinned", conversations: pinned)) }
+        if !pinned.isEmpty { sections.append(ChatSection(title: String(localized: "Pinned"), conversations: pinned)) }
         for conversation in results where !conversation.isPinned {
             let title = DateBucket(for: conversation.updatedAt).title
             if sections.last?.title == title {

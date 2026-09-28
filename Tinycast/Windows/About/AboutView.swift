@@ -70,7 +70,7 @@ struct AboutView: View {
                 Button {
                     core.updateCoordinator.checkForUpdates()
                 } label: {
-                    SettingsRowTitle(.aboutAbout, "Check for Updates")
+                    SettingsRowTitle(.aboutAbout, String(localized: "Check for Updates"))
                 }
                 .buttonStyle(.link)
                 .font(.caption)
@@ -105,7 +105,7 @@ struct AboutView: View {
                             .foregroundStyle(Theme.Colors.brand)
                     )
                 VStack(alignment: .leading, spacing: Theme.Spacing.xxs) {
-                    SettingsRowTitle(.aboutLinks, "Support")
+                    SettingsRowTitle(.aboutLinks, String(localized: "Support"))
                         .font(.body.weight(.medium))
                     Text("Free and open source, funded out of pocket.")
                         .font(.caption)
@@ -144,7 +144,7 @@ private struct AboutLink: Identifiable {
 
     static let all: [AboutLink] = [
         AboutLink(
-            id: "website", glyph: .symbol("globe"), title: "Website",
+            id: "website", glyph: .symbol("globe"), title: String(localized: "Website"),
             detail: "tinycast.dev",
             url: URL(string: "https://tinycast.dev/")!),
         AboutLink(
@@ -153,13 +153,13 @@ private struct AboutLink: Identifiable {
             url: URL(string: "https://github.com/abue-ammar/tinycast")!),
         AboutLink(
             id: "discord", glyph: .brand("BrandDiscord"), title: "Discord",
-            detail: "Join the Tinycast community",
+            detail: String(localized: "Join the Tinycast community"),
             url: URL(string: "https://discord.gg/v2Eeb4QQy3")!),
         AboutLink(
             id: "x", glyph: .brand("BrandX"), title: "X", detail: "@abue_ammar",
             url: URL(string: "https://x.com/abue_ammar")!),
         AboutLink(
-            id: "email", glyph: .symbol("envelope"), title: "Email",
+            id: "email", glyph: .symbol("envelope"), title: String(localized: "Email"),
             detail: "iabueammar@gmail.com", url: URL(string: "mailto:iabueammar@gmail.com")!)
     ]
 }

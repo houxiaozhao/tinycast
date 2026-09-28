@@ -12,8 +12,8 @@ struct ClipboardSettingsView: View {
             Section {
                 Toggle(isOn: $settings.clipboardEnabled) {
                     SettingsFeatureToggleLabel(
-                        anchor: .clipboardClipboard, title: "Enable Clipboard History",
-                        subtitle: "Keep copied items ready to reuse.")
+                        anchor: .clipboardClipboard, title: String(localized: "Enable Clipboard History"),
+                        subtitle: String(localized: "Keep copied items ready to reuse."))
                 }
             }
             .settingsAnchor(.clipboardClipboard)
@@ -24,21 +24,21 @@ struct ClipboardSettingsView: View {
             Section {
                 Picker(selection: $settings.clipboardRetention) {
                     ForEach(ClipboardRetention.allCases) { retention in
-                        Text(retention.title).tag(retention)
+                        Text(LocalizedStringKey(retention.title)).tag(retention)
                     }
                 } label: {
-                    SettingsRowTitle(.clipboardHistory, "Keep history for")
+                    SettingsRowTitle(.clipboardHistory, String(localized: "Keep history for"))
                 }
                 Toggle(isOn: $settings.clipboardTextSearchEnabled) {
-                    SettingsRowTitle(.clipboardHistory, "Search text in images and PDFs")
+                    SettingsRowTitle(.clipboardHistory, String(localized: "Search text in images and PDFs"))
                     Text("Recognized on this Mac while idle.")
                 }
                 Picker(selection: $settings.clipboardDefaultAction) {
                     ForEach(ClipboardDefaultAction.allCases) { action in
-                        Text(action.title).tag(action)
+                        Text(LocalizedStringKey(action.title)).tag(action)
                     }
                 } label: {
-                    SettingsRowTitle(.clipboardHistory, "Default action")
+                    SettingsRowTitle(.clipboardHistory, String(localized: "Default action"))
                     Text("↵ does this, and Paste takes its shortcut.")
                 }
             } header: {
@@ -49,7 +49,7 @@ struct ClipboardSettingsView: View {
             DisabledApplicationsSection(
                 bundleIDs: $settings.clipboardDisabledApps,
                 anchor: .clipboardDisabledApplications,
-                footer: "Copies from these apps aren't recorded."
+                footer: String(localized: "Copies from these apps aren't recorded.")
             )
             .settingsEnabled(settings.clipboardEnabled)
 
@@ -57,7 +57,7 @@ struct ClipboardSettingsView: View {
                 LabeledContent {
                     Button("Clear…", role: .destructive) { confirmingClear = true }
                 } label: {
-                    SettingsRowTitle(.clipboardDisabledApplications, "Clear history")
+                    SettingsRowTitle(.clipboardDisabledApplications, String(localized: "Clear history"))
                     Text("Removes every clip and image.")
                 }
             }
@@ -65,7 +65,7 @@ struct ClipboardSettingsView: View {
         .formStyle(.grouped)
         .settingsScrollTarget(.clipboard)
         .confirmationDialog(
-            "Clear clipboard history?",
+            String(localized: "Clear clipboard history?"),
             isPresented: $confirmingClear,
             titleVisibility: .visible
         ) {

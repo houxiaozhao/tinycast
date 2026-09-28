@@ -18,7 +18,7 @@ struct PermissionsSettingsView: View {
                             Text(accessibilityStatus.title)
                         }
                         .foregroundStyle(accessibilityStatus.tint)
-                        Button(accessibilityTrusted ? "Open…" : "Grant Access…") {
+                        Button(accessibilityTrusted ? String(localized: "Open…") : String(localized: "Grant Access…")) {
                             Permissions.openAccessibilitySettings()
                         }
                         .help("Opens Privacy & Security › Accessibility.")
@@ -30,7 +30,7 @@ struct PermissionsSettingsView: View {
                                 "/System/Library/ExtensionKit/Extensions/AccessibilitySettingsExtension.appex"
                         )
                         VStack(alignment: .leading, spacing: Theme.Spacing.xxs) {
-                            SettingsRowTitle(.permissionsAccessibility, "Accessibility")
+                            SettingsRowTitle(.permissionsAccessibility, String(localized: "Accessibility"))
                             Text("Pastes into the app you were using.")
                                 .foregroundStyle(.secondary)
                         }
@@ -49,7 +49,7 @@ struct PermissionsSettingsView: View {
                             Text(calendarStatus.title)
                         }
                         .foregroundStyle(calendarStatus.tint)
-                        Button(calendarNeedsPrompt ? "Grant Access…" : "Open…") {
+                        Button(calendarNeedsPrompt ? String(localized: "Grant Access…") : String(localized: "Open…")) {
                             // Settings lists no app TCC was never asked about, so asking is the way in.
                             if calendarNeedsPrompt {
                                 core.calendarCoordinator.setCalendarEnabled(true)
@@ -59,15 +59,15 @@ struct PermissionsSettingsView: View {
                         }
                         .help(
                             calendarNeedsPrompt
-                                ? "Turns the calendar on, then asks macOS for access."
-                                : "Opens Privacy & Security › Calendars.")
+                                ? String(localized: "Turns the calendar on, then asks macOS for access.")
+                                : String(localized: "Opens Privacy & Security › Calendars."))
                     }
                 } label: {
                     HStack(spacing: Theme.Spacing.lg) {
                         PermissionSettingsIcon(
                             path: "/System/Applications/Calendar.app")
                         VStack(alignment: .leading, spacing: Theme.Spacing.xxs) {
-                            SettingsRowTitle(.permissionsCalendars, "Calendars")
+                            SettingsRowTitle(.permissionsCalendars, String(localized: "Calendars"))
                             Text("Finds the join link for your next meeting.")
                                 .foregroundStyle(.secondary)
                         }
@@ -87,15 +87,15 @@ struct PermissionsSettingsView: View {
 
     private var accessibilityStatus: (title: String, symbol: String, tint: Color) {
         accessibilityTrusted
-            ? ("Granted", "checkmark.circle.fill", .green)
-            : ("Not granted", "exclamationmark.triangle.fill", .orange)
+            ? (String(localized: "Granted"), "checkmark.circle.fill", .green)
+            : (String(localized: "Not granted"), "exclamationmark.triangle.fill", .orange)
     }
 
     private var calendarStatus: (title: String, symbol: String, tint: Color) {
         switch calendarAccess {
-        case .granted: return ("Granted", "checkmark.circle.fill", .green)
-        case .notDetermined: return ("Not asked yet", "questionmark.circle.fill", .secondary)
-        case .denied: return ("Not granted", "exclamationmark.triangle.fill", .orange)
+        case .granted: return (String(localized: "Granted"), "checkmark.circle.fill", .green)
+        case .notDetermined: return (String(localized: "Not asked yet"), "questionmark.circle.fill", .secondary)
+        case .denied: return (String(localized: "Not granted"), "exclamationmark.triangle.fill", .orange)
         }
     }
 

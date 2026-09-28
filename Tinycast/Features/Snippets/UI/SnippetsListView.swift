@@ -124,13 +124,13 @@ private struct SnippetInfoSection: View {
     }
 
     private var rows: [InfoRow] {
-        var rows = [InfoRow(label: "Name", value: record.snippet.name)]
+        var rows = [InfoRow(label: String(localized: "Name"), value: record.snippet.name)]
         if let keyword = record.snippet.keyword, !keyword.isEmpty {
-            rows.append(InfoRow(label: "Keyword", value: keyword))
+            rows.append(InfoRow(label: String(localized: "Keyword"), value: keyword))
         }
-        rows.append(InfoRow(label: "File", value: record.fileURL.lastPathComponent))
+        rows.append(InfoRow(label: String(localized: "File"), value: record.fileURL.lastPathComponent))
         rows.append(
-            InfoRow(label: "Characters", value: record.snippet.text.count.formatted()))
+            InfoRow(label: String(localized: "Characters"), value: record.snippet.text.count.formatted()))
         return rows
     }
 

@@ -50,7 +50,7 @@ struct CommandOutputView: View {
         HStack(spacing: Theme.Spacing.xs) {
             CopyLogButton(log: run.log)
             if run.isRunning {
-                iconButton("stop.fill", help: "Stop") { presenter.stopRunning() }
+                iconButton("stop.fill", help: String(localized: "Stop")) { presenter.stopRunning() }
             } else {
                 iconButton("arrow.clockwise", help: "Run Again") { presenter.runAgain() }
             }

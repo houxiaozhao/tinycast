@@ -9,8 +9,8 @@ struct FileSearchSettingsView: View {
             Section {
                 Toggle(isOn: $settings.fileSearchEnabled) {
                     SettingsFeatureToggleLabel(
-                        anchor: .fileSearchFileSearch, title: "Enable File Search",
-                        subtitle: "Uses the Spotlight index, only when you search.")
+                        anchor: .fileSearchFileSearch, title: String(localized: "Enable File Search"),
+                        subtitle: String(localized: "Uses the Spotlight index, only when you search."))
                 }
             }
             .settingsAnchor(.fileSearchFileSearch)
@@ -81,8 +81,8 @@ private struct FileSearchScopesSection: View {
         panel.canChooseDirectories = true
         panel.canChooseFiles = false
         panel.allowsMultipleSelection = true
-        panel.prompt = "Add"
-        panel.message = "Choose folders to include when searching for files."
+        panel.prompt = String(localized: "Add")
+        panel.message = String(localized: "Choose folders to include when searching for files.")
         // Tinycast is an accessory app, so the panel opens behind the frontmost app without this.
         NSApp.activate(ignoringOtherApps: true)
         guard panel.runModal() == .OK else { return }

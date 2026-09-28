@@ -1,4 +1,5 @@
 import CoreGraphics
+import Foundation
 
 /// How large the palette and its floating siblings render; an unset key reads as `.standard`.
 enum InterfaceSize: String, CaseIterable, Identifiable, Sendable {
@@ -10,9 +11,9 @@ enum InterfaceSize: String, CaseIterable, Identifiable, Sendable {
 
     var title: String {
         switch self {
-        case .standard: "Default"
-        case .large: "Large"
-        case .larger: "Larger"
+        case .standard: String(localized: "Default")
+        case .large: String(localized: "Large")
+        case .larger: String(localized: "Larger")
         }
     }
 

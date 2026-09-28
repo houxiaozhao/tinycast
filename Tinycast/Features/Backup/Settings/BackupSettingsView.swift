@@ -38,7 +38,7 @@ struct BackupSettingsView: View {
 
     private var raycastFileSubtitle: String {
         guard let name = raycastFile?.lastPathComponent else {
-            return "A .rayconfig file from Raycast 2.0 or later."
+            return String(localized: "A .rayconfig file from Raycast 2.0 or later.")
         }
         return "\(name) — \(isRaycastExport ? "Raycast export" : "not a Raycast export")"
     }
@@ -53,7 +53,7 @@ struct BackupSettingsView: View {
                         Button("Export…") { runExport() }.disabled(exportSelection.isEmpty)
                     }
                 } label: {
-                    SettingsRowTitle(.backupExport, "Export Backup")
+                    SettingsRowTitle(.backupExport, String(localized: "Export Backup"))
                     Text("The ticked items, as one .tinycast file.")
                 }
                 BackupCategorySelection(selection: $exportSelection)
@@ -66,7 +66,7 @@ struct BackupSettingsView: View {
                 LabeledContent {
                     Button("Choose…") { chooseBackupFile() }
                 } label: {
-                    SettingsRowTitle(.backupImport, "Backup File")
+                    SettingsRowTitle(.backupImport, String(localized: "Backup File"))
                     Text(backupFileSubtitle)
                 }
                 if let manifest = openedManifest {
@@ -91,12 +91,12 @@ struct BackupSettingsView: View {
                 LabeledContent {
                     Button("Choose…") { chooseRaycastFile() }
                 } label: {
-                    SettingsRowTitle(.backupImportFromRaycast, "Raycast Export")
+                    SettingsRowTitle(.backupImportFromRaycast, String(localized: "Raycast Export"))
                     Text(raycastFileSubtitle)
                 }
                 LabeledContent {
                     RevealableSecureField(
-                        title: "Passphrase", text: $passphrase, prompt: Text("Export password")
+                        title: String(localized: "Passphrase"), text: $passphrase, prompt: Text("Export password")
                     )
                     .labelsHidden()
                     .textFieldStyle(.roundedBorder)
@@ -126,7 +126,7 @@ struct BackupSettingsView: View {
 
             Section {
                 Toggle(isOn: settingsFileSync) {
-                    SettingsRowTitle(.backupSettingsFile, "Sync settings file")
+                    SettingsRowTitle(.backupSettingsFile, String(localized: "Sync settings file"))
                     Text(BackupActions.settingsFilePath)
                 }
                 if core.settings.settingsFileEnabled {
@@ -153,14 +153,14 @@ struct BackupSettingsView: View {
                 Button("Quit Raycast") { BackupActions.quitRaycast() }
             } label: {
                 Label(
-                    "Raycast is running — quit it to avoid hotkey conflicts.",
+                    String(localized: "Raycast is running — quit it to avoid hotkey conflicts."),
                     systemImage: "exclamationmark.triangle.fill"
                 )
                 .foregroundStyle(.orange)
             }
         } else {
             Label(
-                "Unset matching Raycast shortcuts to avoid conflicts.",
+                String(localized: "Unset matching Raycast shortcuts to avoid conflicts."),
                 systemImage: "info.circle"
             )
             .foregroundStyle(.secondary)
@@ -181,7 +181,7 @@ struct BackupSettingsView: View {
 
     private var backupFileSubtitle: String {
         guard let name = backupFile?.lastPathComponent else {
-            return "A .tinycast file exported from Tinycast."
+            return String(localized: "A .tinycast file exported from Tinycast.")
         }
         return openedManifest == nil ? "\(name) — couldn't be read" : name
     }

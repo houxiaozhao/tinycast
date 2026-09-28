@@ -10,20 +10,20 @@ struct NotesSettingsView: View {
             Section {
                 Toggle(isOn: $settings.notesEnabled) {
                     SettingsFeatureToggleLabel(
-                        anchor: .notesNotes, title: "Enable Notes",
-                        subtitle: "Plain Markdown in a floating editor.")
+                        anchor: .notesNotes, title: String(localized: "Enable Notes"),
+                        subtitle: String(localized: "Plain Markdown in a floating editor."))
                 }
             }
             .settingsAnchor(.notesNotes)
 
             Section {
                 Toggle(isOn: $settings.notesRendersMarkdown) {
-                    SettingsRowTitle(.notesOptions, "Render Markdown")
+                    SettingsRowTitle(.notesOptions, String(localized: "Render Markdown"))
                     Text("Formats as you type.")
                 }
                 .settingsEnabled(settings.notesEnabled)
                 Toggle(isOn: $settings.notesShowsFormattingBar) {
-                    SettingsRowTitle(.notesOptions, "Show Formatting Bar")
+                    SettingsRowTitle(.notesOptions, String(localized: "Show Formatting Bar"))
                 }
                 .settingsEnabled(settings.notesEnabled && settings.notesRendersMarkdown)
                 LabeledContent {
@@ -32,7 +32,7 @@ struct NotesSettingsView: View {
                     }
                     Button("Choose…", action: core.notesCoordinator.chooseNotesFolder)
                 } label: {
-                    SettingsRowTitle(.notesOptions, "Notes Folder")
+                    SettingsRowTitle(.notesOptions, String(localized: "Notes Folder"))
                     Text((core.notesStore.notesDirectory.path as NSString).abbreviatingWithTildeInPath)
                 }
             } header: {

@@ -12,8 +12,8 @@ struct RoomsScreen: PaletteScreen {
     var primaryActionTitle: String {
         switch row(at: vm.selection) {
         case .edit: "Choose Windows"
-        case .create: "Create Room"
-        case .room, nil: "Enter Room"
+        case .create: String(localized: "Create Room")
+        case .room, nil: String(localized: "Enter Room")
         }
     }
 
@@ -65,7 +65,7 @@ struct RoomsScreen: PaletteScreen {
         return PopoverMenuContent(
             header: room.name,
             items: [
-                PopoverMenuItem(title: "Enter Room", systemImage: Room.sfSymbol, shortcut: "↵") {
+                PopoverMenuItem(title: String(localized: "Enter Room"), systemImage: Room.sfSymbol, shortcut: "↵") {
                     coordinator.enterRoom(id: room.id)
                 },
                 PopoverMenuItem(title: "Next Layout", systemImage: "rectangle.3.group", shortcut: "⇥") {

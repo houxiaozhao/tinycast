@@ -27,7 +27,7 @@ struct MenuSearchList: View {
     /// The walk emits a menu's leaves contiguously, so runs group without reordering the rows.
     private var sections: [Section] {
         guard !isSearching else {
-            return [Section(id: 0, title: "Results", items: items[...])]
+            return [Section(id: 0, title: String(localized: "Results"), items: items[...])]
         }
         var sections: [Section] = []
         var start = items.startIndex

@@ -28,13 +28,13 @@ enum EmojiGrid {
         if trimmed.isEmpty {
             switch filter {
             case .all:
-                append("Pinned", pinned.glyphs.compactMap(index.entry(for:)))
+                append(String(localized: "Pinned"), pinned.glyphs.compactMap(index.entry(for:)))
                 append("Frequently Used", frequent.top().compactMap(index.entry(for:)))
                 for section in index.categorySections {
                     append(section.category.title, section.entries)
                 }
             case .pinned:
-                append("Pinned", pinned.glyphs.compactMap(index.entry(for:)))
+                append(String(localized: "Pinned"), pinned.glyphs.compactMap(index.entry(for:)))
             case .frequentlyUsed:
                 append("Frequently Used", frequent.top().compactMap(index.entry(for:)))
             case .category(let category):
@@ -57,7 +57,7 @@ enum EmojiGrid {
             case .category(let category):
                 filtered = results.filter { $0.category == category }
             }
-            append("Results", filtered)
+            append(String(localized: "Results"), filtered)
         }
         return sections
     }

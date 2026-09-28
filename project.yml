@@ -4,6 +4,7 @@ options:
   deploymentTarget:
     macOS: "26.0"
   createIntermediateGroups: true
+  developmentLanguage: en
   groupSortPosition: top
 
 settings:
@@ -51,7 +52,8 @@ targets:
           subpath: Contents/Helpers
     settings:
       base:
-        PRODUCT_BUNDLE_IDENTIFIER: com.tinycast.app
+        PRODUCT_BUNDLE_IDENTIFIER: io.github.houxiaozhao.tinycast.zh
+        PRODUCT_NAME: Tinycast Chinese
         INFOPLIST_FILE: Tinycast/Info.plist
         CODE_SIGN_ENTITLEMENTS: Tinycast/Tinycast.entitlements
         ASSETCATALOG_COMPILER_APPICON_NAME: tinycast
@@ -64,8 +66,8 @@ targets:
         # locally-run build gets its own prefs, caches, TCC grants and login item instead of
         # inheriting — and corrupting — the installed app's state.
         Debug:
-          PRODUCT_NAME: Tinycast Dev
-          PRODUCT_BUNDLE_IDENTIFIER: com.tinycast.app.dev
+          PRODUCT_NAME: Tinycast Chinese Dev
+          PRODUCT_BUNDLE_IDENTIFIER: io.github.houxiaozhao.tinycast.zh.dev
 
   ClipboardTextHelper:
     type: tool
@@ -81,3 +83,25 @@ targets:
         EXECUTABLE_NAME: ClipboardTextHelper
         PRODUCT_MODULE_NAME: ClipboardTextHelper
         SKIP_INSTALL: YES
+
+  LocalizationUITests:
+    type: bundle.ui-testing
+    platform: macOS
+    sources:
+      - UITests
+    dependencies:
+      - target: Tinycast
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: io.github.houxiaozhao.tinycast.zh.uitests
+        GENERATE_INFOPLIST_FILE: YES
+        TEST_TARGET_NAME: Tinycast
+
+schemes:
+  Tinycast:
+    build:
+      targets:
+        Tinycast: all
+    test:
+      targets:
+        - LocalizationUITests

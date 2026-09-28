@@ -14,8 +14,8 @@ struct ExtensionRegistriesPanel: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
             ExtensionSettingsEditorHeader(
-                title: "Registries",
-                subtitle: "Where Tinycast looks when you search for an extension to install."
+                title: String(localized: "Registries"),
+                subtitle: String(localized: "Where Tinycast looks when you search for an extension to install.")
             )
             .padding(.horizontal, Theme.Spacing.dialogInset)
             .padding(.top, Theme.Spacing.dialogInset)
@@ -30,8 +30,8 @@ struct ExtensionRegistriesPanel: View {
                     Text("Raycast Store")
                 } footer: {
                     Text(
-                        "Prebuilt extensions, through the endpoint the store's own site searches. "
-                            + "Not an official API, so a GitHub registry is the fallback if it changes."
+                        String(localized: "Prebuilt extensions, through the endpoint the store's own site searches. ")
+                            + String(localized: "Not an official API, so a GitHub registry is the fallback if it changes.")
                     )
                     .font(.caption)
                     .foregroundStyle(.secondary)
@@ -104,7 +104,7 @@ struct ExtensionRegistriesPanel: View {
         } trailing: {
             Toggle("", isOn: binding(for: registry))
                 .labelsHidden()
-                .help(registry.isEnabled ? "Searched" : "Not searched")
+                .help(registry.isEnabled ? String(localized: "Searched") : String(localized: "Not searched"))
             if !registry.isBuiltIn {
                 Button {
                     settings.extensionRegistries.removeAll { $0.id == registry.id }
@@ -121,7 +121,7 @@ struct ExtensionRegistriesPanel: View {
 
     private var buildingRow: some View {
         @Bindable var settings = core.settings
-        return SettingsRow(title: "Package manager", subtitle: packageManagerDetail) {
+        return SettingsRow(title: String(localized: "Package manager"), subtitle: packageManagerDetail) {
             Image(systemName: "shippingbox")
                 .foregroundStyle(.secondary)
         } trailing: {
@@ -140,7 +140,7 @@ struct ExtensionRegistriesPanel: View {
         let additionalSearchPaths = settings.extensionCustomSearchPaths
         guard let resolved = chosen.resolve(additionalSearchPaths: additionalSearchPaths) else {
             return chosen == .automatic
-                ? "None found on this Mac. Install pnpm, npm, Yarn or Bun to use a source registry."
+                ? String(localized: "None found on this Mac. Install pnpm, npm, Yarn or Bun to use a source registry.")
                 : "\(chosen.title) isn't installed on this Mac."
         }
         return chosen == .automatic
@@ -151,7 +151,7 @@ struct ExtensionRegistriesPanel: View {
     /// Extra PATH folders checked before the built-in list, for a mise or Nix shim.
     private var customSearchPathsRow: some View {
         VStack(alignment: .leading, spacing: Theme.Spacing.xs) {
-            SettingsRow(title: "Custom search paths") {
+            SettingsRow(title: String(localized: "Custom search paths")) {
                 Image(systemName: "folder.badge.gearshape")
                     .foregroundStyle(.secondary)
             } trailing: {
@@ -168,7 +168,7 @@ struct ExtensionRegistriesPanel: View {
                 }
             }
             Text(
-                "Colon-separated, like PATH — checked before Homebrew and the rest. For mise: "
+                String(localized: "Colon-separated, like PATH — checked before Homebrew and the rest. For mise: ")
                     + "~/.local/share/mise/shims. For Nix (Home Manager): "
                     + "/etc/profiles/per-user/<you>/home-path/bin."
             )
@@ -232,7 +232,7 @@ struct RegistryEditorPanel: View {
             VStack(alignment: .leading, spacing: Theme.Spacing.sm) {
                 Text("Add Registry").font(Theme.Typography.panelTitle)
                 Text(
-                    "A GitHub repository holding one folder per extension, laid out like "
+                    String(localized: "A GitHub repository holding one folder per extension, laid out like ")
                         + "raycast/extensions."
                 )
                 .font(Theme.Typography.rowTitle)
@@ -248,7 +248,7 @@ struct RegistryEditorPanel: View {
 
             VStack(alignment: .leading, spacing: Theme.Spacing.sm) {
                 Text("Name").font(.callout.weight(.medium))
-                TextField("", text: $name, prompt: Text(parsed?.name ?? "Optional"))
+                TextField("", text: $name, prompt: Text(parsed?.name ?? String(localized: "Optional")))
                     .extensionSettingsEditorTextField()
                     .pointerStyle(.horizontalText)
             }
@@ -266,7 +266,7 @@ struct RegistryEditorPanel: View {
             }
 
             Text(
-                "Extensions from a repository are source: installing one runs your package manager "
+                String(localized: "Extensions from a repository are source: installing one runs your package manager ")
                     + "and the extension's own build script on this Mac."
             )
             .font(.caption)

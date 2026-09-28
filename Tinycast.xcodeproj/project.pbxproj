@@ -231,6 +231,7 @@
 		50A5E2CC839C7A65B3391391 /* MCPComposerAddress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F2CBDE3042FDA4FCA561857 /* MCPComposerAddress.swift */; };
 		50A706F0B06A2AF3B1AB7505 /* WindowLayoutArgumentField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 978DA4527C5B96C98BD33899 /* WindowLayoutArgumentField.swift */; };
 		50F6DE8BA0BF04AAA0754AE3 /* ClipboardTextWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = F044A6A0C3C1CEC53D46497A /* ClipboardTextWorker.swift */; };
+		51037F72E21FD560DBC05751 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = DC43F19B15323F9A571CB369 /* Localizable.strings */; };
 		5188C7DF4F18DAA7227715F8 /* MarkdownBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDE8B48420B83D612E01603A /* MarkdownBlock.swift */; };
 		5194FB6B47E004217CFD1ABB /* UninstallSearchRoot.swift in Sources */ = {isa = PBXBuildFile; fileRef = E54932083F6BC197453EA0C8 /* UninstallSearchRoot.swift */; };
 		51C51CD483B35ABAA476D1C8 /* ScriptRomanization.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8358E65DAC02F974829288B /* ScriptRomanization.swift */; };
@@ -278,6 +279,7 @@
 		5D3F00F708106ADE1CE263B1 /* EmojiGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE1A2CE5E4D5F10346B5F6F3 /* EmojiGridView.swift */; };
 		5D77D1868F3F915D3EB99125 /* ColorFormat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 025D7D760DE2FD02C0D7D9D2 /* ColorFormat.swift */; };
 		5D7E205645E55D3AA794F839 /* NoteMarkdownStyler.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2AA1CD3EDD5900B261B1677 /* NoteMarkdownStyler.swift */; };
+		5D8DEDDB19AA0C97245478FE /* LocalizationUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E11239EE19405095B9C7873 /* LocalizationUITests.swift */; };
 		5DB92B34C31D500F69ADF3E8 /* PaletteShortcut.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70F987A185161E857B7A030B /* PaletteShortcut.swift */; };
 		5DBD1E52658FB1C3EC37AA4F /* AppLauncher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33994DC2FB0A6B23A403CA29 /* AppLauncher.swift */; };
 		5E155BEE2FC62267F516A343 /* CalculatorHistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60CCB1A47E0022BAEDD1EE96 /* CalculatorHistoryView.swift */; };
@@ -425,6 +427,7 @@
 		94887F8E18AB2C08A8273897 /* Permissions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7B3EB88881CEEFCE71448D /* Permissions.swift */; };
 		94A1ED3C3F04FC266AF0F63E /* ExtensionMenuBarHost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2858A6BD41085BF9C1679259 /* ExtensionMenuBarHost.swift */; };
 		94E62234828A0945CFCFE764 /* RevealableSecureField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36DEEF228EF1398B421C89B2 /* RevealableSecureField.swift */; };
+		950D78796884A6BC0ECBC1F3 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = F40DF1CFD0A0490051E481A4 /* InfoPlist.strings */; };
 		9553DDEBD6FCC205069ED996 /* MenuPanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF96A1566757811AD434C0F9 /* MenuPanel.swift */; };
 		9608AFDEDC3B330E64F53437 /* ExtensionStoreClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 410684C9DEB3754962C20C9C /* ExtensionStoreClient.swift */; };
 		9690D6E5275F3DC92C3B11D2 /* SettingsFileKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFAD3CBED74EA031B58266EC /* SettingsFileKey.swift */; };
@@ -741,6 +744,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		C4CA6DCD52730532DF0BD4C5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = ADDC0DAB183B80B8B278C7BA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 51DBA6947AFD8275A0DF8DA0;
+			remoteInfo = Tinycast;
+		};
 		D8D2878E41110CAB71C371B6 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = ADDC0DAB183B80B8B278C7BA /* Project object */;
@@ -780,6 +790,7 @@
 		0437C802C1F3E33E8532A7E3 /* Fallback.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fallback.swift; sourceTree = "<group>"; };
 		045EC0C36F08176EE0304F49 /* ExtensionFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionFormView.swift; sourceTree = "<group>"; };
 		0548C62E98174F92E13437FB /* CameraPreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraPreviewView.swift; sourceTree = "<group>"; };
+		05FCCCA3EDDDFA1FA5ADC8B6 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		06B5C0B83C3645AC90639B85 /* AppleIntelligenceProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleIntelligenceProvider.swift; sourceTree = "<group>"; };
 		072DA32B7365FAAB7C38F25C /* AppleShortcutsSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleShortcutsSettingsView.swift; sourceTree = "<group>"; };
 		0805655B4808B5B407C7BE7A /* CustomWindowSizeEditorPanel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomWindowSizeEditorPanel.swift; sourceTree = "<group>"; };
@@ -1016,6 +1027,7 @@
 		53D7E98E448F05816493DB37 /* PaletteEscapeAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaletteEscapeAction.swift; sourceTree = "<group>"; };
 		53DBA322BA1F117530075F51 /* QuickActionFailure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickActionFailure.swift; sourceTree = "<group>"; };
 		53E2A503ABA6A28E229C6FD6 /* DictionarySession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DictionarySession.swift; sourceTree = "<group>"; };
+		541B02793E9A13C981827D3E /* LocalizationUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LocalizationUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		548C83C4086CD9FB8E85B222 /* ClipboardScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClipboardScreen.swift; sourceTree = "<group>"; };
 		5515DEDA5C7485F4A9C218B5 /* NoteFormattingBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteFormattingBar.swift; sourceTree = "<group>"; };
 		552EF9B38ABA9443D4FDE5E4 /* AIToolRounds.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AIToolRounds.swift; sourceTree = "<group>"; };
@@ -1084,6 +1096,7 @@
 		6D594CB90475093D58A2AB1E /* NoteSearch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteSearch.swift; sourceTree = "<group>"; };
 		6DA4145CFBB855DF1699C744 /* BackupCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackupCategory.swift; sourceTree = "<group>"; };
 		6E06AA30E7BA44BC211B667F /* SnippetsScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnippetsScreen.swift; sourceTree = "<group>"; };
+		6E11239EE19405095B9C7873 /* LocalizationUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizationUITests.swift; sourceTree = "<group>"; };
 		6EBB9959DB6CA493D241080C /* AIAttachmentPolicy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AIAttachmentPolicy.swift; sourceTree = "<group>"; };
 		6F2CBDE3042FDA4FCA561857 /* MCPComposerAddress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MCPComposerAddress.swift; sourceTree = "<group>"; };
 		6F7D0725CF7068879F86F0AA /* NoteRevealPolicy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteRevealPolicy.swift; sourceTree = "<group>"; };
@@ -1206,6 +1219,7 @@
 		955FBE410967A64A05A2DA3D /* CalcDateFormatters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalcDateFormatters.swift; sourceTree = "<group>"; };
 		95BFA41B0D7F369A8CF1E013 /* HyperKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HyperKey.swift; sourceTree = "<group>"; };
 		95E1C2AD9D1D83F90048FD8A /* AIToolLoopProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AIToolLoopProvider.swift; sourceTree = "<group>"; };
+		96D4BFE6A1725A19C3C60E9A /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		976A1F05AD82DB8A04B3C3F9 /* MessageHUDView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageHUDView.swift; sourceTree = "<group>"; };
 		978DA4527C5B96C98BD33899 /* WindowLayoutArgumentField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindowLayoutArgumentField.swift; sourceTree = "<group>"; };
 		97986EE62AE844FFCCD27449 /* SupportCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupportCoordinator.swift; sourceTree = "<group>"; };
@@ -1478,6 +1492,7 @@
 		F31FB61E6F6969851D3874FA /* CodexMCPLaunch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodexMCPLaunch.swift; sourceTree = "<group>"; };
 		F3CE1A1626264322E8A1192E /* SettingsWindowChrome.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsWindowChrome.swift; sourceTree = "<group>"; };
 		F3F97240A718D95DFD9343DB /* UpcomingWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpcomingWindow.swift; sourceTree = "<group>"; };
+		F40DF1CFD0A0490051E481A4 /* InfoPlist.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = InfoPlist.strings; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		F42BECB8234FEA49797B68F6 /* WindowSwitchQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindowSwitchQuery.swift; sourceTree = "<group>"; };
 		F5061C8D4F15F068C4EC5E7A /* DisabledApplicationsSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisabledApplicationsSection.swift; sourceTree = "<group>"; };
 		F513217C40F0B8199DC57A35 /* QuickActionPrompt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickActionPrompt.swift; sourceTree = "<group>"; };
@@ -1635,6 +1650,7 @@
 			isa = PBXGroup;
 			children = (
 				CEE5FA2E56073002C2DA6D6A /* ClipboardTextHelper */,
+				541B02793E9A13C981827D3E /* LocalizationUITests.xctest */,
 				5392500F86E23C099D33561D /* Tinycast.app */,
 			);
 			name = Products;
@@ -1860,6 +1876,14 @@
 				054F403BD478830AE32E6A77 /* UI */,
 			);
 			path = MCP;
+			sourceTree = "<group>";
+		};
+		2DE85ABFF4B3E42353C93A4B /* UITests */ = {
+			isa = PBXGroup;
+			children = (
+				6E11239EE19405095B9C7873 /* LocalizationUITests.swift */,
+			);
+			path = UITests;
 			sourceTree = "<group>";
 		};
 		30AC9F80FBCCB573EE458A7E /* WindowSwitcher */ = {
@@ -2854,6 +2878,8 @@
 		AAC55CF3217A6A536330E9CF /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				DC43F19B15323F9A571CB369 /* Localizable.strings */,
+				F40DF1CFD0A0490051E481A4 /* InfoPlist.strings */,
 				74284B4E771DA0B2869C914E /* RaycastRuntime.generated.js */,
 			);
 			path = Resources;
@@ -3350,6 +3376,7 @@
 			isa = PBXGroup;
 			children = (
 				BB6DB69437E85BCDB2530225 /* Tinycast */,
+				2DE85ABFF4B3E42353C93A4B /* UITests */,
 				B36FACE26406FD2205FEF03E /* NOTICE.md */,
 				114270CAA80F01D311693B63 /* Products */,
 			);
@@ -3418,6 +3445,24 @@
 			productReference = 5392500F86E23C099D33561D /* Tinycast.app */;
 			productType = "com.apple.product-type.application";
 		};
+		C80858A92A755BE6C4DEADDA /* LocalizationUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3604D8EABA99305BE7851B55 /* Build configuration list for PBXNativeTarget "LocalizationUITests" */;
+			buildPhases = (
+				3DC0B4A1A3E6B7488085CC62 /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				FCBE10302FE8FDB0149DFCF3 /* PBXTargetDependency */,
+			);
+			name = LocalizationUITests;
+			packageProductDependencies = (
+			);
+			productName = LocalizationUITests;
+			productReference = 541B02793E9A13C981827D3E /* LocalizationUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -3435,6 +3480,11 @@
 						DevelopmentTeam = "";
 						ProvisioningStyle = Manual;
 					};
+					C80858A92A755BE6C4DEADDA = {
+						DevelopmentTeam = "";
+						ProvisioningStyle = Manual;
+						TestTargetID = 51DBA6947AFD8275A0DF8DA0;
+					};
 				};
 			};
 			buildConfigurationList = 30A6EA6EDF1D9E18B33C229C /* Build configuration list for PBXProject "Tinycast" */;
@@ -3443,6 +3493,7 @@
 			knownRegions = (
 				Base,
 				en,
+				"zh-Hans",
 			);
 			mainGroup = FB9897CCA50570B3E7630145;
 			minimizedProjectReferenceProxies = 1;
@@ -3453,6 +3504,7 @@
 			targets = (
 				51DBA6947AFD8275A0DF8DA0 /* Tinycast */,
 				0832DCD58DEA01602328CCE7 /* ClipboardTextHelper */,
+				C80858A92A755BE6C4DEADDA /* LocalizationUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -3463,6 +3515,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				9969E6858C4FDC5CCCDEB5D8 /* Assets.xcassets in Resources */,
+				950D78796884A6BC0ECBC1F3 /* InfoPlist.strings in Resources */,
+				51037F72E21FD560DBC05751 /* Localizable.strings in Resources */,
 				6B3A9A37600C941DF38F9171 /* NOTICE.md in Resources */,
 				694B7E1A8C7C2D6DF26D3BF9 /* RaycastRuntime.generated.js in Resources */,
 				36784C964DB27B94A62EEAA3 /* tinycast.icon in Resources */,
@@ -3478,6 +3532,14 @@
 			files = (
 				4C62146D3E345F256342B701 /* ClipboardTextExtractor.swift in Sources */,
 				568B7DA6A6C2D24BABF0867A /* ClipboardTextHelper.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3DC0B4A1A3E6B7488085CC62 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5D8DEDDB19AA0C97245478FE /* LocalizationUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4220,7 +4282,24 @@
 			target = 0832DCD58DEA01602328CCE7 /* ClipboardTextHelper */;
 			targetProxy = D8D2878E41110CAB71C371B6 /* PBXContainerItemProxy */;
 		};
+		FCBE10302FE8FDB0149DFCF3 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 51DBA6947AFD8275A0DF8DA0 /* Tinycast */;
+			targetProxy = C4CA6DCD52730532DF0BD4C5 /* PBXContainerItemProxy */;
+		};
 /* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		DC43F19B15323F9A571CB369 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				05FCCCA3EDDDFA1FA5ADC8B6 /* en */,
+				96D4BFE6A1725A19C3C60E9A /* zh-Hans */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		0BDFADB1EE48BA5F7B103F30 /* Debug */ = {
@@ -4234,11 +4313,28 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.tinycast.app.dev;
-				PRODUCT_NAME = "Tinycast Dev";
+				PRODUCT_BUNDLE_IDENTIFIER = io.github.houxiaozhao.tinycast.zh.dev;
+				PRODUCT_NAME = "Tinycast Chinese Dev";
 				SDKROOT = macosx;
 			};
 			name = Debug;
+		};
+		14E8E970F5A546A2DCE85448 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				COMBINE_HIDPI_IMAGES = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = io.github.houxiaozhao.tinycast.zh.uitests;
+				SDKROOT = macosx;
+				TEST_TARGET_NAME = Tinycast;
+			};
+			name = Release;
 		};
 		58A6CE2BBFD809933397AE23 /* Release */ = {
 			isa = XCBuildConfiguration;
@@ -4251,7 +4347,8 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.tinycast.app;
+				PRODUCT_BUNDLE_IDENTIFIER = io.github.houxiaozhao.tinycast.zh;
+				PRODUCT_NAME = "Tinycast Chinese";
 				SDKROOT = macosx;
 			};
 			name = Release;
@@ -4340,6 +4437,23 @@
 				SKIP_INSTALL = YES;
 			};
 			name = Release;
+		};
+		BFB2AFEF7B482527F6BADABF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				COMBINE_HIDPI_IMAGES = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = io.github.houxiaozhao.tinycast.zh.uitests;
+				SDKROOT = macosx;
+				TEST_TARGET_NAME = Tinycast;
+			};
+			name = Debug;
 		};
 		CC3CD44A1E55885C69F58A29 /* Release */ = {
 			isa = XCBuildConfiguration;
@@ -4432,6 +4546,15 @@
 			buildConfigurations = (
 				5DD32DD22FF4D687291A2701 /* Debug */,
 				CC3CD44A1E55885C69F58A29 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		3604D8EABA99305BE7851B55 /* Build configuration list for PBXNativeTarget "LocalizationUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BFB2AFEF7B482527F6BADABF /* Debug */,
+				14E8E970F5A546A2DCE85448 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;

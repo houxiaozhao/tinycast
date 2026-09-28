@@ -23,11 +23,11 @@ struct AISettingsView: View {
             Section {
                 Toggle(isOn: $appSettings.aiEnabled) {
                     SettingsFeatureToggleLabel(
-                        anchor: .aiAI, title: "Enable AI",
-                        subtitle: "Nothing is loaded or sent while it is off.")
+                        anchor: .aiAI, title: String(localized: "Enable AI"),
+                        subtitle: String(localized: "Nothing is loaded or sent while it is off."))
                 }
                 SettingsRow(
-                    title: "Providers", subtitle: providerSummary, anchor: .aiProviders
+                    title: String(localized: "Providers"), subtitle: providerSummary, anchor: .aiProviders
                 ) {
                     Button("Manage…") { providersPresented = true }
                 }
@@ -77,10 +77,10 @@ struct AISettingsView: View {
                 selection: settings.defaultModel,
                 select: { $0.map(settings.select) },
                 modelLabel: {
-                    SettingsRowTitle(.aiDefault, "Default model")
+                    SettingsRowTitle(.aiDefault, String(localized: "Default model"))
                 },
                 effortLabel: {
-                    SettingsRowTitle(.aiDefault, "Reasoning effort")
+                    SettingsRowTitle(.aiDefault, String(localized: "Reasoning effort"))
                 }
             )
         } header: {
@@ -94,11 +94,11 @@ struct AISettingsView: View {
 
     private var defaultModelFooter: String {
         if settings.defaultModel?.isOnDevice == true {
-            return "Apple Intelligence runs on this Mac. Nothing leaves it."
+            return String(localized: "Apple Intelligence runs on this Mac. Nothing leaves it.")
         }
         return settings.defaultModel == nil
-            ? "Turn on Apple Intelligence, or add a provider above."
-            : "Only the selected provider is contacted."
+            ? String(localized: "Turn on Apple Intelligence, or add a provider above.")
+            : String(localized: "Only the selected provider is contacted.")
     }
 
     /// Why the on-device route is missing from the picker, or `nil` when it is there.
@@ -117,23 +117,23 @@ struct AISettingsView: View {
             let count = settings.connections.count
             providers.append(count == 1 ? "1 API connection" : "\(count) API connections")
         }
-        return providers.isEmpty ? "No external providers ready" : providers.joined(separator: ", ")
+        return providers.isEmpty ? String(localized: "No external providers ready") : providers.joined(separator: ", ")
     }
 
     private var chatSection: some View {
         @Bindable var settings = settings
         return Section {
             Toggle(isOn: $settings.webSearchEnabled) {
-                SettingsRowTitle(.aiChat, "Web search")
+                SettingsRowTitle(.aiChat, String(localized: "Web search"))
                 Text("Codex and OpenRouter only. Prompts go to a search engine.")
             }
             Picker(selection: $settings.toolRounds) {
-                ForEach(AIToolRounds.allCases) { Text($0.title).tag($0) }
+                ForEach(AIToolRounds.allCases) { Text(LocalizedStringKey($0.title)).tag($0) }
             } label: {
-                SettingsRowTitle(.aiChat, "Tool call rounds")
+                SettingsRowTitle(.aiChat, String(localized: "Tool call rounds"))
                 Text(
-                    "A reply stops after this many; Unlimited runs until Stop. "
-                        + "API connections, Codex and Claude.")
+                    String(localized: "A reply stops after this many; Unlimited runs until Stop. ")
+                        + String(localized: "API connections, Codex and Claude."))
             }
         } header: {
             SettingsSectionHeader(.aiChat)
@@ -144,21 +144,21 @@ struct AISettingsView: View {
         @Bindable var settings = settings
         return Section {
             Picker(selection: $settings.opensTo) {
-                ForEach(AIOpensTo.allCases) { Text($0.title).tag($0) }
+                ForEach(AIOpensTo.allCases) { Text(LocalizedStringKey($0.title)).tag($0) }
             } label: {
-                SettingsRowTitle(.aiConversations, "Quick AI opens to")
+                SettingsRowTitle(.aiConversations, String(localized: "Quick AI opens to"))
             }
             if settings.opensTo == .recent {
                 Picker(selection: $settings.newChatAfter) {
-                    ForEach(AINewChatAfter.allCases) { Text($0.title).tag($0) }
+                    ForEach(AINewChatAfter.allCases) { Text(LocalizedStringKey($0.title)).tag($0) }
                 } label: {
-                    SettingsRowTitle(.aiConversations, "Start a new conversation after")
+                    SettingsRowTitle(.aiConversations, String(localized: "Start a new conversation after"))
                 }
             }
             Picker(selection: $settings.retention) {
-                ForEach(AIRetention.allCases) { Text($0.title).tag($0) }
+                ForEach(AIRetention.allCases) { Text(LocalizedStringKey($0.title)).tag($0) }
             } label: {
-                SettingsRowTitle(.aiConversations, "Keep conversations")
+                SettingsRowTitle(.aiConversations, String(localized: "Keep conversations"))
                 Text("Older ones are deleted, except pinned chats.")
             }
         } header: {
@@ -174,7 +174,7 @@ struct AISettingsView: View {
         @Bindable var settings = settings
         return Section {
             Toggle(isOn: $settings.systemPromptEnabled) {
-                SettingsRowTitle(.aiSystemPrompt, "Send a system prompt")
+                SettingsRowTitle(.aiSystemPrompt, String(localized: "Send a system prompt"))
                 Text("Off also skips Tinycast's own prompt.")
             }
             SystemPromptEditor(text: $settings.systemPrompt)
@@ -192,8 +192,8 @@ struct AISettingsView: View {
         @Bindable var settings = settings
         return VStack(alignment: .leading, spacing: 0) {
             SettingsEditorHeader(
-                title: "AI Providers",
-                subtitle: "Use an installed account or connect an API endpoint."
+                title: String(localized: "AI Providers"),
+                subtitle: String(localized: "Use an installed account or connect an API endpoint.")
             )
             .padding(.horizontal, Theme.Spacing.dialogInset)
             .padding(.top, Theme.Spacing.dialogInset)
@@ -221,7 +221,7 @@ struct AISettingsView: View {
                 onCancel: { editor = nil })
         }
         .confirmationDialog(
-            pendingRemoval.map { "Remove “\($0.title)”?" } ?? "Remove connection?",
+            pendingRemoval.map { "Remove “\($0.title)”?" } ?? String(localized: "Remove connection?"),
             isPresented: removalPresented,
             titleVisibility: .visible
         ) {
@@ -243,10 +243,10 @@ struct AISettingsView: View {
             codexConnection
             if let limits = subscription.rateLimits, subscription.isConnected {
                 if let primary = limits.primary {
-                    quotaRow(primary, fallbackTitle: "Primary window")
+                    quotaRow(primary, fallbackTitle: String(localized: "Primary window"))
                 }
                 if let secondary = limits.secondary {
-                    quotaRow(secondary, fallbackTitle: "Secondary window")
+                    quotaRow(secondary, fallbackTitle: String(localized: "Secondary window"))
                 }
             }
             installedConnection(.claude)
@@ -297,13 +297,13 @@ struct AISettingsView: View {
                         if let email = account.email {
                             RedactedText(
                                 value: email,
-                                revealHelp: "Click to reveal the signed-in account",
-                                hideHelp: "Click to hide the signed-in account")
+                                revealHelp: String(localized: "Click to reveal the signed-in account"),
+                                hideHelp: String(localized: "Click to hide the signed-in account"))
                         } else {
                             Text("Codex · Ready")
                         }
                         Text(
-                            account.planTitle == "API key" ? "Codex API key" : "ChatGPT \(account.planTitle)")
+                            account.planTitle == "API key" ? String(localized: "Codex API key") : "ChatGPT \(account.planTitle)")
                     }
                 }
             case .unavailable(let message):
@@ -457,7 +457,7 @@ struct AISettingsView: View {
                     connection: AIConnection(), hasStoredKey: false, isNew: true)
             } label: {
                 Label {
-                    SettingsRowTitle(.aiAPIConnections, "Add API Connection")
+                    SettingsRowTitle(.aiAPIConnections, String(localized: "Add API Connection"))
                 } icon: {
                     Image(systemName: "plus")
                 }
@@ -549,8 +549,8 @@ struct AISettingsView: View {
         } catch {
             keyError = true
             return isNew
-                ? "The key could not be saved to Keychain."
-                : "The saved key could not be updated in Keychain."
+                ? String(localized: "The key could not be saved to Keychain.")
+                : String(localized: "The saved key could not be updated in Keychain.")
         }
     }
 
@@ -572,7 +572,7 @@ struct AISettingsView: View {
 
     private func readyDetail(_ kind: InstalledAIKind, _ status: InstalledAIStatus) -> String {
         var parts: [String] = []
-        if let version = status.version { parts.append("Version " + version) }
+        if let version = status.version { parts.append(String(localized: "Version ") + version) }
         parts.append(modelCount(status.models))
         if let caveat = kind.isolationCaveat(
             hasManagedMCPPolicy: InstalledAIManager.hasManagedMCPPolicy)
@@ -629,8 +629,8 @@ private struct AIConnectionRow: View {
     }
 
     private var keyStatus: String {
-        if AIEndpointPolicy.isLoopback(connection.baseURL), !hasStoredKey { return "No key" }
-        return hasStoredKey ? "Keychain" : "Key missing"
+        if AIEndpointPolicy.isLoopback(connection.baseURL), !hasStoredKey { return String(localized: "No key") }
+        return hasStoredKey ? String(localized: "Keychain") : String(localized: "Key missing")
     }
 
     private var modelCount: String {

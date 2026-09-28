@@ -1,4 +1,8 @@
-# Tinycast
+# Tinycast 简体中文版
+
+本分支提供简体中文界面及 GitHub Actions 自动打包。详见 [中文版安装与构建说明](docs/chinese-edition.md)。
+
+[运行中文版构建](https://github.com/houxiaozhao/tinycast/actions/workflows/chinese-build.yml) · 原项目介绍如下。
 
 **A tiny, fully native macOS launcher. One hotkey, everything you reach for all day, under 100 MB of
 RAM.**

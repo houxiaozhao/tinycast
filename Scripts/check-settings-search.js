@@ -28,7 +28,8 @@ const anchorSource = fs.readFileSync(path.join(ROOT, ANCHORS), "utf8");
 const catalog = fs.readFileSync(path.join(ROOT, CATALOG), "utf8");
 const source = swiftSources(path.join(ROOT, "Tinycast"))
   .map((f) => fs.readFileSync(f, "utf8"))
-  .join("\n");
+  .join("\n")
+  .replace(/String\(localized: ("(?:[^"\\]|\\.)*")\)/g, "$1");
 
 const anchorTitles = new Map();
 for (const m of anchorSource.matchAll(

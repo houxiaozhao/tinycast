@@ -15,8 +15,8 @@ struct FileSearchScreen: PaletteScreen {
     }
 
     var primaryActionTitle: String {
-        guard let result = result(at: vm.selection) else { return "Open File" }
-        return result.isDirectory ? "Open Folder" : "Open File"
+        guard let result = result(at: vm.selection) else { return String(localized: "Open File") }
+        return result.isDirectory ? String(localized: "Open Folder") : String(localized: "Open File")
     }
 
     private func result(at selection: Int) -> FileSearchResult? {
@@ -94,7 +94,7 @@ struct FileSearchScreen: PaletteScreen {
             let selected = result(at: selection)
             HStack(spacing: 0) {
                 FileSearchList(
-                    title: isShowingRecents ? "Recently Used" : "Results",
+                    title: isShowingRecents ? String(localized: "Recently Used") : String(localized: "Results"),
                     results: rows,
                     selectedID: selected?.id,
                     scroll: scroll,
@@ -150,11 +150,11 @@ enum FileSearchActionsMenu {
             header: result.name,
             items: [
                 PopoverMenuItem(
-                    title: result.isDirectory ? "Open Folder" : "Open File",
+                    title: result.isDirectory ? String(localized: "Open Folder") : String(localized: "Open File"),
                     systemImage: result.isDirectory ? "folder" : "doc", shortcut: "↵"
                 ) { coordinator.open(result) },
                 PopoverMenuItem(
-                    title: "Show in Finder", systemImage: "folder", shortcut: "⌘↵"
+                    title: String(localized: "Show in Finder"), systemImage: "folder", shortcut: "⌘↵"
                 ) { coordinator.showInFinder(result) },
                 PopoverMenuItem(title: "Quick Look", systemImage: "eye", shortcut: "⌘Y") {
                     vm.fileSearchQuickLook = true

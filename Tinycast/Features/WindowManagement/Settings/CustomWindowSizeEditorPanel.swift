@@ -27,33 +27,33 @@ struct CustomWindowSizeEditorPanel: View {
     var body: some View {
         VStack(alignment: .leading, spacing: Theme.Spacing.xl) {
             SettingsEditorHeader(
-                title: isNew ? "New Custom Size" : "Edit Custom Size",
-                subtitle: "Resizes the window you were last in, on the display it is already on.")
+                title: isNew ? String(localized: "New Custom Size") : String(localized: "Edit Custom Size"),
+                subtitle: String(localized: "Resizes the window you were last in, on the display it is already on."))
 
-            field("Name") {
+            field(String(localized: "Name")) {
                 TextField("Wide Center", text: $size.name)
                     .settingsEditorTextField()
             }
 
-            field("Size") {
+            field(String(localized: "Size")) {
                 HStack(spacing: Theme.Spacing.lg) {
                     dimensionField(
-                        label: "W", name: "Width", dimension: $size.width,
+                        label: "W", name: String(localized: "Width"), dimension: $size.width,
                         available: reference.width)
                     dimensionField(
-                        label: "H", name: "Height", dimension: $size.height,
+                        label: "H", name: String(localized: "Height"), dimension: $size.height,
                         available: reference.height)
                 }
             }
 
-            field("Offset") {
+            field(String(localized: "Offset")) {
                 HStack(spacing: Theme.Spacing.lg) {
-                    offsetField(label: "X", name: "Horizontal offset", value: \.x)
-                    offsetField(label: "Y", name: "Vertical offset", value: \.y)
+                    offsetField(label: "X", name: String(localized: "Horizontal offset"), value: \.x)
+                    offsetField(label: "Y", name: String(localized: "Vertical offset"), value: \.y)
                 }
             }
 
-            field("Position") {
+            field(String(localized: "Position")) {
                 WindowLayoutPositionGrid(selection: size.anchor) { size.anchor = $0 }
             }
 

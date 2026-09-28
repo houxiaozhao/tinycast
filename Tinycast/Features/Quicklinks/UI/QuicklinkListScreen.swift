@@ -17,7 +17,7 @@ struct QuicklinkListScreen: PaletteScreen {
         return store.enabled.filter { $0.name.localizedCaseInsensitiveContains(query) }
     }
 
-    var primaryActionTitle: String { "Open Quicklink" }
+    var primaryActionTitle: String { String(localized: "Open Quicklink") }
 
     private func quicklink(at selection: Int) -> Quicklink? {
         let rows = rows
@@ -120,7 +120,7 @@ enum QuicklinkActionsMenu {
         quicklink: Quicklink, core: AppCore, values: [String: String]
     ) -> PopoverMenuContent {
         var items: [PopoverMenuItem] = [
-            PopoverMenuItem(title: "Open Quicklink", systemImage: quicklink.symbol, shortcut: "↵") {
+            PopoverMenuItem(title: String(localized: "Open Quicklink"), systemImage: quicklink.symbol, shortcut: "↵") {
                 core.quicklinkCoordinator.openQuicklink(id: quicklink.id, values: values)
             }
         ]
@@ -136,7 +136,7 @@ enum QuicklinkActionsMenu {
                 })
         }
         items.append(
-            PopoverMenuItem(title: "Edit Quicklink", systemImage: "pencil", startsSection: true) {
+            PopoverMenuItem(title: String(localized: "Edit Quicklink"), systemImage: "pencil", startsSection: true) {
                 core.paletteCoordinator.hidePalette(restoreFocus: false)
                 core.quicklinkCoordinator.editQuicklink(quicklink)
             })
@@ -172,7 +172,7 @@ enum QuicklinkActionsMenu {
         {
             items.append(
                 PopoverMenuItem(
-                    title: "Show in Finder", systemImage: "folder", startsSection: true, shortcut: "⌘F"
+                    title: String(localized: "Show in Finder"), systemImage: "folder", startsSection: true, shortcut: "⌘F"
                 ) {
                     core.paletteCoordinator.hidePalette(restoreFocus: false)
                     AppLauncher.showInFinder(URL(fileURLWithPath: path))
@@ -180,7 +180,7 @@ enum QuicklinkActionsMenu {
         }
         items.append(
             PopoverMenuItem(
-                title: "Delete Quicklink", systemImage: "trash", startsSection: true, shortcut: "⌘⌫",
+                title: String(localized: "Delete Quicklink"), systemImage: "trash", startsSection: true, shortcut: "⌘⌫",
                 isDestructive: true
             ) {
                 Task { await core.quicklinkCoordinator.deleteQuicklink(id: quicklink.id) }

@@ -1,0 +1,123 @@
+name: Build Chinese Edition
+run-name: Chinese edition · ${{ github.sha }}
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: macos-26
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Select Xcode 26
+        shell: bash
+        run: |
+          set -euo pipefail
+          XCODE_PATH="$(find /Applications -maxdepth 1 -name 'Xcode_26*.app' | sort -V | tail -n 1)"
+          test -n "$XCODE_PATH"
+          echo "DEVELOPER_DIR=$XCODE_PATH/Contents/Developer" >> "$GITHUB_ENV"
+          mkdir -p verification dist
+          echo "Source: $GITHUB_SHA" > verification/build.txt
+
+      - name: Install build tools
+        run: brew install xcodegen swiftlint
+
+      - name: Verify source and localization resources
+        run: |
+          set -euo pipefail
+          xcodegen generate
+          node Scripts/check-localization.js | tee verification/localization.txt
+          ./Scripts/lint.sh 2>&1 | tee verification/lint.txt
+
+      - name: Run existing harnesses
+        run: |
+          set -euo pipefail
+          ./Scripts/run-tests.sh 2>&1 | tee verification/harnesses.txt
+
+      - name: Build and test Chinese and English UI
+        run: |
+          set -euo pipefail
+          mkdir -p "$HOME/Library/Application Support/io.github.houxiaozhao.tinycast.zh.dev"
+          touch "$HOME/Library/Application Support/io.github.houxiaozhao.tinycast.zh.dev/onboarded"
+          xcodebuild test -project Tinycast.xcodeproj -scheme Tinycast -configuration Debug \
+            -destination 'platform=macOS' -derivedDataPath "$RUNNER_TEMP/UITestBuild" \
+            -resultBundlePath verification/Localization.xcresult \
+            CODE_SIGN_IDENTITY=- CODE_SIGN_STYLE=Manual \
+            2>&1 | tee verification/ui-tests.txt
+
+      - name: Import fixed signing identity
+        env:
+          P12_BASE64: ${{ secrets.SIGNING_P12_BASE64 }}
+          P12_PASSWORD: ${{ secrets.SIGNING_P12_PASSWORD }}
+        run: |
+          set -euo pipefail
+          test -n "$P12_BASE64" && test -n "$P12_PASSWORD"
+          KEYCHAIN="$RUNNER_TEMP/tinycast-signing.keychain-db"
+          KPW="$(openssl rand -base64 24)"
+          echo "::add-mask::$KPW"
+          printf '%s' "$P12_BASE64" | base64 --decode > "$RUNNER_TEMP/signing.p12"
+          security create-keychain -p "$KPW" "$KEYCHAIN"
+          security set-keychain-settings -lut 21600 "$KEYCHAIN"
+          security unlock-keychain -p "$KPW" "$KEYCHAIN"
+          security import "$RUNNER_TEMP/signing.p12" -k "$KEYCHAIN" -P "$P12_PASSWORD" -T /usr/bin/codesign
+          security set-key-partition-list -S apple-tool:,apple: -s -k "$KPW" "$KEYCHAIN" >/dev/null
+          security list-keychains -d user -s "$KEYCHAIN" $(security list-keychains -d user | tr -d '"')
+          rm "$RUNNER_TEMP/signing.p12"
+
+      - name: Build universal app
+        run: |
+          set -euo pipefail
+          xcodebuild build -project Tinycast.xcodeproj -scheme Tinycast -configuration Release \
+            -derivedDataPath "$RUNNER_TEMP/ReleaseBuild" \
+            ARCHS='arm64 x86_64' ONLY_ACTIVE_ARCH=NO \
+            CODE_SIGN_STYLE=Manual CODE_SIGN_IDENTITY='Tinycast Self-Signed' \
+            OTHER_CODE_SIGN_FLAGS='--timestamp=none' \
+            CURRENT_PROJECT_VERSION="$GITHUB_RUN_NUMBER" \
+            2>&1 | tee verification/release-build.txt
+
+      - name: Verify and package
+        run: |
+          set -euo pipefail
+          APP="$RUNNER_TEMP/ReleaseBuild/Build/Products/Release/Tinycast Chinese.app"
+          ./Scripts/verify-signature.sh "$APP" | tee verification/signature.txt
+          node Scripts/check-localization.js "$APP" | tee verification/bundle.txt
+          for BIN in "$APP/Contents/MacOS/Tinycast Chinese" "$APP/Contents/Helpers/ClipboardTextHelper"; do
+            SLICES="$(lipo -archs "$BIN")"
+            [[ " $SLICES " == *' arm64 '* && " $SLICES " == *' x86_64 '* ]]
+            echo "$BIN: $SLICES" >> verification/build.txt
+          done
+          STAGE="$RUNNER_TEMP/dmg-stage"
+          mkdir -p "$STAGE"
+          cp -R "$APP" "$STAGE/"
+          ln -s /Applications "$STAGE/Applications"
+          hdiutil create -volname 'Tinycast Chinese' -srcfolder "$STAGE" -ov -format UDZO dist/Tinycast-Chinese.dmg
+          ditto -c -k --keepParent --sequesterRsrc "$APP" dist/Tinycast-Chinese.zip
+          shasum -a 256 dist/* > dist/SHA256SUMS.txt
+
+      - name: Upload installable app
+        uses: actions/upload-artifact@v4
+        with:
+          name: Tinycast-Chinese-${{ github.run_number }}
+          path: dist/
+          if-no-files-found: error
+          retention-days: 30
+
+      - name: Upload verification evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: Verification-${{ github.run_number }}
+          path: verification/
+          retention-days: 30
+
+      - name: Remove temporary signing keychain
+        if: always()
+        run: |
+          if [ -f "$RUNNER_TEMP/tinycast-signing.keychain-db" ]; then
+            security delete-keychain "$RUNNER_TEMP/tinycast-signing.keychain-db"
+          fi

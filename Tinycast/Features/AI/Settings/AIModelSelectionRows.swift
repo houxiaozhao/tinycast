@@ -35,7 +35,7 @@ struct AIModelSelectionRows<ModelLabel: View, EffortLabel: View>: View {
             if !efforts.isEmpty {
                 Picker(selection: effortBinding) {
                     ForEach(efforts) { effort in
-                        Text(effort.title).tag(effort.id)
+                        Text(LocalizedStringKey(effort.title)).tag(effort.id)
                     }
                 } label: {
                     effortLabel()

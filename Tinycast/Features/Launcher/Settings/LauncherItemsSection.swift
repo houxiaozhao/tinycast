@@ -17,7 +17,7 @@ struct LauncherCategorySwitchSection: View {
             ) {
                 SettingsFeatureToggleLabel(
                     anchor: anchor, title: "Enable \(anchor.title)",
-                    subtitle: "Off hides all of them and stops their shortcuts.")
+                    subtitle: String(localized: "Off hides all of them and stops their shortcuts."))
             }
         }
     }
@@ -66,7 +66,7 @@ struct LauncherItemsList: View {
 
     var body: some View {
         if entries.isEmpty {
-            Text(query.isEmpty ? "Nothing here yet." : "No matches for “\(query)”.")
+            Text(query.isEmpty ? String(localized: "Nothing here yet.") : "No matches for “\(query)”.")
                 .foregroundStyle(.secondary)
                 .frame(maxWidth: .infinity, alignment: .center)
         } else if entries.first?.kind != .application && entries.first?.kind != .appleShortcut {

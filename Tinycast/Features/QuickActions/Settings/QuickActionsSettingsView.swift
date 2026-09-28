@@ -21,8 +21,8 @@ struct QuickActionsSettingsView: View {
             Section {
                 Toggle(isOn: enabledBinding) {
                     SettingsFeatureToggleLabel(
-                        anchor: .quickActionsQuickActions, title: "Enable Quick Actions",
-                        subtitle: "Act on selected text. Nothing is read until you press a shortcut.")
+                        anchor: .quickActionsQuickActions, title: String(localized: "Enable Quick Actions"),
+                        subtitle: String(localized: "Act on selected text. Nothing is read until you press a shortcut."))
                 }
                 if appSettings.quickActionsEnabled, !isTrusted {
                     // Every shortcut fails without it; better said here than found one press later.
@@ -108,7 +108,7 @@ struct QuickActionsSettingsView: View {
             Button {
                 customEditing = CustomQuickActionEditRequest(action: nil)
             } label: {
-                SettingsRowTitle(.quickActionsActions, "Add Quick Action")
+                SettingsRowTitle(.quickActionsActions, String(localized: "Add Quick Action"))
             }
         } header: {
             SettingsSectionHeader(.quickActionsActions)
@@ -170,11 +170,11 @@ struct QuickActionsSettingsView: View {
                 selection: store.model,
                 select: store.select,
                 modelLabel: {
-                    SettingsRowTitle(.quickActionsModel, "Model")
+                    SettingsRowTitle(.quickActionsModel, String(localized: "Model"))
                     Text("Unless an action sets its own.")
                 },
                 effortLabel: {
-                    SettingsRowTitle(.quickActionsModel, "Reasoning effort")
+                    SettingsRowTitle(.quickActionsModel, String(localized: "Reasoning effort"))
                 }
             )
         } header: {
@@ -194,7 +194,7 @@ struct QuickActionsSettingsView: View {
                     Text(TextTranslator.displayName(of: $0)).tag($0.minimalIdentifier)
                 }
             } label: {
-                SettingsRowTitle(.quickActionsTranslate, "Translate to")
+                SettingsRowTitle(.quickActionsTranslate, String(localized: "Translate to"))
             }
         } header: {
             SettingsSectionHeader(.quickActionsTranslate)
@@ -207,7 +207,7 @@ struct QuickActionsSettingsView: View {
 
     private func subtitle(for action: QuickAction) -> String? {
         let details = [
-            action.alwaysPreviews ? "Always shown in a panel" : nil,
+            action.alwaysPreviews ? String(localized: "Always shown in a panel") : nil,
             store.modelOverride(for: action).map(routeTitle)
         ].compactMap(\.self)
         return details.isEmpty ? nil : details.joined(separator: " · ")

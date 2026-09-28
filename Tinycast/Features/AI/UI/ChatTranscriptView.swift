@@ -550,7 +550,7 @@ private struct ChatToolRun: View {
                     }
                     .buttonStyle(.plain)
                     .accessibilityLabel(uses.completedLabel)
-                    .accessibilityValue(isExpanded ? "Expanded" : "Collapsed")
+                    .accessibilityValue(isExpanded ? String(localized: "Expanded") : String(localized: "Collapsed"))
                     if isExpanded {
                         VStack(alignment: .leading, spacing: metrics.spacing.sm) {
                             ForEach(uses, id: \.callID) { use in

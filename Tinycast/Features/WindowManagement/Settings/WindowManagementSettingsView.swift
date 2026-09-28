@@ -12,8 +12,8 @@ struct WindowManagementSettingsView: View {
         return Form {
             FeatureSwitchSection(
                 anchor: .windowManagementWindowManagement,
-                enableTitle: "Enable window management",
-                enableSubtitle: "Moves the last window you used. Needs Accessibility.",
+                enableTitle: String(localized: "Enable window management"),
+                enableSubtitle: String(localized: "Moves the last window you used. Needs Accessibility."),
                 isEnabled: $settings.windowManagementEnabled,
                 showsInLauncher: $settings.windowManagementShowInLauncher,
                 showsIcon: true,
@@ -63,10 +63,10 @@ struct WindowManagementSettingsView: View {
         return Section {
             Picker(selection: $settings.windowCycle) {
                 ForEach(WindowCycle.allCases) { cycle in
-                    Text(cycle.title).tag(cycle)
+                    Text(LocalizedStringKey(cycle.title)).tag(cycle)
                 }
             } label: {
-                SettingsRowTitle(.windowManagementOptions, "Cycling")
+                SettingsRowTitle(.windowManagementOptions, String(localized: "Cycling"))
                 Text(settings.windowCycle.detail)
             }
 
@@ -76,13 +76,13 @@ struct WindowManagementSettingsView: View {
                         .monospacedDigit()
                         .foregroundStyle(.secondary)
                     Stepper(
-                        "Gap between windows", value: $settings.windowGap,
+                        String(localized: "Gap between windows"), value: $settings.windowGap,
                         in: WindowPlacementEngine.gapRange, step: 2
                     )
                     .labelsHidden()
                 }
             } label: {
-                SettingsRowTitle(.windowManagementOptions, "Gap between windows")
+                SettingsRowTitle(.windowManagementOptions, String(localized: "Gap between windows"))
                 Text("Between tiled windows and screen edges.")
             }
         } header: {
@@ -98,7 +98,7 @@ struct WindowManagementSettingsView: View {
                     WindowCommandSettingsRow(command: command)
                 }
             } header: {
-                Text(section.group.title)
+                Text(LocalizedStringKey(section.group.title))
             }
         }
     }
@@ -110,7 +110,7 @@ private struct WindowCommandSettingsRow: View {
     @Environment(VisibilityStore.self) private var visibility
 
     var body: some View {
-        SettingsRow(title: command.name) {
+        SettingsRow(title: String(localized: String.LocalizationValue(command.name))) {
             Image(systemName: command.sfSymbol)
         } trailing: {
             ShortcutRecorder(action: .windowCommand(id: command.id))

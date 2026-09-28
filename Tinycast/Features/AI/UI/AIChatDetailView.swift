@@ -208,7 +208,7 @@ private struct AIChatComposer: View {
         .buttonStyle(.borderless)
         .disabled(!chat.isStreaming && !canSend)
         .help(chat.isStreaming ? "Stop Response" : "Send  ↵")
-        .accessibilityLabel(chat.isStreaming ? "Stop Response" : "Send")
+        .accessibilityLabel(chat.isStreaming ? "Stop Response" : String(localized: "Send"))
     }
 
     /// Return and the button are one action: Send, or Stop while a reply streams.
@@ -488,17 +488,17 @@ private struct ContextCard: View {
                     row("Last reply", "Not reported yet")
                 }
                 section("Next message")
-                row("Model", report.modelTitle)
-                row("History", "\(bytes(report.historyBytes)) of \(bytes(report.budget))")
+                row(String(localized: "Model"), report.modelTitle)
+                row(String(localized: "History"), "\(bytes(report.historyBytes)) of \(bytes(report.budget))")
                 row("Messages", "\(report.sentMessages) of \(report.totalMessages)")
                 if report.stagedFiles > 0 {
                     row("Attached", "\(report.stagedFiles) · \(bytes(report.stagedBytes))")
                 }
-                row("System prompt", report.systemPrompt ? "On" : "Off")
-                row("Web search", report.webSearch ? "On" : "Off")
+                row(String(localized: "System prompt"), report.systemPrompt ? String(localized: "On") : String(localized: "Off"))
+                row(String(localized: "Web search"), report.webSearch ? String(localized: "On") : String(localized: "Off"))
                 row(
                     "MCP servers",
-                    report.toolServers == 0 ? "None" : "\(report.toolServers) in reach")
+                    report.toolServers == 0 ? String(localized: "None") : "\(report.toolServers) in reach")
             }
             .font(.callout)
         }

@@ -23,7 +23,7 @@ struct ChatCopyButton: View {
                 .contentShape(Rectangle())
         }
         .buttonStyle(.plain)
-        .accessibilityLabel(copied ? "Copied" : "Copy \(subject)")
+        .accessibilityLabel(copied ? String(localized: "Copied") : "Copy \(subject)")
         .task(id: copiedAt) {
             guard copied else { return }
             try? await Task.sleep(for: .seconds(Theme.Duration.copyFeedback))

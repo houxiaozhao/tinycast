@@ -27,7 +27,7 @@ struct NoteFormattingBar: View {
             symbol: "chevron.left.forwardslash.chevron.right", title: "Inline Code", shortcut: "⌘E",
             action: .toggleInline(.code)
         ) { $0.inlineStyles.contains(.code) },
-        Control(symbol: "link", title: "Link", shortcut: "⌘K", action: .toggleLink) { $0.isLink }
+        Control(symbol: "link", title: String(localized: "Link"), shortcut: "⌘K", action: .toggleLink) { $0.isLink }
     ]
 
     private static let blocks = [
@@ -105,7 +105,7 @@ private struct NoteFormattingToggle: View {
         }
         .focusable(false)
         .accessibilityLabel("Formatting")
-        .accessibilityValue(isExpanded ? "Expanded" : "Collapsed")
+        .accessibilityValue(isExpanded ? String(localized: "Expanded") : String(localized: "Collapsed"))
         // Against the window's trailing edge, so a centred label would run off it.
         .tooltip("Formatting  ⌥⌘T", alignment: .trailing)
     }
@@ -158,7 +158,7 @@ private struct NoteHeadingButton: View {
     private var accessibilityValue: String {
         switch level {
         case nil: ""
-        case 0: "Text"
+        case 0: String(localized: "Text")
         case let level?: "Heading \(level)"
         }
     }

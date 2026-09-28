@@ -17,7 +17,7 @@ struct SettingsSidebarView: View {
                 found
             }
         }
-        .searchable(text: $query, isPresented: $searching, placement: .sidebar, prompt: "Search")
+        .searchable(text: $query, isPresented: $searching, placement: .sidebar, prompt: String(localized: "Search"))
         .onExitCommand { query = "" }
         .background(focusShortcut)
     }
@@ -25,10 +25,10 @@ struct SettingsSidebarView: View {
     private var browse: some View {
         List(selection: selection) {
             ForEach(SettingsSection.allCases) { section in
-                Section(section.title) {
+                Section(LocalizedStringKey(section.title)) {
                     ForEach(section.tabs) { tab in
                         Label {
-                            Text(tab.title)
+                            Text(LocalizedStringKey(tab.title))
                         } icon: {
                             SettingsTabIcon(
                                 systemImage: tab.systemImage,

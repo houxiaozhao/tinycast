@@ -129,7 +129,7 @@ struct ClipboardScreen: PaletteScreen {
         // Empty history: centre one message across the panel, not in the list column.
         if rows.isEmpty {
             // Names the filter, so one hiding every entry doesn't read as an empty history.
-            EmptyResults(text: vm.clipboardFilter.emptyMessage)
+            EmptyResults(text: String(localized: String.LocalizationValue(vm.clipboardFilter.emptyMessage)))
         } else {
             let selected = item(at: selection)
             HStack(spacing: 0) {
@@ -214,7 +214,7 @@ enum ClipboardActionsMenu {
         if item.kind == .image || item.kind == .file {
             items.append(
                 PopoverMenuItem(
-                    title: "Show in Finder", systemImage: "folder",
+                    title: String(localized: "Show in Finder"), systemImage: "folder",
                     startsSection: !item.offersTextExtraction
                 ) {
                     core.clipboardCoordinator.revealClip(item)
@@ -222,7 +222,7 @@ enum ClipboardActionsMenu {
         }
         if item.kind == .file {
             items.append(
-                PopoverMenuItem(title: "Open", systemImage: "arrow.up.forward.app") {
+                PopoverMenuItem(title: String(localized: "Open"), systemImage: "arrow.up.forward.app") {
                     core.clipboardCoordinator.openClip(item)
                 })
             items.append(
@@ -264,8 +264,8 @@ enum ClipboardActionsMenu {
             let oneLine = (item.text ?? "").split(whereSeparator: \.isWhitespace).joined(
                 separator: " ")
             return String(oneLine.prefix(40))
-        case .image: return "Image"
-        case .file: return (item.filePath as NSString?)?.lastPathComponent ?? "File"
+        case .image: return String(localized: "Image")
+        case .file: return (item.filePath as NSString?)?.lastPathComponent ?? String(localized: "File")
         }
     }
 }

@@ -147,7 +147,7 @@ private struct NoteTitlebarActions: View {
 
     var body: some View {
         HStack(spacing: Theme.Spacing.xxs) {
-            action("plus", "Create Note", "Create Note  ⌘N", notes.createNote)
+            action("plus", String(localized: "Create Note"), "Create Note  ⌘N", notes.createNote)
             action("rectangle.stack", "Browse Notes", "Browse Notes  ⌘P", notes.searchNotes)
             action("folder", "Open Notes Folder", "Open Notes Folder  ⌘O", notes.openNotesFolder)
         }

@@ -40,7 +40,7 @@ struct WindowLayoutPreview: View {
     private var caption: String {
         guard let uuid = draft.selectedDisplayUUID,
             let display = tabs.first(where: { $0.uuid == uuid })
-        else { return "No display selected" }
+        else { return String(localized: "No display selected") }
         guard let screen = selectedScreen else { return "\(display.name) · not connected" }
         // Points, not pixels: nothing in this feature touches `backingScaleFactor`.
         let size = screen.screen.frame.size
@@ -139,7 +139,7 @@ struct WindowLayoutPreviewCanvas: View {
     }
 
     private var accessibilityDescription: String {
-        guard let screen else { return "Preview, display not connected" }
+        guard let screen else { return String(localized: "Preview, display not connected") }
         let count = draft.entries(onDisplay: screen.display.uuid).count
         let windows = count == 1 ? "1 window" : "\(count) windows"
         return "Preview of \(screen.display.name), \(windows)"

@@ -22,7 +22,7 @@ struct ExtensionStorePanel: View {
     private var searchingSummary: String {
         let on = registries.filter(\.isEnabled)
         guard !on.isEmpty else {
-            return "No registries are enabled. Turn one on under Install → Registries."
+            return String(localized: "No registries are enabled. Turn one on under Install → Registries.")
         }
         let names = on.map(\.name).joined(separator: ", ")
         return "Searching \(names). Store extensions install as they are; a repository is built first."
@@ -32,7 +32,7 @@ struct ExtensionStorePanel: View {
         VStack(alignment: .leading, spacing: Theme.Spacing.lg) {
             header
             // The same borderless field the panes use, rather than a bordered capsule of its own.
-            SettingsFilterField(prompt: "Search extensions…", query: $query)
+            SettingsFilterField(prompt: String(localized: "Search extensions…"), query: $query)
             content
             // The list scrolls right up to the footer without it, cutting the last row.
             Divider()
@@ -269,7 +269,7 @@ private struct StoreRow: View {
                             .background(Theme.Colors.controlSurface, in: .capsule)
                             .foregroundStyle(.secondary)
                             .help(
-                                "This registry serves source. Installing runs your package manager "
+                                String(localized: "This registry serves source. Installing runs your package manager ")
                                     + "and the extension's build script.")
                     }
                 }

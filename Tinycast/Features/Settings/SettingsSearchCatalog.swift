@@ -13,13 +13,14 @@ struct SettingsSearchEntry: Identifiable, Hashable, Sendable {
     private init(_ target: SettingsTarget, _ title: String, _ keywords: [String]) {
         self.tab = target.tab
         self.target = target
-        self.title = title
-        self.keywords = keywords
+        self.title = String(localized: String.LocalizationValue(title))
+        self.keywords = keywords + [title]
     }
 
     /// One setting, which its pane marks with a matching `SettingsRowTitle`.
     init(_ anchor: SettingsAnchor, _ title: String, keywords: [String] = []) {
-        self.init(.row(anchor, title), title, keywords)
+        self.init(
+            .row(anchor, String(localized: String.LocalizationValue(title))), title, keywords)
     }
 
     /// A whole group, for a result no single row answers — a list, or a section's master switch.
@@ -30,8 +31,8 @@ struct SettingsSearchEntry: Identifiable, Hashable, Sendable {
     init(pane: SettingsTab, keywords: [String] = []) {
         self.tab = pane
         self.target = nil
-        self.title = pane.title
-        self.keywords = keywords
+        self.title = String(localized: String.LocalizationValue(pane.title))
+        self.keywords = keywords + [pane.title]
     }
 
     var anchor: SettingsAnchor? { target?.anchor }
@@ -40,8 +41,11 @@ struct SettingsSearchEntry: Identifiable, Hashable, Sendable {
 
     /// The result row's second line — "General", or "General › Hyper Key".
     var breadcrumb: String {
-        guard let anchor, anchor.title != tab.title else { return tab.title }
-        return "\(tab.title) › \(anchor.title)"
+        guard let anchor, anchor.title != tab.title else {
+            return String(localized: String.LocalizationValue(tab.title))
+        }
+        return "\(String(localized: String.LocalizationValue(tab.title))) › "
+            + String(localized: String.LocalizationValue(anchor.title))
     }
 }
 
