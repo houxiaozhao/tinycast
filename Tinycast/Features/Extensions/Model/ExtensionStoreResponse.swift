@@ -184,12 +184,16 @@ enum ExtensionStoreError: LocalizedError {
             return String(localized: "Download failed: \(reason)")
         case .noPackageManager:
             return
-                "This extension is source that has to be built, and no package manager was found. "
-                + "Install pnpm, npm, Yarn or Bun, or pick one in Advanced."
+                String(localized: """
+                This extension is source that has to be built, and no package manager was found. \
+                Install pnpm, npm, Yarn or Bun, or pick one in Advanced.
+                """)
         case .noNode:
             return
-                "This extension is source that has to be built, and Node wasn't found. Install "
-                + "Node.js, or install this extension from the Raycast Store instead."
+                String(localized: """
+                This extension is source that has to be built, and Node wasn't found. Install \
+                Node.js, or install this extension from the Raycast Store instead.
+                """)
         case .buildFailed(let output):
             return String(localized: "The extension didn't build: \(output)")
         case .notAnExtension:

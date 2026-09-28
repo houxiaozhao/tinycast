@@ -11,9 +11,9 @@ enum UnitCategory: String, CaseIterable, Sendable {
         case .length: return String(localized: "Length")
         case .weight: return String(localized: "Weight")
         case .temperature: return String(localized: "Temperature")
-        case .time: return "Time"
+        case .time: return String(localized: "Time")
         case .area: return String(localized: "Area")
-        case .volume: return "Volume"
+        case .volume: return String(localized: "Volume")
         case .digitalStorage: return String(localized: "Digital Storage")
         case .angle: return String(localized: "Angle")
         case .speed: return String(localized: "Speed")

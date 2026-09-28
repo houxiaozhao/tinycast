@@ -48,11 +48,12 @@ enum UninstallProtection: String, Hashable, Sendable, CaseIterable {
         case .notOwned:
             return String(localized: "Owned by another user, in a folder that only lets owners remove things.")
         case .needsFullDiskAccess:
-            return "Needs Full Disk Access, which Tinycast doesn’t request. "
-                + "Grant it in System Settings › Privacy & Security to include this item."
+            return String(localized: """
+                Needs Full Disk Access, which Tinycast doesn’t request. \
+                Grant it in System Settings › Privacy & Security to include this item.
+                """)
         case .parentNotWritable:
-            return "Its enclosing folder isn’t writable by you, and Tinycast never asks for an "
-                + "administrator password."
+            return String(localized: "Its enclosing folder isn’t writable by you, and Tinycast never asks for an administrator password.")
         case .missing:
             return String(localized: "No longer on disk.")
         }

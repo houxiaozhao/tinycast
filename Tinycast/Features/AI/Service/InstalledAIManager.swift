@@ -159,10 +159,10 @@ final class InstalledAIManager {
         }
         let status = status(for: kind)
         guard status.phase != .notInstalled else {
-            throw AIProviderError.unavailable("Install " + kind.title + " before using this model.")
+            throw AIProviderError.unavailable(String(localized: "Install \(kind.title) before using this model."))
         }
         guard status.phase != .signInRequired else {
-            throw AIProviderError.unavailable("Sign in with `" + kind.signInCommand + "` first.")
+            throw AIProviderError.unavailable(String(localized: "Sign in with `\(kind.signInCommand)` first."))
         }
         return InstalledCLIProvider(
             kind: kind, executable: status.executable, model: model, effort: effort,

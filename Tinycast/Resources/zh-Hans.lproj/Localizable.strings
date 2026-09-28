@@ -14,6 +14,7 @@
 "%@ (1 item)" = "%@（1 项）";
 "%@ already exists. Import applies its settings here; Replace overwrites it with the current ones." = "%@ 已存在。“导入”会应用文件中的设置；“替换”会使用当前设置覆盖该文件。";
 "%@ check failed" = "%@检查失败";
+"%@ could not finish the response." = "%@ 未能完成响应。";
 "%@ could not start: %@" = "%@ 无法启动：%@";
 "%@ couldn't replace the selection — copied instead" = "%@无法替换所选文本，已改为复制结果";
 "%@ doesn't contain a Raycast extension (no package.json with commands)." = "%@ 不包含 Raycast 扩展（缺少含命令定义的 package.json）。";
@@ -38,6 +39,7 @@
 "%@ needs to be downloaded before it can be used." = "使用前需先下载%@。";
 "%@ of %@" = "%@ / %@";
 "%@ or ⌘ Esc to go to root search" = "按 %@ 或 ⌘ Esc 返回主搜索";
+"%@ returned an oversized response." = "%@ 返回的响应过大。";
 "%@ sends %@, shown as ✦ in shortcuts." = "%@会发送 %@，在快捷键中显示为 ✦。";
 "%@ tokens" = "%@ 个词元";
 "%@ was kept: its credentials could not be removed from your login Keychain." = "已保留%@：无法从登录钥匙串中移除其凭据。";
@@ -899,6 +901,7 @@
 "Insert…" = "插入…";
 "Inset every window by the gap set above, as the tiling commands do." = "按上方设置的间距内缩窗口，与平铺命令一致。";
 "Install" = "安装";
+"Install %@ before using this model." = "使用此模型前请先安装 %@。";
 "Install Codex CLI…" = "安装 Codex CLI…";
 "Install the Codex CLI to use your Codex account." = "请安装 Codex CLI 以使用你的 Codex 账户。";
 "Installed" = "已安装";
@@ -916,6 +919,7 @@
 "It closed before the switch landed. Search again and retry." = "切换前窗口已关闭，请重新搜索并重试。";
 "It goes on the calendar new events go to." = "将添加到默认日历。";
 "Italic" = "斜体";
+"Its enclosing folder isn’t writable by you, and Tinycast never asks for an administrator password." = "你没有父文件夹的写入权限，Tinycast 也不会要求输入管理员密码。";
 "Its global shortcut and launcher references go with it." = "同时移除其全局快捷键和启动器引用。";
 "Its global shortcut and launcher references will also be removed." = "其全局快捷键和启动器引用也会被移除。";
 "Its instructions, shortcut and learned ranking go with it." = "对应的指令、快捷键和学习排序也将被删除。";
@@ -941,6 +945,7 @@
 "Keep it above the other quicklinks." = "将其保持在其他快捷链接上方。";
 "Keep visible — show time left" = "保持显示并显示剩余时间";
 "Key missing" = "缺少密钥";
+"Keyboard" = "键盘";
 "Keychain" = "钥匙串";
 "Keys & Technical" = "按键与技术符号";
 "Keyword" = "关键词";
@@ -1077,6 +1082,7 @@
 "Navigation commands" = "导航命令";
 "Needed to read events and find join links." = "用于读取日程和查找入会链接。";
 "Needed to read your selection." = "用于读取所选内容。";
+"Needs Full Disk Access, which Tinycast doesn’t request. Grant it in System Settings › Privacy & Security to include this item." = "此项目需要完全磁盘访问权限，Tinycast 不会主动申请。若要包含此项目，请在系统设置 › 隐私与安全性中授予权限。";
 "Needs confirmation" = "运行前确认";
 "Never" = "从不";
 "Never Allow" = "永不允许";
@@ -1221,6 +1227,8 @@
 "Nothing to show" = "暂无可显示的内容";
 "Nothing to show yet." = "暂无内容。";
 "Nothing was installed." = "未安装任何内容。";
+"Nothing was installed. Download the release from GitHub instead, so you can check it yourself." = "未安装任何内容。请从 GitHub 下载发布版本以自行检查。";
+"Nothing was installed. This usually means /Applications is not writable by your account." = "未安装任何内容。这通常表示你的账户没有 /Applications 的写入权限。";
 "Nothing was selected." = "未选择任何内容。";
 "Notification Center did not allow a notification to be dismissed." = "通知中心不允许关闭某条通知。";
 "Notifications Dismissed" = "通知已清除";
@@ -1625,6 +1633,7 @@
 "Sidebar" = "侧栏";
 "Sign In" = "登录";
 "Sign Out" = "退出登录";
+"Sign in with `%@` first." = "请先使用“%@”登录。";
 "Sign in with `codex login`, then check Codex again." = "请运行 `codex login` 登录，然后重新检查 Codex。";
 "Sign-in" = "登录";
 "Sign-in could not open loopback port 4962. Close the app using it and retry." = "登录无法打开回环端口 4962，请关闭占用此端口的应用后重试。";
@@ -1837,6 +1846,8 @@
 "This doesn't look like a URL, file path, or deeplink." = "这似乎不是网址、文件路径或深层链接。";
 "This endpoint does not expose a model list. Enter a model ID manually." = "此端点未提供模型列表，请手动输入模型 ID。";
 "This export is too large to import. Clear some Raycast clipboard history and export again." = "导出文件过大，无法导入。请清理部分 Raycast 剪贴板历史后重新导出。";
+"This extension is source that has to be built, and Node wasn't found. Install Node.js, or install this extension from the Raycast Store instead." = "此扩展需要从源码构建，但未找到 Node。请安装 Node.js，或从 Raycast Store 安装此扩展。";
+"This extension is source that has to be built, and no package manager was found. Install pnpm, npm, Yarn or Bun, or pick one in Advanced." = "此扩展需要从源码构建，但未找到软件包管理器。请安装 pnpm、npm、Yarn 或 Bun，或在高级设置中指定。";
 "This file contains no quicklinks." = "此文件中没有快捷链接。";
 "This file isn't a Tinycast backup, or it's damaged." = "此文件不是 Tinycast 备份，或文件已损坏。";
 "This file isn't a Tinycast quicklinks export." = "此文件不是 Tinycast 快捷链接导出文件。";
@@ -1867,6 +1878,7 @@
 "Tinycast can’t uninstall this app." = "Tinycast 无法卸载此应用。";
 "Tinycast could not be replaced. %@" = "无法替换 Tinycast。%@";
 "Tinycast could not find the %@ command." = "Tinycast 找不到 %@ 命令。";
+"Tinycast could not frame the request for %@." = "Tinycast 无法为 %@ 构造请求。";
 "Tinycast could not prepare its private AI workspace." = "Tinycast 无法准备专用 AI 工作区。";
 "Tinycast could not reach GitHub." = "Tinycast 无法连接 GitHub。";
 "Tinycast could not write its private AI prompt." = "Tinycast 无法写入专用 AI 提示词。";
@@ -1975,6 +1987,7 @@
 "Vertical offset" = "垂直偏移";
 "Videos" = "视频";
 "Voltage" = "电压";
+"Volume" = "体积";
 "Volume Flow Rate" = "体积流量";
 "Waiting for a running extension command to finish." = "正在等待扩展命令运行完成。";
 "Waiting for a snippet to finish expanding." = "正在等待文本片段展开完成。";

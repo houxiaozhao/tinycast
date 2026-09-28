@@ -35,11 +35,9 @@ enum UpdateFailure: LocalizedError, Equatable {
     var recoverySuggestion: String? {
         switch self {
         case .identityMismatch, .bundleMismatch, .versionMismatch:
-            return "Nothing was installed. Download the release from GitHub instead, so you can "
-                + "check it yourself."
+            return String(localized: "Nothing was installed. Download the release from GitHub instead, so you can check it yourself.")
         case .replaceFailed:
-            return "Nothing was installed. This usually means /Applications is not writable by "
-                + "your account."
+            return String(localized: "Nothing was installed. This usually means /Applications is not writable by your account.")
         case .quarantined:
             return String(localized: "Nothing was installed.")
         default:

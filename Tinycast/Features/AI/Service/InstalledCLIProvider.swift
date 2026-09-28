@@ -124,7 +124,7 @@ private final class InstalledCLITurnRunner {
         guard let executable = resolvedExecutable else {
             continuation.finish(
                 throwing: AIProviderError.unavailable(
-                    "Install " + kind.title + " before using this model."))
+                    String(localized: "Install \(kind.title) before using this model.")))
             return
         }
         if Task.isCancelled {
@@ -223,7 +223,7 @@ private final class InstalledCLITurnRunner {
             if let configURL { try? FileManager.default.removeItem(at: configURL) }
             continuation.finish(
                 throwing: AIProviderError.responseFailed(
-                    kind.title + " could not start: " + error.localizedDescription))
+                    String(localized: "\(kind.title) could not start: \(error.localizedDescription)")))
             return
         }
         promptFileURL = grokPrompt
@@ -243,7 +243,7 @@ private final class InstalledCLITurnRunner {
         // Framed as JSON, so a picture rides beside the text as a content block.
         let images = request.messages.last { $0.role == .user }?.images ?? []
         guard let line = ClaudeControlProtocol.userMessage(prompt, images: images) else {
-            fail("Tinycast could not frame the request for " + kind.title + ".")
+            fail(String(localized: "Tinycast could not frame the request for \(kind.title)."))
             return
         }
         // A tool loop answers on the same pipe, so an armed turn keeps stdin open for it.
@@ -414,7 +414,7 @@ private final class InstalledCLITurnRunner {
         while let newline = outputBuffer.firstIndex(of: 0x0A) {
             let line = outputBuffer[..<newline]
             if line.count > Self.maximumPartialLineBytes {
-                fail(kind.title + " returned an oversized response.")
+                fail(String(localized: "\(kind.title) returned an oversized response."))
                 return
             }
             outputBuffer.removeSubrange(...newline)
@@ -424,7 +424,7 @@ private final class InstalledCLITurnRunner {
                     Data(line), kind: kind, servers: activeServers), token: token)
         }
         if outputBuffer.count > Self.maximumPartialLineBytes {
-            fail(kind.title + " returned an oversized response.")
+            fail(String(localized: "\(kind.title) returned an oversized response."))
         }
     }
 
@@ -445,7 +445,7 @@ private final class InstalledCLITurnRunner {
         if frame.stoppedAtRoundCap {
             fail(
                 roundCap.map { String(localized: "Stopped after \($0) rounds of tool calls.") }
-                    ?? kind.title + " could not finish the response.")
+                    ?? String(localized: "\(kind.title) could not finish the response."))
         } else if let error = frame.error {
             fail(error)
         } else if frame.completed {
@@ -492,7 +492,7 @@ private final class InstalledCLITurnRunner {
                     of: "\u{001B}\\[[0-9;]*[A-Za-z]", with: "", options: .regularExpression
                 )
                 .trimmingCharacters(in: .whitespacesAndNewlines)
-            let fallback = kind.title + " exited with status " + String(status) + "."
+            let fallback = String(localized: "\(kind.title) exited with status \(status).")
             fail(detail.isEmpty ? fallback : detail)
         }
         deleteTurnSession()

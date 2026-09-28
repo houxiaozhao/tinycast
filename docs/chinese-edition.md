@@ -28,10 +28,10 @@ Actions 需要两个仓库 Secrets：`SIGNING_P12_BASE64`（固定自签名证�
 
 ## 翻译范围与维护
 
-包含 2073 条中英文资源，覆盖设置、新手引导、启动器、内置命令、系统操作、窗口管理、备份结果、常用工具界面和应用自身的错误提示。
+包含 2086 条中英文资源，覆盖设置、新手引导、启动器、内置命令、系统操作、窗口管理、备份结果、常用工具界面和应用自身的错误提示。
 中文命令保留英文原名作为搜索别名；设置搜索支持中文标题和原英文标题。
 扩展提供的文案、用户自定义内容、外部服务错误、表情数据和计算器自然语言词库保持原内容。
-部分动态计数和较少使用的功能提示仍可能显示英文，未翻译的文案回退英文。
+开发者诊断、协议错误详情和外部返回内容可能仍显示英文；未覆盖的资源回退英文。
 
 译文位于 `Tinycast/Resources/zh-Hans.lproj/Localizable.strings`，英文回退位于 `en.lproj`。
 权限提示位于 `zh-Hans.lproj/InfoPlist.strings`。不要翻译持久化 ID、路径、脚本、模型 ID 或占位符名称。
@@ -45,6 +45,7 @@ node Scripts/check-settings-search.js
 xcodegen generate
 ./Scripts/lint.sh
 ./Scripts/run-tests.sh
+# UI 测试需要一个尚未完成新手引导的独立 Debug 用户环境。
 xcodebuild test -project Tinycast.xcodeproj -scheme Tinycast -configuration Debug \
   -destination 'platform=macOS' CODE_SIGN_IDENTITY=- CODE_SIGN_STYLE=Manual
 ```
