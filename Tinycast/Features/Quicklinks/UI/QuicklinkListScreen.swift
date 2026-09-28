@@ -89,7 +89,7 @@ struct QuicklinkListScreen: PaletteScreen {
     private func content(selection: Int, scroll: ScrollIntent) -> some View {
         let rows = rows
         if rows.isEmpty {
-            EmptyResults(text: store.enabled.isEmpty ? "No quicklinks yet" : "No matching quicklinks")
+            EmptyResults(text: store.enabled.isEmpty ? String(localized: "No quicklinks yet") : String(localized: "No matching quicklinks"))
         } else {
             let selected = quicklink(at: selection)
             HStack(spacing: 0) {
@@ -128,7 +128,7 @@ enum QuicklinkActionsMenu {
         if quicklink.openWithBundleID != nil {
             items.append(
                 PopoverMenuItem(
-                    title: "Open With Default App", systemImage: "arrow.up.forward.app",
+                    title: String(localized: "Open With Default App"), systemImage: "arrow.up.forward.app",
                     shortcut: "⌘↵"
                 ) {
                     core.quicklinkCoordinator.openQuicklink(
@@ -141,26 +141,26 @@ enum QuicklinkActionsMenu {
                 core.quicklinkCoordinator.editQuicklink(quicklink)
             })
         items.append(
-            PopoverMenuItem(title: "Duplicate Quicklink", systemImage: "plus.square.on.square") {
+            PopoverMenuItem(title: String(localized: "Duplicate Quicklink"), systemImage: "plus.square.on.square") {
                 core.quicklinkCoordinator.duplicateQuicklink(id: quicklink.id)
             })
         items.append(
             quicklink.isPinned
                 ? PopoverMenuItem(
-                    title: "Unpin Quicklink", systemImage: "pin.slash", startsSection: true,
+                    title: String(localized: "Unpin Quicklink"), systemImage: "pin.slash", startsSection: true,
                     shortcut: "⌘."
                 ) {
                     core.quicklinkCoordinator.toggleQuicklinkPinned(id: quicklink.id)
                 }
                 : PopoverMenuItem(
-                    title: "Pin Quicklink", systemImage: "pin", startsSection: true, shortcut: "⌘."
+                    title: String(localized: "Pin Quicklink"), systemImage: "pin", startsSection: true, shortcut: "⌘."
                 ) {
                     core.quicklinkCoordinator.toggleQuicklinkPinned(id: quicklink.id)
                 })
         items.append(
             PopoverMenuItem(
                 title: quicklink.showsInRootSearch
-                    ? "Hide from Root Search" : "Show in Root Search",
+                    ? String(localized: "Hide from Root Search") : String(localized: "Show in Root Search"),
                 systemImage: quicklink.showsInRootSearch ? "eye.slash" : "eye"
             ) {
                 core.quicklinkCoordinator.setQuicklinkShowsInRootSearch(

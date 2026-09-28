@@ -183,7 +183,7 @@ enum EmojiActionsMenu {
                 core.emojiCoordinator.copyEmoji(entry)
             },
             PopoverMenuItem(
-                title: "Paste and Keep Window Open",
+                title: String(localized: "Paste and Keep Window Open"),
                 icon: .paste(target, fallback: "macwindow"), shortcut: "⌥↵"
             ) {
                 core.emojiCoordinator.pasteEmojiKeepingWindowOpen(entry)

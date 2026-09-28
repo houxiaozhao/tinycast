@@ -169,13 +169,13 @@ enum CalcHistoryActionsMenu {
                     core.calculatorCoordinator.copyHistoryExpression(entry)
                 },
                 PopoverMenuItem(
-                    title: "Delete Entry", systemImage: "trash", startsSection: true, shortcut: "⌃X",
+                    title: String(localized: "Delete Entry"), systemImage: "trash", startsSection: true, shortcut: "⌃X",
                     isDestructive: true
                 ) {
                     calcHistory.remove(entry)
                 },
                 PopoverMenuItem(
-                    title: "Delete All Entries", systemImage: "trash", shortcut: "⌃⇧X",
+                    title: String(localized: "Delete All Entries"), systemImage: "trash", shortcut: "⌃⇧X",
                     isDestructive: true
                 ) {
                     Task { await core.calculatorCoordinator.deleteAllHistory() }

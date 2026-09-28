@@ -1,5 +1,5 @@
 #!/bin/bash
-# The test suite. There is no XCTest target: each harness compiles the shipped sources it guards,
+# Standalone harnesses compile the shipped sources they guard; UI tests run through Xcode,
 # so a harness that stops compiling means a decision leaked out of a pure layer. See docs/testing.md.
 #
 # Never join a compile and its run with `&&`: `set -e` ignores a failure in a non-final AND-OR list

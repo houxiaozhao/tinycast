@@ -103,9 +103,9 @@ enum DateBucket: Int {
         switch self {
         case .today: return String(localized: "Today")
         case .yesterday: return String(localized: "Yesterday")
-        case .thisWeek: return "This Week"
-        case .thisMonth: return "This Month"
-        case .earlier: return "Earlier"
+        case .thisWeek: return String(localized: "This Week")
+        case .thisMonth: return String(localized: "This Month")
+        case .earlier: return String(localized: "Earlier")
         }
     }
 
@@ -432,7 +432,7 @@ private struct ClipboardInfoSection: View {
             rows.append(InfoRow(label: String(localized: "Type"), value: String(localized: "Image")))
             if let size = details.pixelSize {
                 rows.append(
-                    InfoRow(label: "Dimensions", value: "\(Int(size.width))×\(Int(size.height))"))
+                    InfoRow(label: String(localized: "Dimensions"), value: "\(Int(size.width))×\(Int(size.height))"))
             }
             if let bytes = details.fileBytes {
                 rows.append(

@@ -171,7 +171,7 @@ enum FileSearchActionsMenu {
                     title: "Copy Name", systemImage: "doc.on.clipboard", shortcut: "⌥⌘C"
                 ) { coordinator.copyName(result) },
                 PopoverMenuItem(
-                    title: "Copy Path", systemImage: "doc.on.clipboard", shortcut: "⌃⌘C"
+                    title: String(localized: "Copy Path"), systemImage: "doc.on.clipboard", shortcut: "⌃⌘C"
                 ) { coordinator.copyPath(result) },
                 PopoverMenuItem(
                     title: "Move to Trash", systemImage: "trash", startsSection: true,

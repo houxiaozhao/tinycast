@@ -73,9 +73,9 @@ enum CalendarLauncherLimit: Int, CaseIterable, Identifiable, Sendable {
 
     var title: String {
         switch self {
-        case .one: "1 next"
-        case .three: "3 next"
-        case .five: "5 next"
+        case .one: String(localized: "1 next")
+        case .three: String(localized: "3 next")
+        case .five: String(localized: "5 next")
         case .all: String(localized: "All")
         }
     }
