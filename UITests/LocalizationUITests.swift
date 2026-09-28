@@ -14,6 +14,7 @@ final class LocalizationUITests: XCTestCase {
             app.activate()
             if language == "zh-Hans" {
                 try captureOnboardingAndLauncher(app)
+                app.activate()
             }
             app.typeKey(",", modifierFlags: .command)
             let settings = app.windows.firstMatch
@@ -74,7 +75,7 @@ final class LocalizationUITests: XCTestCase {
         query.click()
         query.typeText("Tinycast Settings")
         XCTAssertTrue(app.staticTexts["Tinycast 设置"].firstMatch.waitForExistence(timeout: 10))
-        capture(app.windows.firstMatch, named: "zh-Hans-launcher-english-alias")
+        capture(app, named: "zh-Hans-launcher-english-alias")
         query.typeKey(.escape, modifierFlags: [])
     }
 
