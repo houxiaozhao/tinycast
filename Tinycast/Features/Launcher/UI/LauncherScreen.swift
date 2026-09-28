@@ -127,8 +127,8 @@ struct LauncherScreen: PaletteScreen {
 
     var primaryActionTitle: String {
         switch row(at: clampedSelection) {
-        case .calc: return "Copy Answer"
-        case .color: return "Copy Color"
+        case .calc: return String(localized: "Copy Answer")
+        case .color: return String(localized: "Copy Color")
         case .meeting(let meeting):
             return meeting.link == nil ? String(localized: "Open in Calendar") : String(localized: "Join Meeting")
         case .entry(let app): return app.kind.descriptor.openVerb

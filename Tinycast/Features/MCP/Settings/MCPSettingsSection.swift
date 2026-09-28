@@ -85,7 +85,7 @@ struct MCPSettingsSection: View {
             removalError = nil
         } catch {
             removalError =
-                "\(server.title) was kept: its credentials could not be removed from your login Keychain."
+                String(localized: "\(server.title) was kept: its credentials could not be removed from your login Keychain.")
         }
     }
 }

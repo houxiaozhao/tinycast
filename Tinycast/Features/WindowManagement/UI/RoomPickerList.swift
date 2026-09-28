@@ -68,7 +68,7 @@ private struct RoomPickerRowView: View {
             if window.isMinimized { return "\(window.appName) · Minimized" }
             return window.appName
         case .app:
-            return "App · Opens with the room"
+            return String(localized: "App · Opens with the room")
         }
     }
 
@@ -108,7 +108,7 @@ private struct RoomPickerRowView: View {
         .armedHover($hovered)
         .accessibilityElement(children: .combine)
         .accessibilityLabel(title)
-        .accessibilityValue(place.map { "\(trailing), number \($0) in the room" } ?? trailing)
+        .accessibilityValue(place.map { String(localized: "\(trailing), number \($0) in the room") } ?? trailing)
         .accessibilityAddTraits(selected ? .isSelected : [])
     }
 

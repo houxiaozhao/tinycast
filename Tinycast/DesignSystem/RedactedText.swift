@@ -3,8 +3,8 @@ import SwiftUI
 /// Shown only on request: a Settings pane gets screenshotted, and this is what names a person.
 struct RedactedText: View {
     let value: String
-    var revealHelp = "Click to reveal"
-    var hideHelp = "Click to hide"
+    var revealHelp = String(localized: "Click to reveal")
+    var hideHelp = String(localized: "Click to hide")
 
     @State private var isRevealed = false
 

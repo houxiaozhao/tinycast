@@ -44,7 +44,7 @@ struct ExtensionPickerField: View {
 
     /// What the control does, then whatever the extension explains about the field.
     private var hint: String {
-        let state = open ? "Showing choices" : "Opens a list of choices"
+        let state = open ? String(localized: "Showing choices") : String(localized: "Opens a list of choices")
         let parts = [error, info].compactMap { $0 }.filter { !$0.isEmpty }
         return ([state] + parts).joined(separator: ". ")
     }

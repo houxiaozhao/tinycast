@@ -21,7 +21,7 @@ struct ExtensionCommandView: View {
     private var content: some View {
         switch state {
         case .launching where screen.root == nil:
-            EmptyResults(text: "Starting…")
+            EmptyResults(text: String(localized: "Starting…"))
         case .failed(let message):
             ExtensionFailureView(message: message)
         case .finished:
@@ -46,11 +46,12 @@ struct ExtensionCommandView: View {
             case .unsupported(let type):
                 if type.isEmpty {
                     // A commit rendered null; "Starting…" here would look like a hang.
-                    EmptyResults(text: "Nothing to show")
+                    EmptyResults(text: String(localized: "Nothing to show"))
                 } else {
                     ExtensionFailureView(
                         message:
-                            "This command renders \(type), which Tinycast doesn't support yet. See docs/extensions.md."
+                            String(localized:
+                                "This command renders \(type), which Tinycast doesn't support yet. See docs/extensions.md.")
                     )
                 }
             }

@@ -12,8 +12,10 @@ struct CalendarSettingsView: View {
                 anchor: .calendarCalendar,
                 enableTitle: String(localized: "Join meetings from Tinycast"),
                 enableSubtitle:
-                    "Reads \(core.calendarCoordinator.span.possessivePhrase) events for join links. "
-                    + String(localized: "Nothing leaves this Mac."),
+                    String(localized: """
+                        Reads \(core.calendarCoordinator.span.possessivePhrase) events for join links. \
+                        Nothing leaves this Mac.
+                        """),
                 isEnabled: enabledBinding,
                 showsInLauncher: $settings.calendarShowInLauncher,
                 showsIcon: true,
@@ -212,7 +214,7 @@ private struct CalendarPickerSection: View {
     }
 
     private var emptyMessage: String {
-        if !query.isEmpty { return "No matches for “\(query)”." }
+        if !query.isEmpty { return String(localized: "No matches for “\(query)”.") }
         return store.access == .granted ? String(localized: "No calendars on this Mac.") : String(localized: "Nothing to show yet.")
     }
 }

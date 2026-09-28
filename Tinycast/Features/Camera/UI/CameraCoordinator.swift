@@ -55,12 +55,12 @@ final class CameraCoordinator: NSObject, NSWindowDelegate {
             let png = await session.capturePhoto(mirrored: mirrored)
             close()
             guard let png else {
-                core.showMessage("Couldn't take the photo", tone: .danger)
+                core.showMessage(String(localized: "Couldn't take the photo"), tone: .danger)
                 return
             }
             NSPasteboard.general.clearContents()
             NSPasteboard.general.setData(png, forType: .png)
-            core.showMessage("Photo copied")
+            core.showMessage(String(localized: "Photo copied"))
         }
     }
 

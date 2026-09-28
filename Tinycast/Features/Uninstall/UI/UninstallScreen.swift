@@ -23,7 +23,7 @@ struct UninstallScreen: PaletteScreen {
     private var summary: String {
         let total = session.plan?.removableIDs.count ?? 0
         let size = MeasuredSize(bytes: session.selectedBytes).formatted
-        return "\(session.selectedCount) of \(total) files selected · \(size)"
+        return String(localized: "\(session.selectedCount) of \(total) files selected · \(size)")
     }
 
     private func candidate(at selection: Int) -> UninstallCandidate? {
@@ -64,7 +64,7 @@ struct UninstallScreen: PaletteScreen {
             if rows.isEmpty {
                 EmptyResults(
                     text: vm.query.trimmingCharacters(in: .whitespaces).isEmpty
-                        ? "Nothing left to remove" : "No matching files")
+                        ? String(localized: "Nothing left to remove") : String(localized: "No matching files"))
             } else {
                 UninstallList(
                     results: rows,
@@ -103,7 +103,7 @@ enum UninstallActionsMenu {
             let checked = session.selection?.isChecked(candidate.id) ?? false
             items.append(
                 PopoverMenuItem(
-                    title: checked ? "Unselect File" : "Select File",
+                    title: checked ? String(localized: "Unselect File") : String(localized: "Select File"),
                     systemImage: checked ? "circle" : "checkmark.circle", startsSection: true,
                     shortcut: "⌘↵"
                 ) { session.toggle(candidate.id) })
@@ -119,7 +119,7 @@ enum UninstallActionsMenu {
                 core.uninstallCoordinator.showUninstallItemInFinder(candidate)
             })
         items.append(
-            PopoverMenuItem(title: "Show Info in Finder", systemImage: "info.circle", shortcut: "⇧⌘I") {
+            PopoverMenuItem(title: String(localized: "Show Info in Finder"), systemImage: "info.circle", shortcut: "⇧⌘I") {
                 core.uninstallCoordinator.showUninstallItemInfo(candidate)
             })
         return PopoverMenuContent(header: session.app?.name ?? candidate.name, items: items)

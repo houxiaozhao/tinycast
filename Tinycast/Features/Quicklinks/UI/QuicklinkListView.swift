@@ -197,7 +197,7 @@ private struct QuicklinkInfoSection: View {
                     value: AppPresentation.resolve(bundleID: bundleID, in: appIndex).name))
         }
         if let keycaps = hotKeys.binding(for: .quicklink(id: quicklink.id))?.keycaps {
-            rows.append(InfoRow(label: "Shortcut", value: keycaps.joined()))
+            rows.append(InfoRow(label: String(localized: "Shortcut"), value: keycaps.joined()))
         }
         rows.append(
             InfoRow(label: String(localized: "Created"), value: Self.createdFormatter.string(from: quicklink.createdAt)))

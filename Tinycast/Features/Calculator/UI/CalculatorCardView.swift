@@ -117,11 +117,11 @@ enum CalcActionsMenu {
         PopoverMenuContent(
             header: core.calcNumberFormat.localizedExpression(result.expression),
             items: [
-                PopoverMenuItem(title: "Copy Answer", systemImage: "doc.on.doc", shortcut: "↵") {
+                PopoverMenuItem(title: String(localized: "Copy Answer"), systemImage: "doc.on.doc", shortcut: "↵") {
                     core.calculatorCoordinator.copyCalculatorResult(result)
                 },
                 PopoverMenuItem(
-                    title: "Copy Calculation", systemImage: "doc.on.doc.fill", shortcut: "⇧⌘↵"
+                    title: String(localized: "Copy Calculation"), systemImage: "doc.on.doc.fill", shortcut: "⇧⌘↵"
                 ) {
                     core.calculatorCoordinator.copyCalculationWithExpression(result)
                 }

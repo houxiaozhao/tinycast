@@ -184,7 +184,7 @@ struct ExtensionsSettingsView: View {
             }
             SettingsRow(
                 title: String(localized: "Add from folder"),
-                subtitle: "A folder with package.json and built commands.",
+                subtitle: String(localized: "A folder with package.json and built commands."),
                 anchor: .extensionsInstall
             ) {
                 ExtensionSettingsIcon(systemName: "folder")
@@ -227,7 +227,7 @@ struct ExtensionsSettingsView: View {
 
     private var reclaimableSubtitle: String {
         guard !reclaimable.isEmpty else { return String(localized: "Nothing to clean up.") }
-        let items = reclaimable.items == 1 ? "1 item" : "\(reclaimable.items) items"
+        let items = reclaimable.items == 1 ? String(localized: "1 item") : "\(reclaimable.items) items"
         return "Reclaims \(ExtensionCleanup.formatted(bytes: reclaimable.bytes)) from \(items)."
     }
 
@@ -263,7 +263,7 @@ struct ExtensionsSettingsView: View {
             .prefix(3)
             .joined(separator: ", ")
         let more = pending.count > 3 ? " and \(pending.count - 3) more" : ""
-        return "\(pending.count) not here yet — \(names)\(more)."
+        return String(localized: "\(pending.count) not here yet — \(names)\(more).")
     }
 
     private var raycastAvailable: Bool {
@@ -312,7 +312,7 @@ struct ExtensionsSettingsView: View {
             importSummary = "Imported \(imported) extension\(imported == 1 ? "" : "s")."
         } else {
             importSummary = "Imported \(imported); \(failed.count) failed."
-            error = "Couldn't import \(failed.joined(separator: ", "))."
+            error = String(localized: "Couldn't import \(failed.joined(separator: ", ")).")
         }
     }
 
@@ -581,14 +581,14 @@ private struct ExtensionRefreshRow: View {
     }
 
     private func detail(for info: ExtensionCommandMetadata) -> String {
-        var detail = "Every \(schedule)."
+        var detail = String(localized: "Every \(schedule).")
         if let lastRun = info.lastRun {
-            detail += " Last refresh \(Self.relative.localizedString(for: lastRun, relativeTo: Date()))."
+            detail += String(localized: " Last refresh \(Self.relative.localizedString(for: lastRun, relativeTo: Date())).")
         } else {
-            detail += " Hasn't refreshed yet."
+            detail += String(localized: " Hasn't refreshed yet.")
         }
         if let error = info.lastError {
-            detail += " Last error: \(ExtensionRefreshPolicy.headline(error))."
+            detail += String(localized: " Last error: \(ExtensionRefreshPolicy.headline(error)).")
         }
         return detail
     }
@@ -875,15 +875,15 @@ private struct ExtensionImportPanel: View {
         guard !fresh.isEmpty else {
             return String(localized: "Everything Raycast has built is already here. Import one again to update it.")
         }
-        let count = fresh.count == 1 ? "one" : "\(fresh.count)"
-        return "The \(count) you don't have yet \(fresh.count == 1 ? "is" : "are") already ticked. "
-            + String(localized: "Ticking one you have updates it.")
+        return String(localized: """
+            The \(fresh.count) you don't have yet are already ticked. Ticking one you have updates it.
+            """)
     }
 
     private func detail(for candidate: RaycastImportCandidate) -> String {
         let count = candidate.installed.manifest.commands.count
-        let commands = "\(count) command\(count == 1 ? "" : "s")"
-        return candidate.isInstalled ? "\(commands) · installed — tick to update" : commands
+        let commands = String(localized: "\(count) commands")
+        return candidate.isInstalled ? String(localized: "\(commands) · installed — tick to update") : commands
     }
 
     private func binding(for candidate: RaycastImportCandidate) -> Binding<Bool> {

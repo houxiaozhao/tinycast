@@ -31,7 +31,7 @@ struct ChatComposerTextView: NSViewRepresentable {
         textView.isAutomaticQuoteSubstitutionEnabled = false
         textView.isAutomaticDashSubstitutionEnabled = false
         textView.string = text
-        textView.setAccessibilityLabel("Message")
+        textView.setAccessibilityLabel(String(localized: "Message"))
         return scroll
     }
 

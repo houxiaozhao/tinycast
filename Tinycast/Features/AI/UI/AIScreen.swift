@@ -23,25 +23,26 @@ struct AIScreen: PaletteScreen {
         var items: [PopoverMenuItem] = []
         if chat.isStreaming {
             items.append(
-                PopoverMenuItem(title: "Stop Response", systemImage: "stop.fill", shortcut: "⌘.") {
+                PopoverMenuItem(title: String(localized: "Stop Response"), systemImage: "stop.fill", shortcut: "⌘.") {
                     coordinator.stopResponse()
                 })
         }
         items.append(
             PopoverMenuItem(
-                title: chat.session.messages.isEmpty ? "Open AI Chat" : "Continue in AI Chat",
+                title: chat.session.messages.isEmpty
+                    ? String(localized: "Open AI Chat") : String(localized: "Continue in AI Chat"),
                 systemImage: "bubble.left.and.bubble.right", shortcut: "⌘J"
             ) {
                 coordinator.continueInChat()
             })
         items.append(
-            PopoverMenuItem(title: "New Chat", systemImage: "plus.bubble", shortcut: "⌘N") {
+            PopoverMenuItem(title: String(localized: "New Chat"), systemImage: "plus.bubble", shortcut: "⌘N") {
                 coordinator.startNewChat()
             })
         if canRegenerate {
             items.append(
                 PopoverMenuItem(
-                    title: "Regenerate Response", systemImage: "arrow.clockwise", shortcut: "⌘R"
+                    title: String(localized: "Regenerate Response"), systemImage: "arrow.clockwise", shortcut: "⌘R"
                 ) {
                     coordinator.regenerate()
                 })
@@ -49,7 +50,7 @@ struct AIScreen: PaletteScreen {
         if chat.lastAssistantText != nil {
             items.append(
                 PopoverMenuItem(
-                    title: "Copy Last Response", systemImage: "doc.on.doc", startsSection: true,
+                    title: String(localized: "Copy Last Response"), systemImage: "doc.on.doc", startsSection: true,
                     shortcut: "⇧⌘C"
                 ) {
                     coordinator.copyLastResponse()
@@ -58,7 +59,7 @@ struct AIScreen: PaletteScreen {
         if !chat.pendingAttachments.isEmpty {
             items.append(
                 PopoverMenuItem(
-                    title: "Remove Attachments", systemImage: "paperclip",
+                    title: String(localized: "Remove Attachments"), systemImage: "paperclip",
                     startsSection: chat.lastAssistantText == nil
                 ) {
                     coordinator.clearAttachments()
@@ -66,14 +67,14 @@ struct AIScreen: PaletteScreen {
         }
         items.append(
             PopoverMenuItem(
-                title: "Chat History", systemImage: "clock.arrow.circlepath", startsSection: true,
+                title: String(localized: "Chat History"), systemImage: "clock.arrow.circlepath", startsSection: true,
                 shortcut: "⌘Y"
             ) {
                 coordinator.showHistory()
             })
         items.append(
             PopoverMenuItem(
-                title: "AI Settings", systemImage: "slider.horizontal.3", shortcut: "⌥⌘,"
+                title: String(localized: "AI Settings"), systemImage: "slider.horizontal.3", shortcut: "⌥⌘,"
             ) {
                 chatCoordinator.showSettings()
             })
@@ -219,7 +220,7 @@ private struct AttachmentsPill: View {
         .tooltip(attachments.map(\.name).joined(separator: "\n"), edge: .bottom)
         .accessibilityLabel(
             attachments.count == 1
-                ? "Attached \(attachments[0].name)" : "\(attachments.count) files attached")
+                ? String(localized: "Attached \(attachments[0].name)") : String(localized: "\(attachments.count) files attached"))
     }
 }
 
@@ -265,7 +266,7 @@ struct AIModelButton: View {
             title: title,
             icon: icon,
             isOpen: isOpen,
-            help: "Switch AI model",
+            help: String(localized: "Switch AI model"),
             action: action
         )
         .fixedSize(horizontal: true, vertical: false)
@@ -283,7 +284,7 @@ struct AIReasoningButton: View {
             systemImage: "brain",
             symbolSize: Theme.Size.barBrandIcon,
             isOpen: isOpen,
-            help: "Change reasoning effort",
+            help: String(localized: "Change reasoning effort"),
             action: action
         )
         .fixedSize(horizontal: true, vertical: false)

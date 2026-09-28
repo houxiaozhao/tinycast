@@ -56,8 +56,8 @@ private struct RoomRowView: View {
     private var title: String {
         switch row {
         case .room(let room): room.name
-        case .edit(let room): "Choose Windows for “\(room.name)”"
-        case .create(let name): "Create Room “\(name)”"
+        case .edit(let room): String(localized: "Choose Windows for “\(room.name)”")
+        case .create(let name): String(localized: "Create Room “\(name)”")
         }
     }
 
@@ -67,10 +67,10 @@ private struct RoomRowView: View {
             let apps = room.windows.map(\.appName).reduce(into: [String]()) { names, name in
                 if !names.contains(name) { names.append(name) }
             }
-            return ([isCurrent ? "Current" : nil, room.summary] + [apps.joined(separator: ", ")])
+            return ([isCurrent ? String(localized: "Current") : nil, room.summary] + [apps.joined(separator: ", ")])
                 .compactMap { $0 }.filter { !$0.isEmpty }.joined(separator: " · ")
         case .edit, .create:
-            return "Pick the open windows that belong in it"
+            return String(localized: "Pick the open windows that belong in it")
         }
     }
 

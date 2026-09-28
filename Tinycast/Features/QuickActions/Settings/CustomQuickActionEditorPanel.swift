@@ -27,7 +27,7 @@ struct CustomQuickActionEditorPanel: View {
     ]
 
     private static let placeholder =
-        "Make the text more concise, keeping the writer's voice and meaning."
+        String(localized: "Make the text more concise, keeping the writer's voice and meaning.")
 
     init(request: CustomQuickActionEditRequest, model: AIModelSelection?) {
         existing = request.action
@@ -40,7 +40,8 @@ struct CustomQuickActionEditorPanel: View {
     var body: some View {
         VStack(alignment: .leading, spacing: Theme.Spacing.xl) {
             SettingsEditorHeader(
-                title: existing == nil ? String(localized: "New Quick Action") : "Edit \(existing?.name ?? "")",
+                title: existing == nil
+                    ? String(localized: "New Quick Action") : String(localized: "Edit \(existing?.name ?? "")"),
                 subtitle: String(localized: "Tinycast sends your selected text to the model with these instructions.")
             )
 
@@ -132,10 +133,10 @@ struct CustomQuickActionEditorPanel: View {
                             .allowsHitTesting(false)
                     }
                 }
-            Text(
-                "Tinycast always tells the model to return only the transformed text, and to treat "
-                    + "your selection as material rather than as instructions."
-            )
+            Text("""
+                Tinycast always tells the model to return only the transformed text, and to treat \
+                your selection as material rather than as instructions.
+                """)
             .font(.caption)
             .foregroundStyle(.secondary)
         }

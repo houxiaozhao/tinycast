@@ -114,7 +114,7 @@ private struct FileSearchInfoSection: View {
     private var rows: [InfoRow] {
         var rows = [
             InfoRow(label: String(localized: "Name"), value: result.name),
-            InfoRow(label: "Where", value: result.parentPath),
+            InfoRow(label: String(localized: "Where"), value: result.parentPath),
             InfoRow(
                 label: String(localized: "Type"),
                 value: details.typeName ?? (result.isDirectory ? String(localized: "Folder") : String(localized: "File")))

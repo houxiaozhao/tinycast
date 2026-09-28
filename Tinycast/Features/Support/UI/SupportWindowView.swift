@@ -65,7 +65,7 @@ struct SupportWindowView: View {
 
     private var action: some View {
         VStack(spacing: Theme.Spacing.lg) {
-            SupportActionButton(title: "Support \(Bundle.main.appDisplayName)", icon: "heart") {
+            SupportActionButton(title: String(localized: "Support \(Bundle.main.appDisplayName)"), icon: "heart") {
                 support.openCheckout()
             }
             Text("Secure checkout on Polar.")
@@ -82,9 +82,7 @@ struct SupportWindowView: View {
             .font(.callout)
             .foregroundStyle(Theme.Colors.textSecondary)
             .frame(maxWidth: .infinity, alignment: .leading)
-            .help(
-                "About once a month. Turn this off and"
-                    + " \(Bundle.main.appDisplayName) won't ask again.")
+            .help("About once a month. Turn this off and \(Bundle.main.appDisplayName) won't ask again.")
     }
 }
 

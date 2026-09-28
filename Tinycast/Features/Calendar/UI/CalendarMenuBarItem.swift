@@ -22,9 +22,9 @@ struct CalendarMenuBarLabel: View {
             }
         case (.meetingTitle, nil)
         where !AppCore.shared.calendarCoordinator.hasUpcomingMenuBarEvent:
-            title("No upcoming events")
+            title(String(localized: "No upcoming events"))
         case (_, nil):
-            icon("calendar", describing: "no current meeting")
+            icon("calendar", describing: String(localized: "no current meeting"))
         }
     }
 
@@ -59,7 +59,7 @@ struct CalendarMenuBarMenu: View {
             } label: {
                 // Only the first item names the meeting, so only it carries the calendar bar.
                 MeetingMenuLabel(
-                    title: "Open in Calendar...",
+                    title: String(localized: "Open in Calendar..."),
                     color: meeting.link == nil ? meeting.calendarColor : nil)
             }
             Button("Dismiss") { AppCore.shared.calendarCoordinator.dismissMenuBarEvent(meeting) }

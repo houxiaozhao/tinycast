@@ -55,12 +55,12 @@ struct ExtensionRegistriesPanel: View {
                 } header: {
                     Text("GitHub Registries")
                 } footer: {
-                    Text(
-                        "A repository with one folder per extension, laid out like "
-                            + "raycast/extensions. These serve source, so installing one builds it "
-                            + "here — dependencies first, with the package manager above. Add a "
-                            + "registry only if you trust who publishes it."
-                    )
+                    Text("""
+                        A repository with one folder per extension, laid out like \
+                        raycast/extensions. These serve source, so installing one builds it \
+                        here — dependencies first, with the package manager above. Add a \
+                        registry only if you trust who publishes it.
+                        """)
                     .font(.caption)
                     .foregroundStyle(.secondary)
                 }
@@ -141,11 +141,11 @@ struct ExtensionRegistriesPanel: View {
         guard let resolved = chosen.resolve(additionalSearchPaths: additionalSearchPaths) else {
             return chosen == .automatic
                 ? String(localized: "None found on this Mac. Install pnpm, npm, Yarn or Bun to use a source registry.")
-                : "\(chosen.title) isn't installed on this Mac."
+                : String(localized: "\(chosen.title) isn't installed on this Mac.")
         }
         return chosen == .automatic
             ? "Found \(resolved.manager.title) at \(resolved.url.path)."
-            : "Found at \(resolved.url.path)."
+            : String(localized: "Found at \(resolved.url.path).")
     }
 
     /// Extra PATH folders checked before the built-in list, for a mise or Nix shim.
@@ -167,11 +167,11 @@ struct ExtensionRegistriesPanel: View {
                     settings.extensionCustomSearchPaths = Self.parseSearchPaths(value)
                 }
             }
-            Text(
-                String(localized: "Colon-separated, like PATH — checked before Homebrew and the rest. For mise: ")
-                    + "~/.local/share/mise/shims. For Nix (Home Manager): "
-                    + "/etc/profiles/per-user/<you>/home-path/bin."
-            )
+            Text("""
+                Colon-separated, like PATH — checked before Homebrew and the rest. For mise: \
+                ~/.local/share/mise/shims. For Nix (Home Manager): \
+                /etc/profiles/per-user/<you>/home-path/bin.
+                """)
             .font(.caption)
             .foregroundStyle(.secondary)
             .fixedSize(horizontal: false, vertical: true)
@@ -255,7 +255,7 @@ struct RegistryEditorPanel: View {
 
             if let parsed {
                 Text(
-                    "Will search \(parsed.owner)/\(parsed.repository)/\(parsed.path) at \(parsed.ref)."
+                    String(localized: "Will search \(parsed.owner)/\(parsed.repository)/\(parsed.path) at \(parsed.ref).")
                 )
                 .font(.caption)
                 .foregroundStyle(.secondary)
@@ -265,10 +265,10 @@ struct RegistryEditorPanel: View {
                     .foregroundStyle(.orange)
             }
 
-            Text(
-                String(localized: "Extensions from a repository are source: installing one runs your package manager ")
-                    + "and the extension's own build script on this Mac."
-            )
+            Text("""
+                Extensions from a repository are source: installing one runs your package manager \
+                and the extension's own build script on this Mac.
+                """)
             .font(.caption)
             .foregroundStyle(.secondary)
             .fixedSize(horizontal: false, vertical: true)

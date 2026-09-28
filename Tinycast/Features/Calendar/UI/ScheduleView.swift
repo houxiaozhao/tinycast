@@ -27,7 +27,7 @@ struct ScheduleList: View {
         var current: String?
         for meeting in results {
             let title =
-                MeetingDay(for: meeting.start, now: now, calendar: .current)?.title ?? "Later"
+                MeetingDay(for: meeting.start, now: now, calendar: .current)?.title ?? String(localized: "Later")
             if title != current {
                 rows.append(.header(title))
                 current = title

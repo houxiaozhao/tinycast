@@ -304,7 +304,7 @@ enum SettingsSearchCatalog {
             .aiMCPServers, "Add MCP Server",
             keywords: ["tools", "model context protocol", "stdio"]),
         .init(
-            group: .aiCommands, "AI commands",
+            group: .aiCommands, String(localized: "AI commands"),
             keywords: ["shortcut", "launcher", "chat"])
     ]
 

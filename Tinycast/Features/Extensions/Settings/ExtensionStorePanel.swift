@@ -25,7 +25,7 @@ struct ExtensionStorePanel: View {
             return String(localized: "No registries are enabled. Turn one on under Install → Registries.")
         }
         let names = on.map(\.name).joined(separator: ", ")
-        return "Searching \(names). Store extensions install as they are; a repository is built first."
+        return String(localized: "Searching \(names). Store extensions install as they are; a repository is built first.")
     }
 
     var body: some View {
@@ -79,7 +79,7 @@ struct ExtensionStorePanel: View {
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
         } else if results.isEmpty && searched {
-            placeholder("Nothing matches “\(query)”.")
+            placeholder(String(localized: "Nothing matches “\(query)”."))
         } else {
             ScrollView {
                 LazyVStack(alignment: .leading, spacing: 0) {
@@ -268,9 +268,10 @@ private struct StoreRow: View {
                             .padding(.vertical, 1)
                             .background(Theme.Colors.controlSurface, in: .capsule)
                             .foregroundStyle(.secondary)
-                            .help(
-                                String(localized: "This registry serves source. Installing runs your package manager ")
-                                    + "and the extension's build script.")
+                            .help("""
+                                This registry serves source. Installing runs your package manager \
+                                and the extension's build script.
+                                """)
                     }
                 }
                 if !listing.summary.isEmpty {

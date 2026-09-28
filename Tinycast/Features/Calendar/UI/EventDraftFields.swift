@@ -18,10 +18,10 @@ struct EventDraftFields: View {
                 .focused($focused)
                 .dialogTextField()
             ChoiceRow(
-                label: "Starts", values: EventDraft.startOffsets,
+                label: String(localized: "Starts"), values: EventDraft.startOffsets,
                 title: EventDraft.label(startOffset:), selection: $state.draft.startOffsetMinutes)
             ChoiceRow(
-                label: "For", values: EventDraft.durations, title: EventDraft.label(duration:),
+                label: String(localized: "For"), values: EventDraft.durations, title: EventDraft.label(duration:),
                 selection: $state.draft.durationMinutes)
         }
         .onAppear { focused = true }

@@ -73,7 +73,7 @@ struct SnippetsScreen: PaletteScreen {
     private var emptyMessage: String {
         if store.state == .loading { return String(localized: "Loading snippets…") }
         return store.snippets.contains(where: { $0.snippet.isEnabled })
-            ? "No matching snippets" : "No snippets yet"
+            ? String(localized: "No matching snippets") : String(localized: "No snippets yet")
     }
 }
 

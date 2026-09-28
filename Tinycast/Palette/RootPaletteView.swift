@@ -208,7 +208,7 @@ struct RootPaletteView: View {
                     core.settingsCoordinator.showSettings()
                 },
                 PopoverMenuItem(
-                    title: "Quit \(appName)", systemImage: "rectangle.portrait.and.arrow.right",
+                    title: String(localized: "Quit \(appName)"), systemImage: "rectangle.portrait.and.arrow.right",
                     startsSection: true, isDestructive: true
                 ) {
                     NSApp.terminate(nil)
@@ -1384,7 +1384,7 @@ struct RootPaletteView: View {
     /// Never promises a step the click does not take: a root screen closes rather than backs.
     private var backHelp: String {
         let escape = hasBackStep ? String(localized: "Esc to go back") : String(localized: "Esc to close")
-        return "\(escape) or ⌘ Esc to go to root search"
+        return String(localized: "\(escape) or ⌘ Esc to go to root search")
     }
 
     private func goBack() {

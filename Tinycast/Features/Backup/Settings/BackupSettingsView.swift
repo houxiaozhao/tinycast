@@ -183,7 +183,7 @@ struct BackupSettingsView: View {
         guard let name = backupFile?.lastPathComponent else {
             return String(localized: "A .tinycast file exported from Tinycast.")
         }
-        return openedManifest == nil ? "\(name) — couldn't be read" : name
+        return openedManifest == nil ? String(localized: "\(name) — couldn't be read") : name
     }
 
     private func available(in manifest: BackupManifest) -> [BackupCategory: Int] {

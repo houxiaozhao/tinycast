@@ -212,8 +212,8 @@ private final class ChatCodeHeader: NSView {
     }
 
     private func showIdle() {
-        button.image = NSImage(systemSymbolName: "square.on.square", accessibilityDescription: "Copy Code")
-        button.setAccessibilityLabel("Copy Code")
+        button.image = NSImage(systemSymbolName: "square.on.square", accessibilityDescription: String(localized: "Copy Code"))
+        button.setAccessibilityLabel(String(localized: "Copy Code"))
     }
 
     @objc private func copyCode() {

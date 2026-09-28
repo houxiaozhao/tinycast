@@ -115,7 +115,7 @@ struct AISettingsView: View {
         }
         if !settings.connections.isEmpty {
             let count = settings.connections.count
-            providers.append(count == 1 ? "1 API connection" : "\(count) API connections")
+            providers.append(count == 1 ? String(localized: "1 API connection") : String(localized: "\(count) API connections"))
         }
         return providers.isEmpty ? String(localized: "No external providers ready") : providers.joined(separator: ", ")
     }
@@ -429,7 +429,7 @@ struct AISettingsView: View {
 
     private func providerToggle(_ kind: InstalledAIKind) -> some View {
         Toggle(
-            "Enable \(kind.title)",
+            String(localized: "Enable \(kind.title)"),
             isOn: Binding(
                 get: { settings.enabledInstalledProviders.contains(kind) },
                 set: { settings.setInstalledProviderEnabled($0, for: kind) })
@@ -516,9 +516,9 @@ struct AISettingsView: View {
         _ window: ChatGPTSubscription.UsageWindow, fallback: String
     ) -> String {
         guard let minutes = window.durationMinutes else { return fallback }
-        if minutes >= 1_440 { return "\(minutes / 1_440)-day window" }
-        if minutes >= 60 { return "\(minutes / 60)-hour window" }
-        return "\(minutes)-minute window"
+        if minutes >= 1_440 { return String(localized: "\(minutes / 1_440)-day window") }
+        if minutes >= 60 { return String(localized: "\(minutes / 60)-hour window") }
+        return String(localized: "\(minutes)-minute window")
     }
 
     private func edit(_ connection: AIConnection) {

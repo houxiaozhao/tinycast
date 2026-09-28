@@ -162,10 +162,14 @@ struct MCPServerEditor: View {
                 } footer: {
                     Text(
                         kind == .http
-                            ? String(localized: "Remote endpoints must use HTTPS. Credentials are stored in your ")
-                                + "login Keychain, never in preferences."
-                            : String(localized: "The command runs on this Mac with your own account. One ")
-                                + String(localized: "NAME=value per line; values are stored in your login Keychain.")
+                            ? String(localized: """
+                                Remote endpoints must use HTTPS. Credentials are stored in your \
+                                login Keychain, never in preferences.
+                                """)
+                            : String(localized: """
+                                The command runs on this Mac with your own account. One \
+                                NAME=value per line; values are stored in your login Keychain.
+                                """)
                     )
                     .font(.caption)
                     .foregroundStyle(.secondary)
@@ -188,10 +192,10 @@ struct MCPServerEditor: View {
                         Text(error).foregroundStyle(.orange)
                     }
                 } footer: {
-                    Text(
-                        String(localized: "Ask Each Chat puts the first tool call of every conversation through a ")
-                            + "confirmation. Never Allow withholds the server without removing it."
-                    )
+                    Text("""
+                        Ask Each Chat puts the first tool call of every conversation through a \
+                        confirmation. Never Allow withholds the server without removing it.
+                        """)
                     .font(.caption)
                     .foregroundStyle(.secondary)
                 }

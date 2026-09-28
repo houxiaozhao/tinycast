@@ -68,10 +68,10 @@ struct UpdateWindowView: View {
     private var title: String {
         switch updates.stage {
         case .checking: return String(localized: "Checking for updates…")
-        case .upToDate: return "\(Bundle.main.appDisplayName) is up to date"
+        case .upToDate: return String(localized: "\(Bundle.main.appDisplayName) is up to date")
         case .localBuild: return String(localized: "\(Bundle.main.appDisplayName) doesn't update itself")
         case .available(let release), .blocked(_, let release), .installing(let release, _):
-            return "\(Bundle.main.appDisplayName) \(release.version) is available"
+            return String(localized: "\(Bundle.main.appDisplayName) \(release.version) is available")
         case .readyToRelaunch: return String(localized: "Update installed")
         case .failed: return String(localized: "Update failed")
         }
@@ -84,9 +84,9 @@ struct UpdateWindowView: View {
         case .localBuild:
             return String(localized: "This is a local build — rebuild it to move it forward.")
         case .available, .blocked, .installing:
-            return "You have \(updates.runningVersion)."
+            return String(localized: "You have \(updates.runningVersion).")
         case .readyToRelaunch:
-            return "Relaunch to start using it."
+            return String(localized: "Relaunch to start using it.")
         }
     }
 
@@ -116,7 +116,7 @@ struct UpdateWindowView: View {
 
     private func report(_ failure: UpdateFailure) -> some View {
         VStack(alignment: .leading, spacing: Theme.Spacing.lg) {
-            Text(failure.errorDescription ?? "Something went wrong.")
+            Text(failure.errorDescription ?? String(localized: "Something went wrong."))
                 .font(.callout)
             if let recovery = failure.recoverySuggestion {
                 Text(recovery)

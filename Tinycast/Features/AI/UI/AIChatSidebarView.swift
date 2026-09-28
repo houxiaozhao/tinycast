@@ -84,13 +84,13 @@ struct AIChatSidebarView: View {
     @ViewBuilder private var emptyState: some View {
         if !history.isAvailable {
             ContentUnavailableView(
-                "History Unavailable", systemImage: "exclamationmark.triangle",
+                String(localized: "History Unavailable"), systemImage: "exclamationmark.triangle",
                 description: Text("Chats can't be saved on this Mac right now."))
         } else if !query.isEmpty {
             ContentUnavailableView.search(text: query)
         } else {
             ContentUnavailableView(
-                "No Chats Yet", systemImage: "bubble.left.and.bubble.right",
+                String(localized: "No Chats Yet"), systemImage: "bubble.left.and.bubble.right",
                 description: Text("Conversations stay on this Mac."))
         }
     }
@@ -115,7 +115,7 @@ struct AIChatSidebarView: View {
 
     @ViewBuilder private func menu(for conversation: ChatConversation) -> some View {
         Button(
-            conversation.isPinned ? "Unpin Chat" : "Pin Chat",
+            conversation.isPinned ? String(localized: "Unpin Chat") : String(localized: "Pin Chat"),
             systemImage: conversation.isPinned ? "pin.slash" : "pin"
         ) {
             coordinator.togglePin(id: conversation.id)

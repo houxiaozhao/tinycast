@@ -53,7 +53,7 @@ final class SnippetCoordinator {
     func chooseSnippetsFolder() {
         guard
             let url = FolderPicker.choose(
-                message: "Choose the folder your snippets are kept in.",
+                message: String(localized: "Choose the folder your snippets are kept in."),
                 startingAt: store.snippetsDirectory)
         else { return }
         settings.snippetsFolder = AppPaths.contentFolderSetting(for: url, named: "Snippets")
@@ -75,9 +75,10 @@ final class SnippetCoordinator {
         Task {
             guard
                 await core.confirm(
-                    title: "Enable snippets?",
+                    title: String(localized: "Enable snippets?"),
                     message:
-                        "Keyword expansion requires the Accessibility permission. Keystrokes stay on this Mac.",
+                        String(localized:
+                            "Keyword expansion requires the Accessibility permission. Keystrokes stay on this Mac."),
                     symbol: "curlybraces", confirmTitle: "Continue", tone: .neutral,
                     confirmRole: .standard)
             else { return }

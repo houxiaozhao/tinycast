@@ -64,7 +64,7 @@ struct SnippetsSettingsView: View {
             Alert(
                 title: Text("Delete “\(record.snippet.name)”?"),
                 message: Text(
-                    "This removes \(record.fileURL.lastPathComponent) from your snippets folder."),
+                    String(localized: "This removes \(record.fileURL.lastPathComponent) from your snippets folder.")),
                 primaryButton: .destructive(Text("Delete")) {
                     delete(record)
                 },
@@ -156,7 +156,8 @@ struct SnippetsSettingsView: View {
     private var snippetIssueTitle: String {
         let count = snippetsStore.issues.count
         return count == 1
-            ? "1 snippet file couldn’t be loaded" : "\(count) snippet files couldn’t be loaded"
+            ? String(localized: "1 snippet file couldn’t be loaded")
+                : String(localized: "\(count) snippet files couldn’t be loaded")
     }
 
     private var snippetIssueMessage: String {

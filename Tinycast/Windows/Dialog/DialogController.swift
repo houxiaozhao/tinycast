@@ -42,7 +42,7 @@ final class DialogController: NSObject, NSWindowDelegate {
     func notice(title: String, message: String, symbol: String, tone: DialogTone) async {
         let request = DialogRequest(
             title: title, message: message, symbol: symbol, tone: tone,
-            actions: [DialogAction(title: "OK", role: .cancel)], defaultIndex: 0, cancelIndex: 0)
+            actions: [DialogAction(title: String(localized: "OK"), role: .cancel)], defaultIndex: 0, cancelIndex: 0)
         _ = await present(request)
     }
 
@@ -52,7 +52,7 @@ final class DialogController: NSObject, NSWindowDelegate {
     ) async
         -> Bool
     {
-        var actions = [DialogAction(title: "OK", role: .cancel)]
+        var actions = [DialogAction(title: String(localized: "OK"), role: .cancel)]
         if let recovery { actions.append(DialogAction(title: recovery)) }
         // ↵ lands on the recovery action when there is one to take, not on the OK dismissal.
         let recoveryIndex = recovery == nil ? nil : actions.count - 1

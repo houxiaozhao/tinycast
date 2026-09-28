@@ -115,9 +115,9 @@ struct EmojiScreen: PaletteScreen {
     private func content(selection: Int, scroll: ScrollIntent) -> some View {
         let sections = sections
         if !index.isLoaded {
-            EmptyResults(text: "Loading emoji…")
+            EmptyResults(text: String(localized: "Loading emoji…"))
         } else if sections.isEmpty {
-            EmptyResults(text: "No emoji found")
+            EmptyResults(text: String(localized: "No emoji found"))
         } else {
             EmojiGridView(
                 sections: sections,
@@ -196,26 +196,26 @@ enum EmojiActionsMenu {
         if let pinPosition {
             items.append(
                 PopoverMenuItem(
-                    title: "Move Up in Pinned", systemImage: "arrow.up",
+                    title: String(localized: "Move Up in Pinned"), systemImage: "arrow.up",
                     isEnabled: pinPosition > 0, shortcut: "⌥⌘↑"
                 ) { movePin(-1) })
             items.append(
                 PopoverMenuItem(
-                    title: "Move Down in Pinned", systemImage: "arrow.down",
+                    title: String(localized: "Move Down in Pinned"), systemImage: "arrow.down",
                     isEnabled: pinPosition < pinCount - 1, shortcut: "⌥⌘↓"
                 ) { movePin(1) })
         }
         items.append(contentsOf: [
             PopoverMenuItem(
-                title: "Actual Size", systemImage: "magnifyingglass",
+                title: String(localized: "Actual Size"), systemImage: "magnifyingglass",
                 isEnabled: canZoom(.actualSize), startsSection: true, shortcut: "⌘0"
             ) { zoom(.actualSize) },
             PopoverMenuItem(
-                title: "Zoom In", systemImage: "plus.magnifyingglass",
+                title: String(localized: "Zoom In"), systemImage: "plus.magnifyingglass",
                 isEnabled: canZoom(.zoomIn), shortcut: "⌘+"
             ) { zoom(.zoomIn) },
             PopoverMenuItem(
-                title: "Zoom Out", systemImage: "minus.magnifyingglass",
+                title: String(localized: "Zoom Out"), systemImage: "minus.magnifyingglass",
                 isEnabled: canZoom(.zoomOut), shortcut: "⌘-"
             ) { zoom(.zoomOut) }
         ])
