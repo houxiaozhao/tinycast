@@ -258,7 +258,7 @@ final class HotKeyManager {
         case .windowRoom:
             return displayName?(action) ?? "Room"
         case .customWindowSize:
-            return displayName?(action) ?? "Custom Size"
+            return displayName?(action) ?? String(localized: "Custom Size")
         case .quicklink:
             return displayName?(action) ?? "Quicklink"
         case .quickAction:
@@ -266,7 +266,7 @@ final class HotKeyManager {
         case .appleShortcut:
             return displayName?(action) ?? "Apple Shortcut"
         case .extensionCommand:
-            return displayName?(action) ?? "Extension Command"
+            return displayName?(action) ?? String(localized: "Extension Command")
         }
     }
 

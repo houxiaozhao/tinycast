@@ -280,7 +280,7 @@ enum ShellCommandRunner {
     }
 
     nonisolated private static func missingDirectory(_ path: String?) -> String {
-        "The folder “\(path ?? "")” no longer exists."
+        String(localized: "The folder “\(path ?? "")” no longer exists.")
     }
 
     /// Values follow as `$1`, `$2`, never spliced where zsh would re-parse them as syntax.

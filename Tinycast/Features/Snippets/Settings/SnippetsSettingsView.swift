@@ -166,7 +166,7 @@ struct SnippetsSettingsView: View {
             return "\(first.fileURL.lastPathComponent): \(first.message)"
         }
         return
-            "\(first.fileURL.lastPathComponent): \(first.message) Plus \(snippetsStore.issues.count - 1) more."
+            String(localized: "\(first.fileURL.lastPathComponent): \(first.message) Plus \(snippetsStore.issues.count - 1) more.")
     }
 
     private func delete(_ record: StoredSnippet) {

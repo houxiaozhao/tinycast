@@ -189,7 +189,7 @@ enum EmojiActionsMenu {
                 core.emojiCoordinator.pasteEmojiKeepingWindowOpen(entry)
             },
             PopoverMenuItem(
-                title: pinPosition == nil ? "Pin \(noun)" : "Unpin \(noun)",
+                title: pinPosition == nil ? String(localized: "Pin \(noun)") : String(localized: "Unpin \(noun)"),
                 systemImage: pinPosition == nil ? "pin" : "pin.slash",
                 startsSection: true, shortcut: "⌘.", action: togglePin)
         ]

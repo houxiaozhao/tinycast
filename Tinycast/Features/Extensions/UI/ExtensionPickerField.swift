@@ -39,7 +39,7 @@ struct ExtensionPickerField: View {
     /// What a screen reader hears: the query while searching, else the value held.
     private var announcedValue: String {
         guard open, !query.isEmpty else { return chosen.isEmpty ? placeholder : label }
-        return chosen.isEmpty ? query : "\(label), searching \(query)"
+        return chosen.isEmpty ? query : String(localized: "\(label), searching \(query)")
     }
 
     /// What the control does, then whatever the extension explains about the field.

@@ -97,7 +97,7 @@ enum HideCurrentEvent: Int, CaseIterable, Identifiable, Sendable {
         switch self {
         case .dontHide: String(localized: "Keep visible — show time left")
         case .automatically: String(localized: "Automatically")
-        default: "After \(rawValue) minutes"
+        default: String(localized: "After \(rawValue) minutes")
         }
     }
 

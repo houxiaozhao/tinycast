@@ -299,7 +299,7 @@ final class QuicklinkCoordinator {
         }
         do {
             try QuicklinkArchive.encode(store.quicklinks).write(to: url, options: .atomic)
-            core.showMessage("Exported \(store.quicklinks.count) Quicklinks")
+            core.showMessage(String(localized: "Exported \(store.quicklinks.count) Quicklinks"))
         } catch {
             await core.showNotice(
                 title: String(localized: "Export Failed"), message: error.localizedDescription,
@@ -330,7 +330,7 @@ final class QuicklinkCoordinator {
             let skipped = incoming.count - added.count
             let summary =
                 skipped == 0
-                ? "Imported \(added.count) quicklinks."
+                ? String(localized: "Imported \(added.count) quicklinks.")
                 : String(localized: "Imported \(added.count) quicklinks. Skipped \(skipped) already in your library.")
             await core.showNotice(
                 title: String(localized: "Quicklinks Imported"), message: summary, symbol: Quicklink.sfSymbol,

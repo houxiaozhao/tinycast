@@ -94,7 +94,7 @@ final class SystemActionCoordinator {
         guard !targets.isEmpty,
             await core.confirm(
                 title: targets.count == 1
-                    ? "Quit 1 application?" : "Quit \(targets.count) applications?",
+                    ? String(localized: "Quit 1 application?") : String(localized: "Quit \(targets.count) applications?"),
                 message: String(localized: "Applications with unsaved changes will ask you to save."),
                 symbol: SystemActionCatalog.action(id: .quitAllApps).sfSymbol,
                 confirmTitle: String(localized: "Quit All"))

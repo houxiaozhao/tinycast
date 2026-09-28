@@ -181,7 +181,7 @@ enum ExtensionStoreError: LocalizedError {
         case .registryRejected(let message):
             return message
         case .downloadFailed(let reason):
-            return "Download failed: \(reason)"
+            return String(localized: "Download failed: \(reason)")
         case .noPackageManager:
             return
                 "This extension is source that has to be built, and no package manager was found. "
@@ -191,7 +191,7 @@ enum ExtensionStoreError: LocalizedError {
                 "This extension is source that has to be built, and Node wasn't found. Install "
                 + "Node.js, or install this extension from the Raycast Store instead."
         case .buildFailed(let output):
-            return "The extension didn't build: \(output)"
+            return String(localized: "The extension didn't build: \(output)")
         case .notAnExtension:
             return String(localized: "That download didn't contain a Raycast extension.")
         }

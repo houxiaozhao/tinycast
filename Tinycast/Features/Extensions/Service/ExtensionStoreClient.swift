@@ -155,7 +155,7 @@ struct ExtensionStoreClient: Sendable {
         else { throw ExtensionStoreError.malformedResponse }
         let tree = try ExtensionStoreResponse.parseTree(try await get(url))
         guard tree.truncated != true else {
-            throw ExtensionStoreError.downloadFailed("\(path) is too large to download in one listing.")
+            throw ExtensionStoreError.downloadFailed(String(localized: "\(path) is too large to download in one listing."))
         }
 
         let fileManager = FileManager.default
@@ -194,7 +194,7 @@ struct ExtensionStoreClient: Sendable {
                     .directorySHA(named: segment)
             else {
                 throw ExtensionStoreError.registryRejected(
-                    "\(owner)/\(repository) has no \(path) directory on \(ref).")
+                    String(localized: "\(owner)/\(repository) has no \(path) directory on \(ref)."))
             }
             sha = next
         }

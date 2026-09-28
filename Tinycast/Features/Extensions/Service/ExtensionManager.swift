@@ -613,7 +613,7 @@ final class ExtensionManager: ExtensionRuntimeDelegate, ExtensionHostContext {
             if extensionNamed(reference.extensionName) != nil {
                 commandMetadata.recordBackgroundResult(
                     extension: reference.extensionName, command: reference.commandName,
-                    success: succeeded, error: succeeded ? nil : (backgroundFailure ?? "Timed out."),
+                    success: succeeded, error: succeeded ? nil : (backgroundFailure ?? String(localized: "Timed out.")),
                     now: Date())
             }
             backgroundSessionID = nil

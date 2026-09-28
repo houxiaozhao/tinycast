@@ -132,7 +132,7 @@ final class CustomCommandCoordinator {
         panel.canChooseDirectories = true
         panel.canChooseFiles = false
         panel.allowsMultipleSelection = false
-        panel.prompt = "Import"
+        panel.prompt = String(localized: "Import")
         panel.message = String(localized: "Choose a folder of Raycast script commands.")
         NSApp.activate(ignoringOtherApps: true)
         guard panel.runModal() == .OK else { return nil }
@@ -148,7 +148,7 @@ final class CustomCommandCoordinator {
                     Imported commands run these files with your user account. Only import scripts you \
                     trust.
                     """),
-            symbol: CustomCommand.sfSymbol, confirmTitle: "Import", confirmRole: .standard)
+            symbol: CustomCommand.sfSymbol, confirmTitle: String(localized: "Import"), confirmRole: .standard)
     }
 
     private func importSummary(added: Int, offered: Int) -> String {
@@ -205,7 +205,7 @@ final class CustomCommandCoordinator {
                     // Neutral, not destructive: their own command just wants a second tap.
                     await core.confirm(
                         title: command.name,
-                        message: "Are you sure you want to run this command?\n\n\(command.command)",
+                        message: String(localized: "Are you sure you want to run this command?\n\n\(command.command)"),
                         symbol: command.symbol, confirmTitle: "Run",
                         tone: .neutral, confirmRole: .standard)
                 else { return }
@@ -275,7 +275,7 @@ final class CustomCommandCoordinator {
         guard !result.succeeded else {
             // What the command said beats a bare "it ran"; on finish, so a slow one reports late.
             if command.showsConfirmation {
-                core.showMessage(result.lastOutputLine ?? "Ran \(command.name)")
+                core.showMessage(result.lastOutputLine ?? String(localized: "Ran \(command.name)"))
             }
             return
         }
@@ -284,7 +284,7 @@ final class CustomCommandCoordinator {
             await core.reportFailure(
                 title: "“\(command.name)” Failed",
                 message: failureMessage(command: command, result: result),
-                symbol: command.symbol, recovery: hint == nil ? nil : "Open Settings…")
+                symbol: command.symbol, recovery: hint == nil ? nil : String(localized: "Open Settings…"))
         else { return }
         settingsCoordinator.showSettings(tab: .commands)
     }

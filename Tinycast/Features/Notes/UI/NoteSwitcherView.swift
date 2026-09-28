@@ -167,7 +167,7 @@ private struct NoteSwitcherRow: View {
             }
             Spacer(minLength: Theme.Spacing.md)
             if !editing, selected || hovered {
-                rowButton(title: "Rename \(summary.displayTitle)", symbol: "pencil", action: onBeginRename)
+                rowButton(title: String(localized: "Rename \(summary.displayTitle)"), symbol: "pencil", action: onBeginRename)
                 rowButton(title: String(localized: "Move \(summary.displayTitle) to Trash"), symbol: "trash", action: onTrash)
                     .foregroundStyle(Theme.Colors.destructive)
             }
@@ -191,7 +191,7 @@ private struct NoteSwitcherRow: View {
             guard !editing else { return }
             onActivate()
         }
-        .accessibilityAction(named: "Rename \(summary.displayTitle)") {
+        .accessibilityAction(named: String(localized: "Rename \(summary.displayTitle)")) {
             guard !editing else { return }
             onBeginRename()
         }

@@ -67,7 +67,7 @@ final class ExtensionMenuBarHost: ExtensionHostContext {
 
     func authorizeOAuth(options: ExtensionOAuthAuthorizeOptions) async throws -> ExtensionOAuthAuthorizeResult
     {
-        guard isInteractive else { throw ExtensionHostError.unsupported("Background authorization") }
+        guard isInteractive else { throw ExtensionHostError.unsupported(String(localized: "Background authorization")) }
         return try await oauth.authorize(options: options)
     }
 

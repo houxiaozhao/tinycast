@@ -46,7 +46,7 @@ enum Fallback: Hashable, Sendable {
     /// The footer pill's verb: what ↵ does, in the destination's own words.
     var openVerb: String {
         switch self {
-        case .builtin(.quickAI): return "Ask Quick AI"
+        case .builtin(.quickAI): return String(localized: "Ask Quick AI")
         case .builtin(.searchFiles): return "Search Files"
         case .builtin(.runShellCommand): return "Run Shell Command"
         case .builtin(.define): return "Define Word"
@@ -63,7 +63,7 @@ enum Fallback: Hashable, Sendable {
 
     /// The section header. A long query is elided in the middle, so “with…” always survives.
     static func sectionTitle(query: String, limit: Int = 72) -> String {
-        guard query.count > limit else { return "Use “\(query)” with…" }
-        return "Use “\(query.prefix(limit / 2))…\(query.suffix(limit - limit / 2 - 1))” with…"
+        guard query.count > limit else { return String(localized: "Use “\(query)” with…") }
+        return String(localized: "Use “\(query.prefix(limit / 2))…\(query.suffix(limit - limit / 2 - 1))” with…")
     }
 }

@@ -21,7 +21,11 @@ struct MenuSearchList: View {
         let title: String
         let items: ArraySlice<MenuSearchItem>
 
-        var label: String { "\(title) (\(items.count) item\(items.count == 1 ? "" : "s"))" }
+        var label: String {
+            items.count == 1
+                ? String(localized: "\(title) (1 item)")
+                : String(localized: "\(title) (\(items.count) items)")
+        }
     }
 
     /// The walk emits a menu's leaves contiguously, so runs group without reordering the rows.

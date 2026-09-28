@@ -12,6 +12,9 @@ final class LocalizationUITests: XCTestCase {
             app.launchArguments = ["-AppleLanguages", "(\(language))", "-AppleLocale", language]
             app.launch()
             app.activate()
+            if language == "zh-Hans" {
+                try captureOnboardingAndLauncher(app)
+            }
             app.typeKey(",", modifierFlags: .command)
             let settings = app.windows.firstMatch
             XCTAssertTrue(settings.waitForExistence(timeout: 20), "Settings must open in \(language)")
@@ -47,10 +50,42 @@ final class LocalizationUITests: XCTestCase {
     }
 
     @MainActor
+    private func captureOnboardingAndLauncher(_ app: XCUIApplication) throws {
+        let welcome = app.windows["欢迎使用 Tinycast"]
+        XCTAssertTrue(welcome.waitForExistence(timeout: 20))
+        capture(welcome, named: "zh-Hans-onboarding-shortcut")
+        welcome.buttons["继续"].click()
+        XCTAssertTrue(welcome.staticTexts["启用粘贴"].waitForExistence(timeout: 10))
+        capture(welcome, named: "zh-Hans-onboarding-permissions")
+        let skip = welcome.buttons["跳过"]
+        if skip.exists { skip.click() } else { welcome.buttons["继续"].click() }
+        XCTAssertTrue(welcome.staticTexts["从 Raycast 导入"].waitForExistence(timeout: 10))
+        capture(welcome, named: "zh-Hans-onboarding-import")
+        welcome.buttons["跳过"].click()
+        XCTAssertTrue(welcome.staticTexts["准备就绪"].waitForExistence(timeout: 10))
+        capture(welcome, named: "zh-Hans-onboarding-ready")
+        welcome.buttons["开始使用"].click()
+        let query = app.textFields.firstMatch
+        XCTAssertTrue(query.waitForExistence(timeout: 10))
+        query.click()
+        query.typeText("Tinycast Settings")
+        XCTAssertTrue(app.staticTexts["Tinycast 设置"].firstMatch.waitForExistence(timeout: 10))
+        capture(app.windows.firstMatch, named: "zh-Hans-launcher-english-alias")
+        query.typeKey(.escape, modifierFlags: [])
+    }
+
+    @MainActor
     private func captureChinesePanes(_ settings: XCUIElement, search: XCUIElement) throws {
         for (query, title, expected) in [
             ("General", "通用", "登录时启动"),
             ("Permissions", "权限", "辅助功能"),
+            ("Applications", "应用", "启用应用"),
+            ("System Settings", "系统设置", "启用系统设置"),
+            ("System Actions", "系统操作", "启用系统操作"),
+            ("Commands", "命令", "启用命令"),
+            ("Quicklinks", "快捷链接", "添加快捷链接"),
+            ("Apple Shortcuts", "Apple 快捷指令", "启用 Apple 快捷指令"),
+            ("Fallbacks", "后备操作", "显示在每次搜索下方的“将…用于”区域，包含带 {argument} 的快捷链接。"),
             ("Snippets", "文本片段", "启用文本片段"),
             ("File Search", "文件搜索", "启用文件搜索"),
             ("Window Management", "窗口管理", "启用窗口管理"),

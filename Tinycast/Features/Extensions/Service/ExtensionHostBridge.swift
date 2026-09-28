@@ -100,7 +100,7 @@ struct ExtensionAlert: Sendable {
     var isDestructive: Bool
 
     init(payload: [String: RenderValue]) {
-        title = payload["title"]?.stringValue ?? "Are you sure?"
+        title = payload["title"]?.stringValue ?? String(localized: "Are you sure?")
         message = payload["message"]?.stringValue
         let primary = payload["primaryAction"]?.objectValue
         primaryTitle = primary?["title"]?.stringValue ?? "Confirm"

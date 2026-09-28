@@ -159,7 +159,7 @@ private struct NoteHeadingButton: View {
         switch level {
         case nil: ""
         case 0: String(localized: "Text")
-        case let level?: "Heading \(level)"
+        case let level?: String(localized: "Heading \(level)")
         }
     }
 }

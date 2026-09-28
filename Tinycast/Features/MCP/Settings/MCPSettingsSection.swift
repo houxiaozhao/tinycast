@@ -54,7 +54,7 @@ struct MCPSettingsSection: View {
             MCPServerEditor(target: target, onSave: save, onCancel: { editor = nil })
         }
         .confirmationDialog(
-            "Remove \(pendingRemoval?.title ?? "this server")?", isPresented: removalBinding,
+            String(localized: "Remove \(pendingRemoval?.title ?? "this server")?"), isPresented: removalBinding,
             presenting: pendingRemoval
         ) { server in
             Button("Remove", role: .destructive) { remove(server) }

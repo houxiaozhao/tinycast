@@ -139,7 +139,7 @@ private final class InstalledCLITurnRunner {
         } catch {
             continuation.finish(
                 throwing: AIProviderError.unavailable(
-                    "Tinycast could not prepare its private AI workspace."))
+                    String(localized: "Tinycast could not prepare its private AI workspace.")))
             return
         }
 
@@ -156,7 +156,7 @@ private final class InstalledCLITurnRunner {
                 activeServers = []
                 continuation.finish(
                     throwing: AIProviderError.unavailable(
-                        "Tinycast could not write its private MCP configuration."))
+                        String(localized: "Tinycast could not write its private MCP configuration.")))
                 return
             }
             configURL = url
@@ -178,7 +178,7 @@ private final class InstalledCLITurnRunner {
                 try? FileManager.default.removeItem(at: url)
                 continuation.finish(
                     throwing: AIProviderError.unavailable(
-                        "Tinycast could not write its private AI prompt."))
+                        String(localized: "Tinycast could not write its private AI prompt.")))
                 return
             }
             grokPrompt = url
@@ -444,7 +444,7 @@ private final class InstalledCLITurnRunner {
         for event in frame.events { continuation?.yield(event) }
         if frame.stoppedAtRoundCap {
             fail(
-                roundCap.map { "Stopped after \($0) rounds of tool calls." }
+                roundCap.map { String(localized: "Stopped after \($0) rounds of tool calls.") }
                     ?? kind.title + " could not finish the response.")
         } else if let error = frame.error {
             fail(error)

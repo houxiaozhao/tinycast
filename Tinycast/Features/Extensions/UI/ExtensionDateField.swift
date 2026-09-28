@@ -112,7 +112,7 @@ struct ExtensionDateField: View {
                 .foregroundStyle(Theme.Colors.textSecondary)
             // While the list is open the control is the expression field, caret and all.
             if open {
-                ExtensionQueryText(query: query, prompt: "tomorrow at 10am", phase: typedAt)
+                ExtensionQueryText(query: query, prompt: String(localized: "tomorrow at 10am"), phase: typedAt)
             } else {
                 Text(label)
                     .font(metrics.typography.rowTitle)

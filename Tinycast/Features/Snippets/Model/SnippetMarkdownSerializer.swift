@@ -40,10 +40,10 @@ struct SnippetMarkdownSerializer {
             let rawValue = line.text[line.text.index(after: separator)...]
                 .trimmingCharacters(in: .whitespaces)
             guard let key = canonicalKey(for: rawKey) else {
-                throw parseError(fileURL, line: lineNumber, "Unsupported frontmatter key '\(rawKey)'")
+                throw parseError(fileURL, line: lineNumber, String(localized: "Unsupported frontmatter key '\(rawKey)'"))
             }
             guard seenKeys.insert(key).inserted else {
-                throw parseError(fileURL, line: lineNumber, "Duplicate frontmatter key '\(key)'")
+                throw parseError(fileURL, line: lineNumber, String(localized: "Duplicate frontmatter key '\(key)'"))
             }
 
             switch key {
@@ -92,7 +92,7 @@ struct SnippetMarkdownSerializer {
             .components(separatedBy: allowed.inverted)
             .filter { !$0.isEmpty }
             .joined(separator: "-")
-        if slug.isEmpty { slug = "snippet" }
+        if slug.isEmpty { slug = String(localized: "snippet") }
         return slug
     }
 

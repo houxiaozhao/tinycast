@@ -180,7 +180,7 @@ final class CodexTurnRunner {
         // Finished before the interrupt, whose own cleanup would otherwise name a different reason.
         turn.continuation.finish(
             throwing: AIProviderError.responseFailed(
-                "Stopped after \(roundCap) rounds of tool calls."))
+                String(localized: "Stopped after \(roundCap) rounds of tool calls.")))
         interrupt(turn, key: key)
     }
 
@@ -257,7 +257,7 @@ final class CodexTurnRunner {
 
             guard models.isEmpty || models.contains(where: { $0.id == model }) else {
                 throw AIProviderError.unavailable(
-                    "\(model) is no longer available. Choose another model in Settings.")
+                    String(localized: "\(model) is no longer available. Choose another model in Settings."))
             }
 
             let threadResponse = try await client.request(

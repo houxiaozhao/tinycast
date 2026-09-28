@@ -55,7 +55,7 @@ struct WindowManagementSettingsFile {
                     return [.invalidValue(key)]
                 }
                 let kept = sizes.replace(with: decoded.records)
-                let rule = "a name is empty or used twice"
+                let rule = String(localized: "a name is empty or used twice")
                 return report(decoded, kept: kept, kind: "custom size", rule: rule, key: key)
                     + applyShortcuts(
                         decoded.shortcuts, records: sizes.sizes.map { ($0.id, $0.name) },
@@ -80,7 +80,7 @@ struct WindowManagementSettingsFile {
                     return [.invalidValue(key)]
                 }
                 let kept = layouts.replace(with: decoded.records)
-                let rule = "a name is empty or used twice, or it has no apps"
+                let rule = String(localized: "a name is empty or used twice, or it has no apps")
                 return report(decoded, kept: kept, kind: "layout", rule: rule, key: key)
                     + applyShortcuts(
                         decoded.shortcuts, records: layouts.layouts.map { ($0.id, $0.name) },
@@ -108,7 +108,7 @@ struct WindowManagementSettingsFile {
                     rooms.rooms.map { ($0.id, $0) }, uniquingKeysWith: { first, _ in first })
                 let kept = rooms.replace(
                     with: decoded.records.map { room in learned[room.id].map(room.keepingRuntime) ?? room })
-                let rule = "a name is empty or used twice, or it has no windows"
+                let rule = String(localized: "a name is empty or used twice, or it has no windows")
                 return report(decoded, kept: kept, kind: "room", rule: rule, key: key)
                     + applyShortcuts(
                         decoded.shortcuts, records: rooms.rooms.map { ($0.id, $0.name) },
@@ -178,7 +178,7 @@ struct WindowManagementSettingsFile {
             }
             guard let binding = spelling.binding(from: text) else {
                 issues.append(
-                    .invalidEntry(key, "\(item.label): “\(text)” isn't a shortcut Tinycast can bind"))
+                    .invalidEntry(key, String(localized: "\(item.label): “\(text)” isn't a shortcut Tinycast can bind")))
                 continue
             }
             guard binding != current else { continue }
@@ -193,7 +193,7 @@ struct WindowManagementSettingsFile {
                 hotKeys.setBinding(change.binding, for: change.action)
                 continue
             }
-            issues.append(.invalidEntry(key, "\(change.label): “\(change.text)” already runs \(owner)"))
+            issues.append(.invalidEntry(key, String(localized: "\(change.label): “\(change.text)” already runs \(owner)")))
             // The old binding returns when it is still free, so a clash never costs a working one.
             if let previous = change.previous,
                 hotKeys.conflictOwner(of: previous, excluding: change.action) == nil

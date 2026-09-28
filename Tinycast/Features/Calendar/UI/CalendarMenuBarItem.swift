@@ -51,7 +51,7 @@ struct CalendarMenuBarMenu: View {
                 Button {
                     AppCore.shared.calendarCoordinator.join(meeting)
                 } label: {
-                    MeetingMenuLabel(title: "Join \(meeting.title)", color: meeting.calendarColor)
+                    MeetingMenuLabel(title: String(localized: "Join \(meeting.title)"), color: meeting.calendarColor)
                 }
             }
             Button {

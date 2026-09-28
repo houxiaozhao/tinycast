@@ -144,7 +144,7 @@ struct ExtensionRegistriesPanel: View {
                 : String(localized: "\(chosen.title) isn't installed on this Mac.")
         }
         return chosen == .automatic
-            ? "Found \(resolved.manager.title) at \(resolved.url.path)."
+            ? String(localized: "Found \(resolved.manager.title) at \(resolved.url.path).")
             : String(localized: "Found at \(resolved.url.path).")
     }
 

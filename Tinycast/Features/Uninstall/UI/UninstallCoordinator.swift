@@ -135,7 +135,7 @@ final class UninstallCoordinator {
             title: report.trashedCount > 0
                 ? String(localized: "Some Items Weren’t Moved") : String(localized: "Nothing Was Moved"),
             message: listed.joined(separator: "\n")
-                + (remaining > 0 ? "\nand \(remaining) more." : ""),
+                + (remaining > 0 ? String(localized: "\nand \(remaining) more.") : ""),
             symbol: "trash", tone: .danger)
     }
 }

@@ -118,7 +118,7 @@ final class ExtensionCoordinator {
         Task {
             guard
                 await core.confirm(
-                    title: "Uninstall \(owner.title)?",
+                    title: String(localized: "Uninstall \(owner.title)?"),
                     message:
                         String(localized: """
                             Removes the extension and everything it stored — its preferences, its cache \

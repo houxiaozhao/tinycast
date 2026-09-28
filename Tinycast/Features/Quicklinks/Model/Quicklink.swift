@@ -96,8 +96,8 @@ enum QuicklinkSelectionFallback: String, CaseIterable, Identifiable, Sendable {
 
     var title: String {
         switch self {
-        case .ask: return "Ask for it"
-        case .clipboard: return "Use the clipboard"
+        case .ask: return String(localized: "Ask for it")
+        case .clipboard: return String(localized: "Use the clipboard")
         }
     }
 }

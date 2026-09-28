@@ -22,7 +22,7 @@ final class ExtensionFetcher: Sendable {
 
         var errorDescription: String? {
             switch self {
-            case .badURL(let url): return "Invalid URL: \(url)"
+            case .badURL(let url): return String(localized: "Invalid URL: \(url)")
             }
         }
     }

@@ -30,7 +30,7 @@ enum ChatGPTSubscription {
             case "self_serve_business_usage_based", "business": return "Business"
             case "enterprise_cbp_usage_based", "enterprise": return "Enterprise"
             case "edu": return "Edu"
-            case "apiKey", "api_key": return "API key"
+            case "apiKey", "api_key": return String(localized: "API key")
             default: return "Account"
             }
         }
@@ -42,7 +42,7 @@ enum ChatGPTSubscription {
 
         var title: String {
             switch id {
-            case "xhigh": return "Extra high"
+            case "xhigh": return String(localized: "Extra high")
             case "minimal": return "Minimal"
             default: return id.prefix(1).uppercased() + id.dropFirst()
             }

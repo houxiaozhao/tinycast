@@ -34,7 +34,7 @@ final class AIChatWindowChrome: NSObject, WindowChrome, NSToolbarDelegate, NSSea
         searchItem.toolTip = String(localized: "Find in Chat  ⌘F")
         searchItem.resignsFirstResponderWithCancel = true
         actionsButton.bezelStyle = .toolbar
-        actionsButton.toolTip = "Actions  ⌘K"
+        actionsButton.toolTip = String(localized: "Actions  ⌘K")
         actionsButton.target = self
         actionsButton.action = #selector(showActions)
     }

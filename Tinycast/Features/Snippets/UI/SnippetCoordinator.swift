@@ -195,7 +195,7 @@ final class SnippetCoordinator {
         if automaticGeneration == nil {
             guard injector.prepareInteractiveExpansion(target: target) else { return }
         }
-        let confirmation = record.snippet.showsConfirmation ? "Inserted \(record.snippet.name)" : nil
+        let confirmation = record.snippet.showsConfirmation ? String(localized: "Inserted \(record.snippet.name)") : nil
         let context = injector.captureExpansionContext(
             target: target,
             clipboardHistory: clipboardHistoryForExpansion())

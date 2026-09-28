@@ -108,7 +108,7 @@ struct ExtensionStorePanel: View {
             Text("Search for an extension")
                 .font(.headline)
             Text(
-                "By name, or by what it does — \u{201C}colour\u{201D}, \u{201C}github\u{201D}, \u{201C}window\u{201D}."
+                String(localized: "By name, or by what it does — \u{201C}colour\u{201D}, \u{201C}github\u{201D}, \u{201C}window\u{201D}.")
             )
             .font(.caption)
             .foregroundStyle(.secondary)

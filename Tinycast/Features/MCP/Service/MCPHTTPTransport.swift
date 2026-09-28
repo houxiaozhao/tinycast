@@ -114,7 +114,7 @@ final class MCPHTTPTransport: MCPTransport {
             throw MCPTransportError.requestFailed(String(localized: "The server ended the session."))
         default:
             throw MCPTransportError.requestFailed(
-                "The server answered HTTP \(response.statusCode).")
+                String(localized: "The server answered HTTP \(response.statusCode)."))
         }
     }
 

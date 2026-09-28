@@ -140,7 +140,7 @@ struct ExtensionsSettingsView: View {
             SettingsSectionHeader(anchor: .extensionsInstalled) {
                 Text(
                     core.extensions.installed.isEmpty
-                        ? String(localized: "Installed") : "Installed (\(core.extensions.installed.count))")
+                        ? String(localized: "Installed") : String(localized: "Installed (\(core.extensions.installed.count))"))
             }
         }
     }
@@ -227,8 +227,8 @@ struct ExtensionsSettingsView: View {
 
     private var reclaimableSubtitle: String {
         guard !reclaimable.isEmpty else { return String(localized: "Nothing to clean up.") }
-        let items = reclaimable.items == 1 ? String(localized: "1 item") : "\(reclaimable.items) items"
-        return "Reclaims \(ExtensionCleanup.formatted(bytes: reclaimable.bytes)) from \(items)."
+        let items = reclaimable.items == 1 ? String(localized: "1 item") : String(localized: "\(reclaimable.items) items")
+        return String(localized: "Reclaims \(ExtensionCleanup.formatted(bytes: reclaimable.bytes)) from \(items).")
     }
 
     /// Off-main: measuring walks a `node_modules`, which is tens of thousands of files.
@@ -249,7 +249,7 @@ struct ExtensionsSettingsView: View {
 
     private var importSubtitle: String {
         if let importProgress {
-            return "Importing \(importProgress.done) of \(importProgress.total)…"
+            return String(localized: "Importing \(importProgress.done) of \(importProgress.total)…")
         }
         if let importSummary { return importSummary }
         guard raycastAvailable else {
@@ -262,7 +262,7 @@ struct ExtensionsSettingsView: View {
             .sorted { $0.sortKey.localizedCaseInsensitiveCompare($1.sortKey) == .orderedAscending }
             .prefix(3)
             .joined(separator: ", ")
-        let more = pending.count > 3 ? " and \(pending.count - 3) more" : ""
+        let more = pending.count > 3 ? String(localized: " and \(pending.count - 3) more") : ""
         return String(localized: "\(pending.count) not here yet — \(names)\(more).")
     }
 
@@ -309,9 +309,9 @@ struct ExtensionsSettingsView: View {
         await findPending()
         let imported = chosen.count - failed.count
         if failed.isEmpty {
-            importSummary = "Imported \(imported) extension\(imported == 1 ? "" : "s")."
+            importSummary = (imported == 1 ? String(localized: "Imported 1 extension.") : String(localized: "Imported \(imported) extensions."))
         } else {
-            importSummary = "Imported \(imported); \(failed.count) failed."
+            importSummary = String(localized: "Imported \(imported); \(failed.count) failed.")
             error = String(localized: "Couldn't import \(failed.joined(separator: ", ")).")
         }
     }
@@ -370,7 +370,7 @@ private struct ExtensionDisclosure: View {
         .onTapGesture(perform: onToggle)
         .accessibilityAddTraits(.isButton)
         .accessibilityLabel(
-            isExpanded ? "Hide \(installed.title) settings" : "Configure \(installed.title)")
+            isExpanded ? String(localized: "Hide \(installed.title) settings") : String(localized: "Configure \(installed.title)"))
         .id(SettingsTarget.row(.extensionsInstalled, installed.manifest.name))
     }
 
@@ -437,7 +437,7 @@ private struct ExtensionDisclosure: View {
 
     private var subtitle: String {
         let count = installed.manifest.commands.count
-        let commands = "\(count) command\(count == 1 ? "" : "s")"
+        let commands = (count == 1 ? String(localized: "1 command") : String(localized: "\(count) commands"))
         let author = installed.manifest.author
         return author.isEmpty ? commands : "\(commands) · \(author)"
     }

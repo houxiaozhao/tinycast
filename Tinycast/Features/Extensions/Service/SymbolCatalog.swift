@@ -5,8 +5,8 @@ struct SymbolCategory: Identifiable, Hashable, Sendable {
     let id: String
     let title: String
 
-    static let suggested = SymbolCategory(id: "tinycast.suggested", title: "Suggested")
-    static let all = SymbolCategory(id: "tinycast.all", title: "All Symbols")
+    static let suggested = SymbolCategory(id: "tinycast.suggested", title: String(localized: "Suggested"))
+    static let all = SymbolCategory(id: "tinycast.all", title: String(localized: "All Symbols"))
     static let bundled = SymbolCategory(id: "tinycast.bundled", title: "Tinycast")
 }
 
@@ -112,7 +112,7 @@ struct SymbolCatalog: Sendable {
         let ordered = (plist("categories.plist", as: [[String: String]].self) ?? [])
             .compactMap { $0["key"] }
             .filter { byCategory[$0]?.isEmpty == false }
-            .compactMap { key in categoryTitles[key].map { SymbolCategory(id: key, title: $0) } }
+            .compactMap { key in categoryTitles[key].map { SymbolCategory(id: key, title: String(localized: String.LocalizationValue($0))) } }
 
         return SymbolCatalog(
             symbols: symbols,

@@ -121,7 +121,7 @@ struct OnboardingView: View {
 
     private var readyMessage: String {
         if let caps = hotKeys.binding(for: .togglePalette)?.keycaps {
-            return "Press \(caps.joined()) anytime to start using Tinycast."
+            return String(localized: "Press \(caps.joined()) anytime to start using Tinycast.")
         }
         return String(localized: "Tinycast is ready. Set a shortcut in Settings to summon it.")
     }
@@ -389,7 +389,7 @@ final class OnboardingModel {
         guard let name = file?.lastPathComponent else {
             return String(localized: "Choose a .rayconfig file exported from Raycast v2.0 or newer.")
         }
-        return "\(name) — \(isRaycastExport ? "Raycast export" : "not a Raycast export")"
+        return "\(name) — \(isRaycastExport ? String(localized: "Raycast export") : String(localized: "not a Raycast export"))"
     }
 
     func chooseFile() {

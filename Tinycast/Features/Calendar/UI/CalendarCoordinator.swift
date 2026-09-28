@@ -327,7 +327,7 @@ final class CalendarCoordinator {
             NSApp.activate(ignoringOtherApps: true)
             guard
                 await core.confirm(
-                    title: "Join \(meeting.title)?",
+                    title: String(localized: "Join \(meeting.title)?"),
                     message: UpcomingWindow.countdown(to: meeting.start, now: Date()),
                     symbol: link.provider.sfSymbol, confirmTitle: String(localized: "Join"), tone: .neutral,
                     confirmRole: .standard, dismissTitle: String(localized: "Not Now"))

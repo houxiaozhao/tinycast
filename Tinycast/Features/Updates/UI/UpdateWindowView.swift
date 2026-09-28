@@ -80,7 +80,7 @@ struct UpdateWindowView: View {
     private var subtitle: String {
         switch updates.stage {
         case .checking, .upToDate, .failed:
-            return "Version \(updates.runningVersion)"
+            return String(localized: "Version \(updates.runningVersion)")
         case .localBuild:
             return String(localized: "This is a local build — rebuild it to move it forward.")
         case .available, .blocked, .installing:

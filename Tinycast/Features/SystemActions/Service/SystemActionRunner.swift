@@ -113,11 +113,11 @@ enum SystemActionRunner {
                 "tell application \"System Events\" to tell appearance preferences to set dark mode to not dark mode"
             )
             let dark = result.flag
-            return SystemActionFeedback(dark ? "Dark Appearance" : "Light Appearance")
+            return SystemActionFeedback(dark ? String(localized: "Dark Appearance") : String(localized: "Light Appearance"))
         case .toggleStageManager:
             let on = try await toggleDefault(
                 domain: "com.apple.WindowManager", key: "GloballyEnabled")
-            return SystemActionFeedback(on ? "Stage Manager On" : "Stage Manager Off")
+            return SystemActionFeedback(on ? String(localized: "Stage Manager On") : String(localized: "Stage Manager Off"))
         case .openTrash:
             let trash = FileManager.default.homeDirectoryForCurrentUser.appendingPathComponent(".Trash")
             guard NSWorkspace.shared.open(trash) else {
@@ -129,16 +129,16 @@ enum SystemActionRunner {
                 try await runAppleScript("tell application \"Finder\" to count items of trash")
                 .number
             guard items > 0 else {
-                return SystemActionFeedback("Trash Is Already Empty", isNoOp: true)
+                return SystemActionFeedback(String(localized: "Trash Is Already Empty"), isNoOp: true)
             }
             try await runAppleScript("tell application \"Finder\" to empty trash")
-            return SystemActionFeedback("Trash Emptied")
+            return SystemActionFeedback(String(localized: "Trash Emptied"))
         case .ejectAllDisks:
             let ejected = try ejectAllDisks()
             guard ejected > 0 else {
-                return SystemActionFeedback("No Disks to Eject", isNoOp: true)
+                return SystemActionFeedback(String(localized: "No Disks to Eject"), isNoOp: true)
             }
-            return SystemActionFeedback(ejected == 1 ? "1 Disk Ejected" : "\(ejected) Disks Ejected")
+            return SystemActionFeedback(ejected == 1 ? String(localized: "1 Disk Ejected") : String(localized: "\(ejected) Disks Ejected"))
         case .toggleHiddenFiles:
             let shown = try await toggleDefault(
                 domain: "com.apple.finder", key: "AppleShowAllFiles")
@@ -146,27 +146,27 @@ enum SystemActionRunner {
             if output.status != 0 && output.status != 1 {
                 throw processFailure(output, executable: "killall")
             }
-            return SystemActionFeedback(shown ? "Hidden Files Shown" : "Hidden Files Hidden")
+            return SystemActionFeedback(shown ? String(localized: "Hidden Files Shown") : String(localized: "Hidden Files Hidden"))
         case .hideOtherApps:
             hideOtherApps(except: previousApp)
         case .unhideAllApps:
             let hidden = NSWorkspace.shared.runningApplications.filter(\.isHidden)
             for app in hidden { app.unhide() }
             guard !hidden.isEmpty else {
-                return SystemActionFeedback("Nothing Was Hidden", isNoOp: true)
+                return SystemActionFeedback(String(localized: "Nothing Was Hidden"), isNoOp: true)
             }
-            return SystemActionFeedback("All Apps Unhidden")
+            return SystemActionFeedback(String(localized: "All Apps Unhidden"))
         case .quitAllApps:
             for app in AppLauncher.quitAllTargets() { app.terminate() }
         case .dismissNotifications:
             let dismissed = try await dismissNotifications()
             guard dismissed > 0 else {
-                return SystemActionFeedback("No Notifications", isNoOp: true)
+                return SystemActionFeedback(String(localized: "No Notifications"), isNoOp: true)
             }
-            return SystemActionFeedback("Notifications Dismissed")
+            return SystemActionFeedback(String(localized: "Notifications Dismissed"))
         case .toggleBluetooth:
             let on = try await toggleBluetooth()
-            return SystemActionFeedback(on ? "Bluetooth On" : "Bluetooth Off")
+            return SystemActionFeedback(on ? String(localized: "Bluetooth On") : String(localized: "Bluetooth Off"))
         }
         return nil
     }
@@ -222,7 +222,7 @@ enum SystemActionRunner {
                 device, &address, 0, nil, UInt32(MemoryLayout<Float32>.size), &applied)
             guard status == noErr else {
                 throw SystemActionFailure(
-                    "macOS could not change the output volume (error \(status)).")
+                    String(localized: "macOS could not change the output volume (error \(status))."))
             }
         }
         if value > 0 { try? setMuted(false, on: device) }
@@ -326,7 +326,7 @@ enum SystemActionRunner {
         let status = AudioObjectSetPropertyData(
             device, &address, 0, nil, UInt32(MemoryLayout<UInt32>.size), &value)
         guard status == noErr else {
-            throw SystemActionFailure("macOS could not change mute state (error \(status)).")
+            throw SystemActionFailure(String(localized: "macOS could not change mute state (error \(status))."))
         }
     }
 
@@ -607,7 +607,7 @@ enum SystemActionRunner {
             process.standardError = stderr
             do { try process.runObservingExit().wait() } catch {
                 throw SystemActionFailure(
-                    "\(URL(fileURLWithPath: executable).lastPathComponent) could not start: \(error.localizedDescription)"
+                    String(localized: "\(URL(fileURLWithPath: executable).lastPathComponent) could not start: \(error.localizedDescription)")
                 )
             }
             let outData = stdout.fileHandleForReading.readDataToEndOfFile()
@@ -623,6 +623,6 @@ enum SystemActionRunner {
         let detail = output.stderr.trimmingCharacters(in: .whitespacesAndNewlines)
         let name = URL(fileURLWithPath: executable).lastPathComponent
         return SystemActionFailure(
-            detail.isEmpty ? "\(name) exited with status \(output.status)." : detail)
+            detail.isEmpty ? String(localized: "\(name) exited with status \(output.status).") : detail)
     }
 }

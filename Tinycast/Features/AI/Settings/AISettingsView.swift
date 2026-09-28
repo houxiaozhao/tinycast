@@ -221,7 +221,7 @@ struct AISettingsView: View {
                 onCancel: { editor = nil })
         }
         .confirmationDialog(
-            pendingRemoval.map { "Remove “\($0.title)”?" } ?? String(localized: "Remove connection?"),
+            pendingRemoval.map { String(localized: "Remove “\($0.title)”?") } ?? String(localized: "Remove connection?"),
             isPresented: removalPresented,
             titleVisibility: .visible
         ) {
@@ -567,7 +567,7 @@ struct AISettingsView: View {
 
     private func copySignInCommand(_ kind: InstalledAIKind) {
         Paster.copyPlainText(kind.signInCommand)
-        core.showMessage("Copied \(kind.signInCommand)")
+        core.showMessage(String(localized: "Copied \(kind.signInCommand)"))
     }
 
     private func readyDetail(_ kind: InstalledAIKind, _ status: InstalledAIStatus) -> String {

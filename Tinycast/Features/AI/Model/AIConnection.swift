@@ -15,7 +15,7 @@ enum AIProviderKind: String, CaseIterable, Codable, Identifiable, Sendable {
         case .anthropic: return "Anthropic Claude"
         case .gemini: return "Google Gemini"
         case .openRouter: return "OpenRouter"
-        case .openAICompatible: return "OpenAI Compatible"
+        case .openAICompatible: return String(localized: "OpenAI Compatible")
         }
     }
 

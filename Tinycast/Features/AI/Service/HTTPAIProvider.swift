@@ -110,11 +110,11 @@ struct HTTPAIProvider: AIProvider {
             guard let retryAfter = response.value(forHTTPHeaderField: "Retry-After"),
                 let seconds = Int(retryAfter), seconds >= 0
             else { return String(localized: "Rate limit reached — try again later.") }
-            return "Rate limit reached — retry after \(seconds) seconds."
+            return String(localized: "Rate limit reached — retry after \(seconds) seconds.")
         case 500...599:
-            return "The provider is temporarily unavailable (HTTP \(response.statusCode))."
+            return String(localized: "The provider is temporarily unavailable (HTTP \(response.statusCode)).")
         default:
-            return "The provider rejected the model or request (HTTP \(response.statusCode))."
+            return String(localized: "The provider rejected the model or request (HTTP \(response.statusCode)).")
         }
     }
 

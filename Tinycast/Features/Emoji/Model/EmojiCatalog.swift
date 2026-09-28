@@ -19,20 +19,20 @@ enum EmojiCategory: String, CaseIterable, Sendable {
 
     var title: String {
         switch self {
-        case .smileysAndPeople: return "Smileys & People"
-        case .animalsAndNature: return "Animals & Nature"
-        case .foodAndDrink: return "Food & Drink"
+        case .smileysAndPeople: return String(localized: "Smileys & People")
+        case .animalsAndNature: return String(localized: "Animals & Nature")
+        case .foodAndDrink: return String(localized: "Food & Drink")
         case .activity: return String(localized: "Activity")
-        case .travelAndPlaces: return "Travel & Places"
+        case .travelAndPlaces: return String(localized: "Travel & Places")
         case .objects: return String(localized: "Objects")
         case .symbols: return String(localized: "Symbols")
         case .flags: return String(localized: "Flags")
         case .arrows: return String(localized: "Arrows")
         case .currency: return String(localized: "Currency")
         case .math: return String(localized: "Math")
-        case .shapesAndPunctuation: return "Shapes & Punctuation"
+        case .shapesAndPunctuation: return String(localized: "Shapes & Punctuation")
         case .cjk: return String(localized: "CJK Symbols")
-        case .keysAndTechnical: return "Keys & Technical"
+        case .keysAndTechnical: return String(localized: "Keys & Technical")
         }
     }
 
