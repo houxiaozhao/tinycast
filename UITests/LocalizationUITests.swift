@@ -65,6 +65,10 @@ final class LocalizationUITests: XCTestCase {
         XCTAssertTrue(welcome.staticTexts["准备就绪"].waitForExistence(timeout: 10))
         capture(welcome, named: "zh-Hans-onboarding-ready")
         welcome.buttons["开始使用"].click()
+        let statusItem = app.descendants(matching: .statusItem)["Tinycast Chinese Dev"]
+        XCTAssertTrue(statusItem.waitForExistence(timeout: 10))
+        statusItem.click()
+        app.menuItems["打开Tinycast Chinese Dev"].click()
         let query = app.textFields.firstMatch
         XCTAssertTrue(query.waitForExistence(timeout: 10))
         query.click()
